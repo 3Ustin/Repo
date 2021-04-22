@@ -1,10 +1,3 @@
-@MainMenu
-    @NavBar
-        --> SEE @NavBar
-    @Play
-        Onclick() --> @GameMenu
-    @Credits
-        Onclick() --> @SettingsPage
 @NavBar
     @Home 
         OnClick() --> @MainMenu
@@ -28,18 +21,39 @@
                     --> @upgrades
                     --> @etc.
     @Logout
-        onClick() --> @Logout --> @MainMenu
-            --> session['user_id'] == null;
-            --> remove permissions from:
-                @GameMenu
-                @SettingsPage
+        if(session['user_id'] != null):
+            onClick() --> @Logout --> @MainMenu
+                --> session['user_id'] == null;
+                --> remove permissions from:
+                    @GameMenu
+                    @SettingsPage
     @Register
-        onClick() --> @Register
-            --> for user in users:
-                    if (username == user['name']):
-                        validRegistration = FALSE
-            --> INSERT validRegistration INTO database:
+        if(session['user_id'] == null):
+            onClick() --> @Register
+                --> for user in users:
+                        if (username == user['name']):
+                            validRegistration = FALSE
+                --> INSERT validRegistration INTO database:
+
 @MainMenu
+    @NavBar
+        --> SEE @NavBar
+    @Play
+        Onclick() --> @GameMenu
+    @Credits
+        Onclick() --> @Credits
+
+@Credits
+    Has a series of words and images that shows them us
+        - We take an image of us each day we build the game, and show those in a slide or in tandem,
+        - We show code or functionality that didn't make the final cut.
+        - tell our story as friends making a game.
+    @MainMenu
+        onClick() --> @MainMenu
+
+@GameMenu
+    
+
 
 
 
