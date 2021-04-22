@@ -1,4 +1,4 @@
-/*GLOBAL DECLARATIONS*/
+/*GLOBAL DECLARATIONS/
 
 /*IMPORTED FONTS
 font-family: 'Aclonica', sans-serif;
@@ -7,17 +7,16 @@ font-family: 'Marcellus SC', serif;
 font-family: 'Reggae One', cursive;
 font-family: 'Sigmar One', cursive;
 font-family: 'Roboto', sans-serif;
-
 if you import a font add it here^^^
-*/
+/
 
 :root {
-    /*color variables*/
+    /color variables/
     --main_bg_color: white;
     --main_text: black;
     --border_color: black;
 
-    /*sizing variables*/
+    /sizing variables/
     --global_margin: .5rem;
     --global_padding: .5rem;
     --rounded_edge: 10px;
@@ -25,18 +24,85 @@ if you import a font add it here^^^
     --border_size: 3px;
 }
 
-/* DESKTOP DISPLAY */
-    /* HEADER DECLARATIONS */
+/ DESKTOP DISPLAY /
+    / HEADER DECLARATIONS /
 
-    /* MAIN DECLARATIONS */
+    / MAIN DECLARATIONS /
     section {
-        /*border*/
+        /border/
         border-color: black;
         border-style: solid;
         border-width: var(--border_size);
         border-radius: var(--rounder_edge);
     }
 
-/* TABLET DISPLAY */
+/ TABLET DISPLAY /
 
-/* PHONE DISPLAY */
+/ PHONE DISPLAY */
+
+*{
+    padding: 0;
+    margin: 0;
+    color: whitesmoke;
+}
+
+.navBar{
+    border-bottom: purple solid 3px;
+    background-color: blue;
+}
+
+.nav-R{
+    display: flex;
+    justify-content: right;
+    background-color: cadetblue;
+}
+
+.login, .register{
+    border: black solid 2 px;
+    padding: 10px 10px ;
+}
+
+button{
+    cursor: pointer;
+    padding: 12px;
+    width: 100px;
+    border: 3px solid purple;
+    background-color: teal;
+}
+
+.landingOptions{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 400px;
+}
+
+.mainBtn1, .mainBtn2{
+    width: 150px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    margin-left: 34%;
+}
+
+.landingContainer{
+    background-color: rgb(245, 192, 146);
+    height: 600px;
+    width: 100vw;
+}
+
+.gameInfo{
+    text-align: center;
+    margin: 0 auto;
+    width: 400px;
+}
+
+.gameDesc{
+    padding-bottom: 30px;
+}
+
+.title{
+    padding: 80px 0 40px;
+    color: whitesmoke;
+}
