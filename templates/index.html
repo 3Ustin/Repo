@@ -3,12 +3,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--Metadata-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!--Links-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <!--Google Fonts-->
-    <!--@TJK-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bungee+Inline&family=Marcellus+SC&family=Reggae+One&family=Sigmar+One&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -21,20 +22,42 @@
 <body>
     <div class="wrapper">
         <header>
+            <!-- TODO: shows game title, shows name of area below, has a button to end session-->
         </header>
         <main>
+            <!--Each column has sections. Sections are our boxes.-->
             <div class="column">
+                <!-- TODO: left column shows the main fight screen, the interaction menu, and the activity feed, NOTE: display the health bar below or above the character model?-->
                 <section id="fight_main">
                 </section>
                 <section id="interaction_menu">
+                <!-- TODO: the interaction bar has 5 buttons and a continue button-->
                 </section>
                 <section id="activity_feed">
+                    <div class="section_header">
+                    </div>
+                    <div class="section_content">
+                    </div>
                 </section>
             </div>
             <div class="column">
-                <section id="inventory">
+                <!-- TODO: right column shows the main inventory menu which has two divs, and the map below it. Shows current armor rating and current attack/damage stat to the right and left of the head, respectively.-->
+                <section id="inventory_menu">
+                    <div id="equippable_menu">
+                        <div class="section_header">
+                        </div>
+                        <div class="section_content">
+                        </div>
+                    </div>
+                    <div id="backpack_menu">
+                    <!-- TODO: shows four slots, possibility to go up to 6 slots but they don't appear until later.-->
+                        <div class="section_header">
+                        </div>
+                        <div class="section_content">
+                        </div>
+                    </div>
                 </section>
-                <section id="map">
+                <section class="map">
                 </section>
             </div>
         </main>

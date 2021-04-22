@@ -1,0 +1,32 @@
+/*GLOBAL DECLARATIONS*/
+
+/*IMPORTED FONTS
+font-family: 'Aclonica', sans-serif;
+font-family: 'Bungee Inline', cursive;
+font-family: 'Marcellus SC', serif;
+font-family: 'Reggae One', cursive;
+font-family: 'Sigmar One', cursive;
+font-family: 'Roboto', sans-serif;
+*/
+
+:root {
+    /*color variables*/
+    --main_bg_color: black;
+    --main_text: white;
+
+    /*sizing variables*/
+    --global_margin: .5rem;
+    --global_padding: .5rem;
+    --rounded_edge: 10px;
+    --rounder_edge: 25px;
+    /* declare css variables with this syntax: var(--main_bg_color); */
+}
+
+/* DESKTOP DISPLAY */
+    /* HEADER DECLARATIONS */
+
+    /* MAIN DECLARATIONS */
+
+/* TABLET DISPLAY */
+
+/* PHONE DISPLAY */
