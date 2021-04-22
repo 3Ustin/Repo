@@ -52,7 +52,45 @@
         onClick() --> @MainMenu
 
 @GameMenu
-    
+    @InventoryMenu
+        @equipted Items
+            Onclick() --> QUEUE = SELECT (Amount of money current user has)
+                --> if (QUEUE == (item_clicked).upgrade_cost){
+                    --> QUEUE = SELECT (item_clicked)
+                    --> (item_clicked).href = upgraded href
+                    --> 
+                    } 
+            @PIPEDREAM
+                Onhover() --> highlight(item_hovered)
+        @ProgressBar
+            (Image_of_current_location)
+            OnEnemyDeath() --> EnemyDeath#++
+                if(EnemyDeath# > numberOfEnemiesToKillToPassLevel):
+                    (Image_of_current_location) = new Image
+            @PIPEDREAM
+                OnEnemyDeath() --> progress bar scrolls.
+        @BackPackSlot
+            OnClick() --> create div onto the DOM absolute valued 'on' (BackPackSlot)
+                @use
+                    OnClick() --> item.use()
+                        changes image of current (BackPackSlot)
+                        item does what it is supposed to do.
+                @drop
+                    onClick() --> item.drop()
+                        change image of current (BackPackSlot)
+                @sell
+                    onClick() --> item.sell()
+                        change image of current (BackPackSlot)
+                        Character Money increases in number
+            @PIPEDREAM
+                Onhover() --> highlight(item_hovered)
+    @FightMain
+        @imageOfEnemy
+            OnEnemyDeath() --> (imageOfEnemy).href = null
+                --> (imageOfEnemy).href = (newImageOfEnemy)
+                --> SEE @GameMenu@ProgressBar 
+    @activityFeed
+
 
 
 
