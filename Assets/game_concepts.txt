@@ -1,0 +1,33 @@
+GAME CONCEPTS
+
+ATTACK TYPES:
+CORE ABILITIES
+	BASIC_ATTACK
+	STRONG_ATTACK
+	CLASS_UTILITY_ABILITY
+	UBER_ABILITY
+	ULTIMATE
+
+PALADIN MOVES
+STRATEGY - BASIC BRAWLER
+	BASIC_ATTACK = Martial Strike
+	STRONG_ATTACK = Divine Smite; 3 turn cooldown; inflicts burning on undead enemies. if enemy is killed, restores 10% health.
+	CLASS_UTILITY_ABILITY = Aura of Protection; 7 turn cooldown; increases defense and removes negative effects
+	UBER_ABILITY = Cleansing Blade; 9 turn cooldown; attacks with a divine smite, then attacks again on kill
+	ULTIMATE = Divine Intervention; 20 turn cooldown; invulnerable for 3 rounds +50% damage increase
+
+ROGUE MOVES
+STRATEGY - SEQUENCING/COMBOS
+	BASIC_ATTACK = Hidden Blade
+	STRONG_ATTACK = Crossbow Volley; 3 turn cooldown; has a 12% chance to deal 200% damage (HEADSHOT!)
+	CLASS_UTILITY_ABILITY = Uncanny Dodge; 6 turn cooldown; enemy attacks have a 33% chance to miss for 3 turns. the first hidden blade attack activated while uncanny dodge is active performs a sneak attack instead of a basic attack.
+	UBER_ABILITY = Sneak Attack; 12 turn cooldown; deals 300% damage; gain extra $$ on a sneak attack kill
+	ULTIMATE = Assassinate; 20 turn cooldown; instantly kills current non-boss enemy, deals massive damage to bosses.
+
+WIZARD MOVES
+STRATEGY - STUN/CONTROL/STATUS EFFECTS
+	BASIC_ATTACK = Shillelagh
+	STRONG_ATTACK = Hexblade; 3 turn cooldown, curses enemy (negative effect that reduces their defense by 50%), heals you for 5% of damage dealt
+	CLASS_UTILITY_ABILITY = Hold Person; 8 turn cooldown; stuns an enemy for 3 turns or until they break free
+	UBER_ABILITY = Fireball; 12 turn cooldown; deals massive damage and inflicts burning
+	ULTIMATE = Astral Summoning; 24 turn cooldown; restores HP by 50% and summons 3 ancient astral spirits that attack enemies for 3 turns.
