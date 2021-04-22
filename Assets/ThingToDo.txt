@@ -1,0 +1,62 @@
+@NavBar
+    @Home 
+        OnClick() --> @MainMenu
+    @Login
+        onClick() --> @Login
+            --> if(username == inDataBase AND password == inDataBase){
+                --> Then --> @MainMenu
+                -->Gain permissions to:
+                    @GameMenu
+                    @ProfilePage
+                }
+            --> if(session['user_id']){
+                    --> Then allow access to 
+                        @GameMenu
+                        @SettingsPage
+                }
+            --@PIPEDREAM
+                --> recieve current data from database about User.
+                    --> @Inventory
+                    --> @Items
+                    --> @upgrades
+                    --> @etc.
+    @Logout
+        if(session['user_id'] != null):
+            onClick() --> @Logout --> @MainMenu
+                --> session['user_id'] == null;
+                --> remove permissions from:
+                    @GameMenu
+                    @SettingsPage
+    @Register
+        if(session['user_id'] == null):
+            onClick() --> @Register
+                --> for user in users:
+                        if (username == user['name']):
+                            validRegistration = FALSE
+                --> INSERT validRegistration INTO database:
+
+@MainMenu
+    @NavBar
+        --> SEE @NavBar
+    @Play
+        Onclick() --> @GameMenu
+    @Credits
+        Onclick() --> @Credits
+
+@Credits
+    Has a series of words and images that shows them us
+        - We take an image of us each day we build the game, and show those in a slide or in tandem,
+        - We show code or functionality that didn't make the final cut.
+        - tell our story as friends making a game.
+    @MainMenu
+        onClick() --> @MainMenu
+
+@GameMenu
+    
+
+
+
+
+
+
+
