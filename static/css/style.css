@@ -7,25 +7,35 @@ font-family: 'Marcellus SC', serif;
 font-family: 'Reggae One', cursive;
 font-family: 'Sigmar One', cursive;
 font-family: 'Roboto', sans-serif;
+
+if you import a font add it here^^^
 */
 
 :root {
     /*color variables*/
-    --main_bg_color: black;
-    --main_text: white;
+    --main_bg_color: white;
+    --main_text: black;
+    --border_color: black;
 
     /*sizing variables*/
     --global_margin: .5rem;
     --global_padding: .5rem;
     --rounded_edge: 10px;
     --rounder_edge: 25px;
-    /* declare css variables with this syntax: var(--main_bg_color); */
+    --border_size: 3px;
 }
 
 /* DESKTOP DISPLAY */
     /* HEADER DECLARATIONS */
 
     /* MAIN DECLARATIONS */
+    section {
+        /*border*/
+        border-color: black;
+        border-style: solid;
+        border-width: var(--border_size);
+        border-radius: var(--rounder_edge);
+    }
 
 /* TABLET DISPLAY */
 

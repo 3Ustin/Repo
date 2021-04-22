@@ -1,7 +1,10 @@
-<!--Working Title: Erenia in Peril-->
-<!--By Preston, TJ, Austin, and Micah-->
 <!DOCTYPE html>
 <html lang="en">
+<!---->
+<!--Working Title: Erenia in Peril-->
+<!--By Preston, TJ, Austin, and Micah-->
+<!--April 2021-->
+<!---->
 <head>
     <!--Metadata-->
     <meta charset="UTF-8">
@@ -31,12 +34,37 @@
                 <section id="fight_main">
                 </section>
                 <section id="interaction_menu">
-                <!-- TODO: the interaction bar has 5 buttons and a continue button-->
+                    <!--Player Actions-->
+                    <form action="/player_action" id="action_1" method="post" class="button_box">
+                        <input type="hidden" name="option" value="action_1">
+                        <input id="action_1_button" name="action_1" type="submit" value="Action 1">
+                    </form>
+                    <form action="/player_action" id="action_2" method="post" class="button_box">
+                        <input type="hidden" name="option" value="action_2">
+                        <input id="action_2_button" name="action_2" type="submit" value="Action 2">
+                    </form>
+                    <form action="/player_action" id="action_3" method="post" class="button_box">
+                        <input type="hidden" name="option" value="action_3">
+                        <input id="action_3_button" name="action_3" type="submit" value="Action 3">
+                    </form>
+                    <form action="/player_action" id="action_4" method="post" class="button_box">
+                        <input type="hidden" name="option" value="action_4">
+                        <input id="action_3_button" name="action_4" type="submit" value="Action 4">
+                    </form>
+                    <form action="/player_action" id="action_4" method="post" class="button_box">
+                        <input type="hidden" name="option" value="action_5">
+                        <input id="action_5_button" name="action_5" type="submit" value="Action 5">
+                    </form>
                 </section>
                 <section id="activity_feed">
                     <div class="section_header">
                     </div>
                     <div class="section_content">
+                        <!-- <ul>
+                            {% for activities in session['activities'] %}
+                                <li> {{activities}} </li>
+                            {% endfor %}
+                        </ul> -->
                     </div>
                 </section>
             </div>
