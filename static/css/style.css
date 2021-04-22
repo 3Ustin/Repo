@@ -40,3 +40,70 @@ if you import a font add it here^^^
 /* TABLET DISPLAY */
 
 /* PHONE DISPLAY */
+
+*{
+    padding: 0;
+    margin: 0;
+    color: whitesmoke;
+}
+
+.navBar{
+    border-bottom: purple solid 3px;
+    background-color: blue;
+}
+
+.nav-R{
+    display: flex;
+    justify-content: right;
+    background-color: cadetblue;
+}
+
+.login, .register{
+    border: black solid 2 px;
+    padding: 10px 10px ;
+}
+
+button{
+    cursor: pointer;
+    padding: 12px;
+    width: 100px;
+    border: 3px solid purple;
+    background-color: teal;
+}
+
+.landingOptions{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 400px;
+}
+
+.mainBtn1, .mainBtn2{
+    width: 150px;
+    cursor: pointer;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    margin-left: 34%;
+}
+
+.landingContainer{
+    background-color: rgb(245, 192, 146);
+    height: 600px;
+    width: 100vw;
+}
+
+.gameInfo{
+    text-align: center;
+    margin: 0 auto;
+    width: 400px;
+}
+
+.gameDesc{
+    padding-bottom: 30px;
+}
+
+.title{
+    padding: 80px 0 40px;
+    color: whitesmoke;
+}

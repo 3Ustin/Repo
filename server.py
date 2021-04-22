@@ -6,7 +6,7 @@ app.secret_key = "speak friend and enter"
 
 @app.route('/')
 def main():
-    return render_template('index.html')
+    return render_template('landing_page.html')
 
 if __name__=="__main__":
     app.run(debug=True)
