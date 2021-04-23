@@ -95,9 +95,27 @@ def welcome_page():
     return render_template("welcome_page.html")
 
 
+#!---------------------------------Tavern------------------------------------!#
 @app.route('/tavern')
 def tavern():
     return render_template("tavern.html")
+
+@app.route('/tavern/rest')
+def tavern_rest():
+    query = "SELECT * FROM paladin WHERE user_id = %(user_id)s"
+    data = {
+        "user_id": session['user_id']
+    }
+    results = connectToMySQL('game').query_db(query,data)
+    print(results)
+    results[0]['hp'] = 50
+    query = "UPDATE paladin SET name = 'Paladin',attack = '10',defense = '10',hp = %(hp)s,sword = '0',shield = '0',armor = '0',created_at = NOW(),updated_at = NOW(),user_id = %(user_id)s;"
+    data = {
+        "user_id" : session['user_id'],
+        "hp" : 40
+    }
+    results = connectToMySQL('game').query_db(query,data)
+    return redirect("/tavern")
 
 
 @app.route('/game/equipment_upgrade', methods=['POST'])
