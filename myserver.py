@@ -46,7 +46,7 @@ def register_process():
         print(results)
         session['user_id'] = results
         return redirect('/login')
-    return redirect('/')
+    return redirect("/game")
 
 #!--------------------------------Login----------------------------------------------!#
 @app.route('/login')
@@ -70,16 +70,15 @@ def login_process():
             "username": request.form['username']
         }
         results = connectToMySQL('game').query_db(query,data)
-        print(results)
         if not results:
             flash("Invalid username/password")
             return redirect('/')
         if bcrypt.check_password_hash(results[0]['password'], request.form['password']):
             flash("Invalid username/password")
             session['user_id'] = results[0]['id']
-            return redirect('/welcome_page')
+            return redirect('/game')
         return redirect('/login')
-
+    return redirect("/game")
 
 #!--------------------------------CREDITS----------------------------------------------!#
 @app.route('/credits')
@@ -87,20 +86,13 @@ def credits():
     return render_template('credits.html')
 
 #!--------------------------------GAME----------------------------------------------!#
-
-@app.route('/welcome_page')
-def welcome_page():
-    return render_template('welcome_page.html')
+@app.route('/game')
+def game():
+    return render_template('Game.html')
 
 @app.route('/game/equipment_upgrade', methods=['POST'])
 def game_equipment_upgrade():
     return redirect('game')
-
-
-#!-------------------------------TAVERN---------------------------------------------!#
-@app.route('/tavern')
-def tavern():
-    return render_template("tavern.html")
 
 if __name__=="__main__":
     app.run(debug=True)
