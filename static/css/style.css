@@ -20,8 +20,6 @@
         --input_color: rgb(209, 206, 190);
         --input_border: rgb(102, 98, 75);
         --input_bg: rgb(58, 55, 40);
-        --border_color: rgb(63, 0, 0);
-        --highlight: rgba(255, 145, 0, 0.527);
 
         /*sizing variables*/
         --global_margin: .5rem;
