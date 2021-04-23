@@ -9,15 +9,18 @@ app.secret_key = "speak friend and enter"
 
 @app.route('/')
 def main():
-    return render_template('registration.html')
-
+    return render_template('main_menu.html')
 
 
 
 #! ------------------------------------Register User---------------------------------------!#
 # Registration
-@app.route('/register', methods=['POST'])
-def process():
+@app.route('/register')
+def register():
+    return render_template("registration.html")
+
+@app.route('/register/processing', methods=['POST'])
+def register_process():
     is_valid = True
 
     if len(request.form['username']) <2:
@@ -43,18 +46,16 @@ def process():
         print(results)
         session['user_id'] = results
         return redirect('/login')
-    return redirect("/")
-
-
+    return redirect("/game")
 
 #!--------------------------------Login----------------------------------------------!#
-@app.route('/display_login')
-def display_login():
+@app.route('/login')
+def login():
     return render_template("login.html")
 
 
-@app.route('/login', methods=['POST'])
-def login():
+@app.route('/login/processing', methods=['POST'])
+def login_process():
     is_valid = True
 
     if len(request.form['username']) <2:
@@ -77,8 +78,21 @@ def login():
             return redirect('/')
         flash("Invalid username/password")
         return redirect('/')
-    return redirect("/")
+    return redirect("/game")
 
+#!--------------------------------CREDITS----------------------------------------------!#
+@app.route('/credits')
+def credits():
+    return render_template('credits.html')
+
+#!--------------------------------GAME----------------------------------------------!#
+@app.route('/game')
+def game():
+    return render_template('Game_Menu.html')
+
+@app.route('/game/equipment_upgrade', methods=['POST'])
+def game_equipment_upgrade():
+    return redirect('game')
 
 if __name__=="__main__":
     app.run(debug=True)

@@ -12,21 +12,21 @@
 </head>
 <body>
     <section class="get-in-touch">
-       <h1 class="title">Login</h1>
-       <form class="contact-form row" action="/login" method="post">
-          <div class="form-field col-lg-12">
-              <label class="label" for="username">Username</label>
-             <input id="username" name="username" class="input-text js-input" type="text">
-          </div>
-           <div class="form-field col-lg-12 ">
-               <label class="label" for="password">Password</label>
-             <input id="password" name="password" class="input-text js-input" type="text">
-          </div>
-          <div class="form-field col-lg-12">
-             <input class="submit-btn" type="submit" value="Login">
-          </div>
-       </form>
-       {% with messages = get_flashed_messages() %}
+        <h1 class="title">Login</h1>
+        <form class="contact-form row" action="/login" method="post">
+            <div class="form-field col-lg-12">
+                <label class="label" for="username">Username</label>
+                <input id="username" name="username" class="input-text js-input" type="text">
+            </div>
+            <div class="form-field col-lg-12 ">
+                <label class="label" for="password">Password</label>
+                <input id="password" name="password" class="input-text js-input" type="text">
+            </div>
+            <div class="form-field col-lg-12">
+                <input class="submit-btn" type="submit" value="Login">
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
             {% if messages %} 
                 {% for message in messages %}
                                 <p>{{message}}</p>

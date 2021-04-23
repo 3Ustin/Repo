@@ -34,6 +34,11 @@
                         if (username == user['name']):
                             validRegistration = FALSE
                 --> INSERT validRegistration INTO database:
+        --> @PIPEDREAM
+            --> Registered people first get put to the map
+            --> Choose where they - 'spawn'
+            --> Get an intro talking to.
+
 
 @MainMenu
     @NavBar
@@ -53,12 +58,14 @@
 
 @GameMenu
     @InventoryMenu
-        @equipted Items
+        @MoneyDisplay
+            OnEnemyDeath() --> gain appropriate money
+            @SEE @FightMain @imageOfEnemy OnEnemyDeath()
+        @equipted_Items
             Onclick() --> QUEUE = SELECT (Amount of money current user has)
                 --> if (QUEUE == (item_clicked).upgrade_cost){
                     --> QUEUE = SELECT (item_clicked)
                     --> (item_clicked).href = upgraded href
-                    --> 
                     } 
             @PIPEDREAM
                 Onhover() --> highlight(item_hovered)
@@ -87,10 +94,34 @@
     @FightMain
         @imageOfEnemy
             OnEnemyDeath() --> (imageOfEnemy).href = null
-                --> (imageOfEnemy).href = (newImageOfEnemy)
+                --> (imageOfEnemy).href = (imageOfEnemy).randomDrop()
                 --> SEE @GameMenu@ProgressBar 
+        @backgroundImage
+            backgroundImage changes when the stage is changed
+        @healthEnemy
+            change bar by percentage of @abilities onClick --> run attack()
+        @healthPlayer 
+    @abilities
+        @FOR_EACH_ABILITY
+            onClick() --> run attack() 
+            --> GENERAL ABILITY RUN THROUGH
+                does player hit?
+                does any status effects?
+                does enemy have any damage reduction and amplification?
+                does player have any damage reduction and amplification?
+                deal appropriate amount of damage.
+        @Continue
+            OnEnemyDeath() --> removed greyed out div.
+            onClick() --> if(div != greyed out):
+                Spawn_Next_enemy()
     @activityFeed
-
+        @abilities.onClick() --> print(result)
+        @abilites.Continue.onClick() --> print(result)
+        OnEnemyDeath() --> print(result)
+        @BackPackSlot.Use() --> print(result)
+        @BackPackSlot.drop() --> print(result)
+        @BackPackSlot.sell() --> print(result)
+        @InventoryMenu @equipted_Items.onClick() --> print(result)
 
 
 
