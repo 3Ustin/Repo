@@ -74,10 +74,10 @@ def login_process():
             flash("Invalid username/password")
             return redirect('/')
         if bcrypt.check_password_hash(results[0]['password'], request.form['password']):
+            flash("Invalid username/password")
             session['user_id'] = results[0]['id']
-            return redirect('/')
-        flash("Invalid username/password")
-        return redirect('/')
+            return redirect('/game')
+        return redirect('/login')
     return redirect("/game")
 
 #!--------------------------------CREDITS----------------------------------------------!#
@@ -88,7 +88,7 @@ def credits():
 #!--------------------------------GAME----------------------------------------------!#
 @app.route('/game')
 def game():
-    return render_template('Game_Menu.html')
+    return render_template('Game.html')
 
 @app.route('/game/equipment_upgrade', methods=['POST'])
 def game_equipment_upgrade():
