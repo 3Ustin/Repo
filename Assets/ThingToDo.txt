@@ -34,6 +34,11 @@
                         if (username == user['name']):
                             validRegistration = FALSE
                 --> INSERT validRegistration INTO database:
+        --> @PIPEDREAM
+            --> Registered people first get put to the map
+            --> Choose where they - 'spawn'
+            --> Get an intro talking to.
+
 
 @MainMenu
     @NavBar
