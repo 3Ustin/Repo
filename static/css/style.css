@@ -40,69 +40,82 @@ if you import a font add it here^^^
 
 / PHONE DISPLAY */
 
-*{
-    padding: 0;
-    margin: 0;
-    color: whitesmoke;
-}
 
-.navBar{
-    border-bottom: purple solid 3px;
-    background-color: blue;
-}
 
-.nav-R{
-    display: flex;
-    justify-content: right;
-    background-color: cadetblue;
-}
+/* all page settings -- by default ALL text is set to whitesmoke unless 
+    specifically programmed otherwise!!! */
+    *{
+        padding: 0;
+        margin: 0;
+        color: whitesmoke;
+    }
 
-.login, .register{
-    border: black solid 2 px;
-    padding: 10px 10px ;
-}
+/* these three blocks are all regarding the nav bar, and the items housed inside of it */
+    .navBar{
+        border-bottom: purple solid 3px;
+        background-color: blue;
+    }
 
-button{
-    cursor: pointer;
-    padding: 12px;
-    width: 100px;
-    border: 3px solid purple;
-    background-color: teal;
-}
+    .nav-content{
+        display: flex;
+        justify-content: right;
+        background-color: cadetblue;
+    }
 
-.landingOptions{
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 400px;
-}
+    .login, .register{
+        border: black solid 2 px;
+        padding: 10px 10px ;
+    }
 
-.mainBtn1, .mainBtn2{
-    width: 150px;
-    cursor: pointer;
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 4px;
-    margin-left: 34%;
-}
 
-.landingContainer{
-    background-color: rgb(245, 192, 146);
-    height: 600px;
-    width: 100vw;
-}
+/* general style format for all buttons made */
+    button{
+        cursor: pointer;
+        padding: 12px;
+        width: 100px;
+        border: 3px solid purple;
+        background-color: teal;
+    }
 
-.gameInfo{
-    text-align: center;
-    margin: 0 auto;
-    width: 400px;
-}
 
-.gameDesc{
-    padding-bottom: 30px;
-}
+/* formatting for the main section containers */
+    .landingOptions{
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 400px;
+    }
 
-.title{
-    padding: 80px 0 40px;
-    color: whitesmoke;
-}
+    .landingContainer{
+        background-color: rgb(245, 192, 146);
+        height: 600px;
+        width: 100vw;
+    }
+
+
+/* individual main item content formatting below */
+
+/* specific styling and formatting for the main start/credit buttons */
+    .mainBtn1, .mainBtn2{
+        width: 150px;
+        cursor: pointer;
+        position: relative;
+        margin-top: 10px;
+        margin-bottom: 4px;
+        margin-left: 34%;
+    }
+
+/* formatting for the text content of the main section */
+    .gameInfo{
+        text-align: center;
+        margin: 0 auto;
+        width: 400px;
+    }
+
+    .gameDesc{
+        padding-bottom: 30px;
+    }
+
+    .title{
+        padding: 80px 0 40px;
+    }
