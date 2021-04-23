@@ -45,7 +45,7 @@
 
 /*FOR BUTTONS AND INPUTS*/
 
-    input, button, select, option {
+    input, button, select {
         padding: var(--global_padding);
         margin: var(--global_margin);
         min-width: 136px;
@@ -59,7 +59,7 @@
         border-color: var(--border_color);
     }
 
-    button {
+    .submit_button, button {
         cursor: pointer;
         font-size: 1.25rem;
         background-image: url(static/img/flesh_texture_trans_15.png);
@@ -72,12 +72,33 @@
             box-shadow: inset 0 0 10px var(--highlight);
         }
 
+        .submit_button:hover {
+            background-image: url(static/img/flesh_texture_trans_50.png);
+            -moz-box-shadow: inset 0 0 10px var(--highlight);
+            -webkit-box-shadow: inset 0 0 10px var(--highlight);
+            box-shadow: inset 0 0 10px var(--highlight);
+        }
+    
+    .submit_button {
+        font-size: 1.5rem;
+        font-family: 'Marcellus SC', serif;
+        font-weight: bold;
+        width: 266px;
+        margin-top: 24px;
+    }
+
     .label {
         font-size: 1.5rem;
         font-family: 'Marcellus SC', serif;
     }
 
-    
+    input {
+        text-align: center;
+    }
+
+    input[type="password"] {
+        -webkit-text-security: disc;
+    }
 
     /*GLOBAL LINK STYLES*/
         a {
@@ -97,23 +118,6 @@
         }
 
 /* DESKTOP DISPLAY */
-
-/*NAV DECLARATIONS*/
-/*THIS IS NOW OBSOLETE*/
-    header {
-        background-color: var(--main_bg_color);
-        background-image: url(); /*add later if we have header on login/reg*/
-        background-repeat: repeat;
-        background-size: 100%;
-    }
-
-    nav {
-        display: flex;
-        justify-content: flex-end;
-
-        padding: var(--global_padding);
-    }
-    
 
 /* MAIN DECLARATIONS */
 
@@ -139,6 +143,12 @@
             text-shadow: 4px 4px var(--secondary_bg_color);
         }
 
+        main h2 {
+            font-size: 300%;
+            font-family: 'Marcellus SC', serif;
+            text-shadow: 3px 3px var(--secondary_bg_color);
+        }
+
     /*ALL FOR STORY HOOK BOX*/
         #story_hook {
             display: flex;
@@ -147,6 +157,7 @@
 
         img {
             width: 100px;
+            height: 120px;
         }
 
         p {
@@ -159,4 +170,11 @@
         #menu_buttons button {
             min-width: 255px;
             font-size: 1.5rem;
+        }
+
+    /*DIV ROW*/
+        .row_wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
         }

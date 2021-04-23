@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+<!---->
+<!--Working Title: Erenia in Peril-->
+<!--By Preston, TJ, Austin, and Micah-->
+<!--April 2021-->
+<!---->
 <head>
+    <!--Metadata-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/static/css/menu.css">
+    <!--Links-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!--Google Fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bungee+Inline&family=Marcellus+SC&family=Reggae+One&family=Sigmar+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
+    <!--Title-->
+    <title>Working Title</title>
 </head>
 <body>
-    <section class="get-in-touch">
-       <h1 class="title">Register</h1>
-       <form class="contact-form row" action="/register" method="post">
-          <div class="form-field col-lg-12">
-              <label class="label" for="username">Username</label>
-             <input id="username" name="username" class="input-text js-input" type="text">
-          </div>
-           <div class="form-field col-lg-12 ">
-               <label class="label" for="password">Password</label>
-             <input id="password" name="password" class="input-text js-input" type="text">
-          </div>
-          <div class="form-field col-lg-12">
-              <label class="label" for="confirm_password">Confirm Password</label>
-             <input id="confirm_password" name="confirm_password" class="input-text js-input" type="text">
-          </div>
-          <div class="form-field col-lg-12">
-             <input class="submit-btn" type="submit" value="Register">
-             <a href="/display_login">Login</a>
-          </div>
-       </form>
-       {% with messages = get_flashed_messages() %}
-            {% if messages %} 
-                {% for message in messages %}
-                                <p>{{message}}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </section>
+    <main>
+        <h2>Create Your Character</h2>
+                <form action="/register" method="post">
+                    <div>
+                        <label class="label" for="username">Character Name</label>
+                        <br>
+                        <input id="username" name="username" type="text">
+                    </div>
+                    <div>
+                        <label class="label" for="password">Password</label>
+                        <br>
+                        <input id="password" name="password" type="password">
+                    </div>
+                    <div>
+                        <label class="label" for="confirm_password">Confirm Password</label>
+                        <br>
+                        <input id="confirm_password" name="confirm_password" type="password">
+                    </div>
+                    <div class="row_wrap">
+                        <img src="https://i.gifer.com/Km1q.gif">
+                        <input type="submit" class="submit_button" value="Begin Your Journey">
+                        <img src="https://i.gifer.com/Km1q.gif">
+                    </div>
+                </form>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %} 
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+    </main>
 </body>
 </html>
