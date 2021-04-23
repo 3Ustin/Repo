@@ -89,6 +89,17 @@ def credits():
 def game():
     return render_template('Game.html')
 
+#!---------------------------------Welcome Page------------------------------------!#
+@app.route('/welcome_page')
+def welcome_page():
+    return render_template("welcome_page.html")
+
+
+@app.route('/tavern')
+def tavern():
+    return render_template("tavern.html")
+
+
 @app.route('/game/equipment_upgrade', methods=['POST'])
 def game_equipment_upgrade():
     return redirect('game')
