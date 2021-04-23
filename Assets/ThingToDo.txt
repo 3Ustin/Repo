@@ -61,7 +61,6 @@
                 --> if (QUEUE == (item_clicked).upgrade_cost){
                     --> QUEUE = SELECT (item_clicked)
                     --> (item_clicked).href = upgraded href
-                    --> 
                     } 
             @PIPEDREAM
                 Onhover() --> highlight(item_hovered)
