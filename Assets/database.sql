@@ -5,6 +5,14 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
+-- Schema Game
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema Game
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `Game` DEFAULT CHARACTER SET utf8 ;
+-- -----------------------------------------------------
 -- Schema game
 -- -----------------------------------------------------
 
@@ -12,63 +20,65 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema game
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `game` DEFAULT CHARACTER SET utf8 ;
-USE `game` ;
+USE `Game` ;
 
 -- -----------------------------------------------------
--- Table `game`.`paladin_abilities`
+-- Table `Game`.`players`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `game`.`paladin_abilities` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW(),
+CREATE TABLE IF NOT EXISTS `Game`.`players` (
+  `id` INT NOT NULL,
+  `username` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `Game`.`Paladin`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Game`.`Paladin` (
+  `hp` INT NOT NULL,
+  `Paladincol` VARCHAR(45) NULL,
+  PRIMARY KEY (`hp`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Game`.`enemies`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Game`.`enemies` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `attack` INT NULL,
+  `defense` INT NULL,
+  `hp` INT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+USE `game` ;
 
 -- -----------------------------------------------------
 -- Table `game`.`paladin`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `game`.`paladin` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
-  `attack` INT NULL,
-  `defense` INT NULL,
-  `hp` INT NULL,
-  `sword` INT NULL,
-  `shield` INT NULL,
-  `armor` INT NULL,
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW(),
-  `paladin_ability_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_paladin_paladin_abilities1_idx` (`paladin_ability_id` ASC) VISIBLE,
-  CONSTRAINT `fk_paladin_paladin_abilities1`
-    FOREIGN KEY (`paladin_ability_id`)
-    REFERENCES `game`.`paladin_abilities` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `game`.`users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `game`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(255) NULL,
-  `password` VARCHAR(255) NULL,
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL,
-  `paladin_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
-  INDEX `fk_users_paladin1_idx` (`paladin_id` ASC) VISIBLE,
-  CONSTRAINT `fk_users_paladin1`
-    FOREIGN KEY (`paladin_id`)
-    REFERENCES `game`.`paladin` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `attack` INT NULL DEFAULT NULL,
+  `defense` INT NULL DEFAULT NULL,
+  `hp` INT NULL DEFAULT NULL,
+  `sword` INT NULL DEFAULT NULL,
+  `shield` INT NULL DEFAULT NULL,
+  `armor` INT NULL DEFAULT NULL,
+  `currency` INT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -76,59 +86,39 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `game`.`items` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
-  `description` TEXT NULL,
-  `effect` INT NULL,
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW(),
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `description` TEXT NULL DEFAULT NULL,
+  `effect` INT NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `paladin_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_items_paladin1_idx` (`paladin_id` ASC) VISIBLE,
   CONSTRAINT `fk_items_paladin1`
     FOREIGN KEY (`paladin_id`)
-    REFERENCES `game`.`paladin` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `game`.`paladin` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `game`.`currency`
+-- Table `game`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `game`.`currency` (
+CREATE TABLE IF NOT EXISTS `game`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(255) NULL DEFAULT NULL,
+  `password` VARCHAR(255) NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT NULL,
   `paladin_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_currency_paladin1_idx` (`paladin_id` ASC) VISIBLE,
-  CONSTRAINT `fk_currency_paladin1`
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
+  INDEX `fk_users_paladin1_idx` (`paladin_id` ASC) VISIBLE,
+  CONSTRAINT `fk_users_paladin1`
     FOREIGN KEY (`paladin_id`)
-    REFERENCES `game`.`paladin` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `game`.`paladin_upgrades`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `game`.`paladin_upgrades` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
-  `item_class` VARCHAR(255) NULL,
-  `attack` INT NULL,
-  `defense` INT NULL,
-  `description` TEXT NULL,
-  `created_at` DATETIME NULL,
-  `updated_at` DATETIME NULL,
-  `paladin_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_paladin_upgrades_paladin1_idx` (`paladin_id` ASC) VISIBLE,
-  CONSTRAINT `fk_paladin_upgrades_paladin1`
-    FOREIGN KEY (`paladin_id`)
-    REFERENCES `game`.`paladin` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `game`.`paladin` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
