@@ -11,6 +11,8 @@ app.secret_key = "speak friend and enter"
 def main():
     return render_template('main_menu.html')
 
+
+
 #! ------------------------------------Register User---------------------------------------!#
 # Registration
 @app.route('/register')
@@ -45,8 +47,6 @@ def register_process():
         session['user_id'] = results
         return redirect('/login')
     return redirect("/game")
-
-
 
 #!--------------------------------Login----------------------------------------------!#
 @app.route('/login')
