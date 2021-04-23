@@ -89,6 +89,10 @@
             OnEnemyDeath() --> (imageOfEnemy).href = null
                 --> (imageOfEnemy).href = (newImageOfEnemy)
                 --> SEE @GameMenu@ProgressBar 
+        @backgroundImage
+            changes
+        @healthEnemy
+        @healthPlayer 
     @activityFeed
 
 
