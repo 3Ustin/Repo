@@ -12,6 +12,8 @@ def main():
     return render_template('registration.html')
 
 
+
+
 #! ------------------------------------Register User---------------------------------------!#
 # Registration
 @app.route('/register', methods=['POST'])
@@ -42,8 +44,6 @@ def process():
         session['user_id'] = results
         return redirect('/login')
     return redirect("/")
-
-
 
 
 
