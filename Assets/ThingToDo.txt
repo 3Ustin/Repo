@@ -110,6 +110,8 @@
                 does enemy have any damage reduction and amplification?
                 does player have any damage reduction and amplification?
                 deal appropriate amount of damage.
+            @PIPEDREAM
+                --> Give status effects to user
         @Continue
             OnEnemyDeath() --> removed greyed out div.
             onClick() --> if(div != greyed out):
@@ -122,6 +124,8 @@
         @BackPackSlot.drop() --> print(result)
         @BackPackSlot.sell() --> print(result)
         @InventoryMenu @equipted_Items.onClick() --> print(result)
+    @runMechanic
+        @
 
 
 
