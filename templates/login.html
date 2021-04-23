@@ -26,7 +26,7 @@
     <main>
         <h2>Continue Game</h2>
         <form action="/login" method="post">
-            <div class="form-field col-lg-12">
+            <div>
                 <label class="label" for="username">Character Name</label>
                 <br>
                 <input id="username" name="username" type="text">
@@ -47,7 +47,7 @@
         {% with messages = get_flashed_messages() %}
             {% if messages %} 
                 {% for message in messages %}
-                                <p>{{message}}</p>
+                    <p>{{message}}</p>
                 {% endfor %}
             {% endif %}
         {% endwith %}
