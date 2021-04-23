@@ -117,6 +117,13 @@ def tavern_rest():
     results = connectToMySQL('game').query_db(query,data)
     return redirect("/tavern")
 
+#!---------------------------------Map------------------------------------!#
+@app.route('/map')
+def map():
+    return render_template("map.html")
+
+
+
 
 @app.route('/game/equipment_upgrade', methods=['POST'])
 def game_equipment_upgrade():
