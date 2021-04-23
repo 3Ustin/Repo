@@ -75,9 +75,11 @@ def login_process():
             flash("Invalid username/password")
             return redirect('/')
         if bcrypt.check_password_hash(results[0]['password'], request.form['password']):
+            flash("Invalid username/password")
             session['user_id'] = results[0]['id']
             return redirect('/welcome_page')
         return redirect('/login')
+
 
 #!--------------------------------CREDITS----------------------------------------------!#
 @app.route('/credits')
@@ -85,6 +87,7 @@ def credits():
     return render_template('credits.html')
 
 #!--------------------------------GAME----------------------------------------------!#
+
 @app.route('/welcome_page')
 def welcome_page():
     return render_template('welcome_page.html')
