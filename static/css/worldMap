@@ -1,0 +1,16 @@
+    #map {
+        width: 640px;
+        height: 348px;
+        background-size: cover;
+        background-image: url(static/img/Erenia_Map.png);
+
+        border-color: black;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: var(--rounder_edge);
+
+        box-shadow:
+        0px 0px 0px 3px rgba(48, 35, 20, 0.666),
+        0px 0px 0px 6px rgba(48, 35, 20, 0.333),
+        inset 0 0 10px var(--highlight);
+    }
