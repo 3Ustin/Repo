@@ -1,40 +1,164 @@
-* {
-    margin: 0 auto;
-}
+/*GLOBAL DECLARATIONS*/
+    /*IMPORTED FONTS
+    font-family: 'Aclonica', sans-serif;
+    font-family: 'Bungee Inline', cursive;
+    font-family: 'Marcellus SC', serif;
+    font-family: 'Reggae One', cursive;
+    font-family: 'Sigmar One', cursive;
+    font-family: 'Roboto', sans-serif;
+    if you import a font add it here^^^
+    */
 
-.container {
-    width: 1080px;
-}
+    :root {
+        /*color variables*/
+        --main_text: whitesmoke;
+        --main_bg_color: black;
+        --secondary_bg_color: rgb(29, 29, 29);
+        --tertiary_bg_color: rgb(48, 35, 20);
+        --border_color: rgb(48, 35, 20);
+        --header_bg: var(--border_color);
+        --highlight: rgba(255, 145, 0, 0.527);
+        --input_color: rgb(209, 206, 190);
+        --input_border: rgb(102, 98, 75);
+        --input_bg: rgb(58, 55, 40);
+        --wood_panel_color: rgb(136, 103, 60);
+        --worldmap_color: rgb(122, 0, 0);
 
-.top {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: aqua;
-    width: 100%;
-    height: 600px;
-}
+        /*sizing variables*/
+        --global_margin: .5rem;
+        --global_padding: .5rem;
+        --round_edge: 10px;
+        --rounder_edge: 25px;
+        --border_size: 3px;
+        --button-width: 255px;
+    }
 
-.left, .right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
+    * {
+        padding: 0;
+        margin: 0;
+        color: var(--main_text);
+        font-family: 'Roboto', sans-serif;
+    }
 
-button {
-    margin-top: 30px;
-}
+    body {
+        height: 100%;
+        background-color: var(--main_bg_color);
+    }
 
-.center {
-    height: 100%;
-    width: 80%;
-    background-color: yellow;
-}
+    .wrapper {
+        margin: 0px auto;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 1080px;
+        
+        background-color: var(--wood_panel_color);
+        background-image: url(../img/ornate_wood_panel_trans_50.png);
+        background-size: 10%;
+        background-repeat: repeat;
+        border-radius: var(--rounder_edge);
+    }
 
-.bottom {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    background-color: blueviolet;
-}
+    /*BUTTON STYLES*/
+    button {
+        min-width: 255px;
+        min-height: 68px;
+        font-size: 1.5rem;
+
+        font-family: 'Marcellus SC', serif;
+        font-weight: bold;
+
+        background-color: var(--tertiary_bg_color);
+        border-color: var(--border_color);
+        border-radius: var(--round_edge);
+    }
+
+    button:hover {
+        background-image: url(../img/wood_panel_trans_50.png);
+        -moz-box-shadow: inset 0 0 10px var(--highlight);
+        -webkit-box-shadow: inset 0 0 10px var(--highlight);
+        box-shadow: inset 0 0 10px var(--highlight);
+    }
+
+/*HEADER DECLARATIONS*/
+    header {
+        background-color: var(--header_bg);
+        border-top-left-radius: var(--rounder_edge);
+        border-top-right-radius: var(--rounder_edge);
+    }
+
+    header h1 {
+        text-align: center;
+        font-size: 300%;
+        font-family: 'Marcellus SC', serif;
+        text-shadow: 3px 3px var(--secondary_bg_color);
+    }
+
+/*MAIN DECLARATIONS*/
+/*FLEX PARENT: WRAPPER*/
+    main {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+    
+    /*DIV ROW*/
+    .row_wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    /*DIV ROW*/
+    .column_wrap {
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #tavern_top {
+        justify-content: space-between;
+    }
+
+    #tavern {
+        width: 640px;
+        height: 348px;
+        background-size: cover;
+        background-image: url(../img/bar_image_1.jpg);
+
+        border-color: black;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: var(--rounder_edge);
+
+        box-shadow:
+        0px 0px 0px 3px rgba(48, 35, 20, 0.666),
+        0px 0px 0px 6px rgba(48, 35, 20, 0.333),
+        inset 0 0 10px var(--highlight);
+    }
+
+    #tavern_menu {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    /*WORLD MAP BUTTON*/
+        #world_map_button {
+            background-color: var(--worldmap_color);
+            background-image: url(../img/Erenia_Map_button_trans_50.png);
+        }
+
+/*activity feed css*/
+    #tavern_activity_feed {
+        margin: 2rem;
+        border-color: black;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: var(--rounder_edge);
+    }
+
+        textarea {
+            margin: var(--global_margin);
+        }
