@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--Metadata-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <!--Links-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!--Google Fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bungee+Inline&family=Marcellus+SC&family=Reggae+One&family=Sigmar+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
+    <!--Title-->
+    <title>Working Title</title>
 </head>
 <body>
-    <h1>Welcome To Erenia</h1>
-    <img src="/Assets/images/paladin.img" alt="paladin">
-    <p>resume adventure?</p>
-    <a href="/tavern">Yes</a>
-    <a href="/">No</a>
+    <!--Copy this into body-->
+    <div class="wrapper">
+        <main>
+            <h1>Welcome Paladin!</h1>
+            <div class="palyImg">
+                <img class="palyImg" src="static/img/paladin_pixel.png" alt="">
+            </div>
+                <div id="story_hook">
+                    <img src="https://i.gifer.com/Km1q.gif">
+                    <h2>Begin Adventure?</h2>
+                    <img src="https://i.gifer.com/Km1q.gif">
+                </div>
+            <div id="menu_buttons">
+                <button type="button"><a href="/tavern">Yes</a></button>
+                <br>
+                <button type="button"><a href="/">No</a></button>
+                <br>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
