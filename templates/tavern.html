@@ -1,32 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+<!---->
+<!--Working Title: Erenia in Peril-->
+<!--By Preston, TJ, Austin, and Micah-->
+<!--April 2021-->
+<!---->
 <head>
+    <!--Metadata-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tavern</title>
+    <!--Links-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tavern.css') }}">
+    <!--Google Fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bungee+Inline&family=Marcellus+SC&family=Reggae+One&family=Sigmar+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
+    <!--Title-->
+    <title>Working Title: Tavern</title>
 </head>
 <body>
-    <div class="container">
-        <div class="top">
-            <div class="left">
-                <a href = "/tavern/rest"><button>Rest</button></a>
-                <a><button>Buy</button></a>
+    <div class="wrapper">
+        <header>
+            <h1>The Inn at Newport</h1>
+            <!--Change newport to flask variable that displays current area-->
+        </header>
+        <main>
+            <div class="row_wrap" id="tavern_top">
+                <div id="tavern">
+                    <!--the background image is in the css-->
+                </div>
+                <div class="column_wrap" id="tavern_menu">
+                    <button>Inventory</button>
+                    <a><button>Shop</button></a>
+                    <a href = "/tavern/rest"><button>Rest</button></a>
+                    <a href = "/map"><button id="world_map_button">World Map</button></a>
+                </div>
+                <div id="inventory_view" display="hidden">
+                    <!--this is the hidden inventory div-->
+                    <!--absolute position-->
+                </div>
             </div>
-            <div class="center">
-                <img src="#" alt="image of tavern">
+            <div class="column_wrap" id="tavern_activity_feed">
+                <div class="activity_feed">
+                    <div id="list_feed">
+                        <ul>
+                            {% for activities in session['activities'] %}
+                                <li> {{activities}} </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div id="tavern_shop" display="hidden">
+                        <!--this is the hidden shop div-->
+                        <!--hides the list feed and replaces it-->
+                    </div>
+                </div>
             </div>
-            <div class="right">
-                <button>Inventory</button>
-                <a href = "/map"><button>World Map</button><a/>
-            </div>
-        </div>
-        <div class="bottom">
-            <div class="feed">
-                <textarea name="activity_feed" id="activity_feed" cols="120" rows="10"></textarea>
-            </div>
-        </div>
+        </main>
     </div>
 </body>
 </html>
