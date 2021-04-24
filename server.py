@@ -53,7 +53,7 @@ def register_process():
 def login():
     return render_template("login.html")
 
-
+#TRY CODE BREAKING HERE WHEN I HAVE TIME
 @app.route('/login/processing', methods=['POST'])
 def login_process():
     is_valid = True
@@ -117,17 +117,66 @@ def tavern_rest():
     results = connectToMySQL('game').query_db(query,data)
     return redirect("/tavern")
 
+@app.route('/tavern/equipment_upgrade', methods=['POST'])
+def game_equipment_upgrade():
+    return redirect('game')
+
 #!---------------------------------Map------------------------------------!#
 @app.route('/map')
 def map():
     return render_template("map.html")
 
 
+#!---------------------------------Combat------------------------------------!#
+@app.route('/combat/start')
+def combat_start():
+    #Load image of enemy
+    session['enemy_id'] = 1
+    return redirect('/combat')
+
+@app.route('/combat')
+def combat():
+    return render_template("combat.html")
+
+@app.route('/combat/attack0')
+def combat_attack0():
+    #does player hit?
+        #The Player Always Hits.
+    #Query to grab enemy object
+    query = "SELECT * from enemies WHERE id = %(enemy_id)s;"
+    data = {
+        "enemy_id" : session['enemy_id'],
+    }
+    enemies = connectToMySQL('game').query_db(query,data)
+
+    #Query to grab paladin object
+    query = "SELECT * from Paladin WHERE user_id = %(user_id)s;"
+    data = {
+        "user_id" : session['user_id'],
+    }
+    paladin = connectToMySQL('game').query_db(query,data)
+
+    #Math for paladin basic attack
+        #All Calculations of hitting and damage.
+    new_enemyHP = int(enemies[0]['hp']) - int(paladin[0]['attack']) + int(enemies[0]['defense'])
+
+    #query for updating the enemy hp
+    query = "UPDATE enemies SET hp = '%(new_enemyHP)s';"
+    data = {
+        'new_enemyHP' : int(new_enemyHP)
+    }
+    paladin = connectToMySQL('game').query_db(query,data)
+    return redirect("/combat")
+
+@app.route('/combat/attack1')
+def combat_attack1():
+    return redirect("/combat")
+
+@app.route('/combat/attack2')
+def combat_attack2():
+    return redirect("/combat")
 
 
-@app.route('/game/equipment_upgrade', methods=['POST'])
-def game_equipment_upgrade():
-    return redirect('game')
 
 if __name__=="__main__":
     app.run(debug=True)
