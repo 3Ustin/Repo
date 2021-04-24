@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Links-->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/tavern.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/worldMap.css') }}">
     <!--Google Fonts-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bungee+Inline&family=Marcellus+SC&family=Reggae+One&family=Sigmar+One&display=swap" rel="stylesheet">
@@ -29,9 +29,27 @@
             <!--Change newport to flask variable that displays current area-->
         </header>
         <main>
-            <div class="row_wrap" id="tavern_top">
-                <div id="map">
+            <div class="row_wrap" id="world_map">
+                <div id="world_map">
                     <!--the background image is in the css-->
                 </div>
-    </div>
+                
+                <div class="icon">
+                    <img id="charIcon" src="static/img/paladin_pixel.png" alt="">
+                </div>
+                
+                <div class="mtHelm">
+                    <a href="/combat">
+                        <img class="locationIcons" src="static/img/dangerous-icon-3.jpg" alt="">
+                    </a>
+                </div>
+                
+                <div class="newport">
+                    <a href="/tavern">
+                        <div class="home"></div>
+                    </a>
+                </div>
+            </div>
+    </main>
+
 </body>
