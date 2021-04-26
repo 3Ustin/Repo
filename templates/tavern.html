@@ -19,6 +19,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet"> 
     <!--Title-->
     <title>Working Title: Tavern</title>
 </head>
@@ -31,32 +33,44 @@
         <main>
             <div class="row_wrap" id="tavern_top">
                 <div id="tavern">
-                    <!--the background image is in the css-->
+                    <div id="barmaid">
+                        <img src="{{ url_for('static', filename='img/bar_maid.png') }}">
+                    </div>
+                    <div id="shopkeep" visibility: hidden>
+                        <!--hidden shopkeep who replaced barmaid-->
+                    </div>
                 </div>
                 <div class="column_wrap" id="tavern_menu">
                     <button>Inventory</button>
                     <a><button>Shop</button></a>
                     <a href = "/tavern/rest"><button>Rest</button></a>
+                        <div class="hr_break"></div>
                     <a href = "/map"><button id="world_map_button">World Map</button></a>
                 </div>
-                <div id="inventory_view" display="hidden">
+                <div id="inventory_view" visibility: hidden>
                     <!--this is the hidden inventory div-->
-                    <!--absolute position-->
                 </div>
             </div>
-            <div class="column_wrap" id="tavern_activity_feed">
-                <div class="activity_feed">
-                    <div id="list_feed">
+            <div id="tavern_lower_box">
+                <div id="tavern_activity_feed">
                         <ul>
                             {% for activities in session['activities'] %}
                                 <li> {{activities}} </li>
                             {% endfor %}
+                                <li>This is to test the activity feed font and styling</li>
+                                <li>Still messing w this</li>
+                                <li>testeteststststststs</li>
+                                <li>testeteststststststs</li>
+                                <li>testeteststststststs</li>
+                                <li>testeteststststststs</li>
+                                <li>testeteststststststs</li>
+                                <li>testeteststststststs</li>
+                                <li>should be off the box</li>
                         </ul>
-                    </div>
-                    <div id="tavern_shop" display="hidden">
-                        <!--this is the hidden shop div-->
-                        <!--hides the list feed and replaces it-->
-                    </div>
+                </div>
+                <div id="tavern_shop" visibility: hidden>
+                    <!--this is the hidden shop div-->
+                    <!--hides the list feed and replaces it-->
                 </div>
             </div>
             <footer>

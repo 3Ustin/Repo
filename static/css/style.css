@@ -54,6 +54,8 @@
         min-width: 136px;
 
         font-size: 1.25rem;
+        font-family: 'Marcellus SC', serif;
+        font-weight: bold;
 
         background-color: var(--tertiary_bg_color);
 
@@ -111,10 +113,6 @@
     }
 
     /*GLOBAL LINK STYLES*/
-        a {
-            font-family: 'Marcellus SC', serif;
-            font-weight: bold;
-        }
         a:link {
             text-decoration: none;
         }
