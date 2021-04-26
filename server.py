@@ -77,7 +77,7 @@ def login_process():
             flash("Invalid username/password")
             session['user_id'] = results[0]['id']
             return redirect('/welcome_page')
-        return redirect('/login')
+    return redirect('/login')
 
 #!--------------------------------CREDITS----------------------------------------------!#
 @app.route('/credits')
@@ -92,6 +92,7 @@ def welcome_page():
 
 #!---------------------------------Tavern------------------------------------!#
 
+
 @app.route('/tavern/start')
 def tavern_start():
     query = "SELECT * FROM game.enemies;"
@@ -103,12 +104,25 @@ def tavern_start():
                 "id" : enemy['id']
             }
             results = connectToMySQL('game').query_db(query,data)
+
+    query = "INSERT INTO paladin (name, attack, defense, hp, sword, shield, armor, created_at, updated_at, user_id) VALUES (%(name)s, %(attack)s, %(defense)s, %(hp)s, %(sword)s, %(shield)s, %(armor)s, NOW(), NOW(), %(user_id)s);"
+    print(query)
+    data = {
+        "name": "Paladin",
+        "attack": 10,
+        "defense": 10,
+        "hp": 40,
+        "sword": 0,
+        "shield": 0,
+        "armor": 0,
+        "user_id": session['user_id']
+    }
+    result = connectToMySQL('game').query_db(query,data)
+
     return redirect('/tavern')
 
 @app.route('/tavern')
 def tavern():
-    # TEST FOR COMBAT ENEMY INSERTION
-
     return render_template("tavern.html")
 
 @app.route('/tavern/rest')
@@ -200,6 +214,12 @@ def combat_On_Enemy_Death():
     }
     connectToMySQL('game').query_db(query,data)
     return redirect('/combat')
+
+#!--------------------------------Logout--------------------------------!#
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 if __name__=="__main__":
     app.run(debug=True)
