@@ -46,7 +46,7 @@ def register_process():
         print(results)
         session['user_id'] = results
         return redirect('/login')
-    return redirect("/game")
+    return redirect("/register")
 
 #!--------------------------------Login----------------------------------------------!#
 @app.route('/login')
@@ -84,11 +84,6 @@ def login_process():
 def credits():
     return render_template('credits.html')
 
-#!--------------------------------GAME----------------------------------------------!#
-@app.route('/game')
-def game():
-    return render_template('Game.html')
-
 #!---------------------------------Welcome Page------------------------------------!#
 @app.route('/welcome_page')
 def welcome_page():
@@ -98,13 +93,14 @@ def welcome_page():
 #!---------------------------------Tavern------------------------------------!#
 @app.route('/tavern')
 def tavern():
-    if session['enemy_id'] == 0:
-        query = "DELETE from enemies WHERE id = %(id)s"
-        data = {
-            "id" : session['enemy_id'],
-        }
-        session['enemy_id']
-    results = connectToMySQL('game').query_db(query,data)
+    # TEST FOR COMBAT ENEMY INSERTION
+    # if session['enemy_id'] == 0:
+    #     query = "DELETE from enemies WHERE id = %(id)s"
+    #     data = {
+    #         "id" : session['enemy_id'],
+    #     }
+    #     session['enemy_id']
+    # results = connectToMySQL('game').query_db(query,data)
     return render_template("tavern.html")
 
 @app.route('/tavern/rest')
