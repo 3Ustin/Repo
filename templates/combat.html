@@ -1,90 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+<!---->
+<!--Working Title-->
+<!--By Preston, TJ, Austin, and Micah-->
+<!--April 2021-->
+<!---->
 <head>
+    <!--Metadata-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Links-->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/combat.css') }}">
-    <title>Document</title>
+    <!--Google Fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Bungee+Inline&family=Marcellus+SC&family=Reggae+One&family=Sigmar+One&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
+    <!--Title-->
+    <title>Working Title: Combat</title>
 </head>
 <body>
-<!--                                                   MAIN CONTAINER                                               -->
-    <div class="container">
-
-<!--                                                OPEN LEFT CONTAINER                                                 -->
-        <div class="leftContainer">
-
-<!--                                               Combat header div                                                  -->
-            <div class="combatHeader">
-                <div class="retreat">
-                    <button>Retreat</button>
+    <div class="wrapper">
+        <main>
+            <div class="column_wrap" id="left_container">
+                <div id="combat_screen_container">
+                    <div id="combat_nav" class="menu_bar">
+                        <a href="/tavern"><button id="retreat">Retreat</button></a>
+                        <h3> {{ session['location'] }} </h3>
+                        <button id="advance">Advance</button>
+                    </div>
+                    <div id="combat_screen">
+                        <!--hitpoints view relative to your player/enemy view-->
+                        <!--player image swapped in on this id-->
+                        <!--hardcoded in for demo unless we add classes-->
+                        <div id="player_combat_image">
+                            <div id="player_hitpoints"></div>
+                        </div>
+                        <div id="enemy_combat_image">
+                            <!--enemy image swapped in on this id-->
+                            <div id="player_hitpoints"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="advance">
-                    <button>Advance</button>
+                <div class="menu_bar"  id="interaction_menu">
+                    <!--these are all of our abilties-->
+                    <!--routes to one post method "player ability" that runs if checks for the id-->
+                    <!--abilities 4 and 5 are not active in demo-->
+                    <form action="/perform_ability" id="action_1" method="post">
+                        <input type="hidden" name="option" value="action_1">
+                        <input id="action_1_button" name="action_1" type="submit" value="Martial Strike" class="button_box">
+                    </form>
+                    <form action="/perform_ability" id="action_2" method="post">
+                        <input type="hidden" name="option" value="action_2">
+                        <input id="action_2_button" name="action_2" type="submit" value="Divine Smite" class="button_box">
+                    </form>
+                    <form action="/perform_ability" id="action_3" method="post">
+                        <input type="hidden" name="option" value="action_3">
+                        <input id="action_3_button" name="action_3" type="submit" value="Aura of Protection" class="button_box">
+                    </form>
+                    <form action="/perform_ability" id="action_4" method="post">
+                        <input type="hidden" name="option" value="action_4">
+                        <input id="action_4_button" name="action_4" type="submit" value="Cleansing Blade" class="button_box">
+                    </form>
+                    <form action="/perform_ability" id="action_5" method="post">
+                        <input type="hidden" name="option" value="action_5">
+                        <input id="action_5_button" name="action_5" type="submit" value="Divine Intervention" class="button_box">
+                    </form>
+                </div>
+                <div id="action_feed">
+                    <ul>
+                        <!--our stored combat actions need to be different than our tavern activities in session-->
+                        <!--we can call tavern activities "activities" and combat actions "actions"-->
+                        {% for actions in session['actions'] %}
+                            <li> {{action}} </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
-
-<!--                                                Main combat area div                                                 -->
-            <div class="combatScreen">
-                <img src="/" alt="Main combat area rendered here">
-            </div>
-
-<!--                                                 Spell selection div                                                  -->
-            <div class="spellSelections">
-                <div class="basicAtk"><a href = "/combat/attack0"><button>Basic Attack</button></a></div>
-                <div class="spell1"><button>Martial Strike</button></div>
-                <div class="spell2"><button>Divine Smite</button></div>
-                <div class="spell3"><button>Aura of Protection</button></div>
-                <div class="spell4"><button>Fist of Heavens</button></div>
-            </div>
-
-<!--                                                  Activity Feed div                                                    -->
-            <div class="feed_container">
-                <div class="activityFeed">
-                    <textarea name="activity_feed" id="activity_feed" cols="80" rows="10">
-                        I AM GOING TO DESTROY YOU
-                    </textarea>
+            <!--column break-->
+            <div class="column_wrap" id="right_container">
+                <div id="inventory_menu">
+                    <div id="combat_stats" class="inventory_row">
+                        <div id="attack_stat" class="display_box">
+                            <p>{{ session['player_attack'] }}</p>
+                        </div>
+                        <div id="defense_stat" class="display_box">
+                            <p>{{ session['player_defense'] }}</p>
+                        </div>
+                    </div>
+                    <div id="equipment_menu" class="inventory_row">
+                        <div id="armor_slot" class="display_box"></div>
+                        <div id="right_hand_slot" class="display_box"></div>
+                        <div id="left_hand_slot" class="display_box"></div>
+                    </div>
+                    <div id="backpack_menu" class="inventory_row">
+                        <div id="backpack_slot_1" class="display_box"></div>
+                        <div id="backpack_slot_2" class="display_box"></div>
+                        <div id="backpack_slot_3" class="display_box"></div>
+                        <div id="backpack_slot_4" class="display_box"></div>
+                    </div>
+                </div>
+                <div id="progress_tracker" class="small_box">
                 </div>
             </div>
-        </div>
-<!--                                               CLOSE OVERALL LEFT CONTAINER                                               -->
-
-
-<!--                                                 RIGHT OVERALL CONTAINER                                                   -->
-        <div class="right_container">
-
-<!--                                          Inventory Equipment and Backpack area and images                                 -->
-        <div class="inventory">
-            <div class="equipment">
-                <img src="/" alt="Image of your sword">
-                <img src="/" alt="Image of your shield">
-                <img src="/" alt="Image of your set of armor">
-            </div>
-            <div class="backpack">
-                <img src="/" alt="an image of a potion">
-                <img src="/" alt="an image of a potion">
-                <img src="/" alt="an image of a potion">
-                <img src="/" alt="an image of a potion">
-            </div>
-        </div>
-
-<!--                                                    Combat Stats Display                                                 -->
-            <div class="combatStats">
-                <textarea name="combat stats" id="combatStats" cols="40" rows="5">
-                    I AM GOING TO DESTROY YOU
-                </textarea>
-            </div>
-
-<!--                                                    Area progess tracker                                                 -->
-            <div class="levelProgression">
-                <img src="/" alt="the level progress tracker will go here">
-            </div>
-
-<!--                                                        CLOSE RIGHT CONTAINER                                               -->
-        </div>
-
-<!--                                                     CLOSE OVERALL CONTAINER                                              -->
+        </main>
     </div>
-
 </body>
 </html> 

@@ -124,13 +124,13 @@ def tavern_rest():
 def game_equipment_upgrade():
     return redirect('game')
 
-#!---------------------------------Map------------------------------------!#
+#!----------------------------------Map--------------------------------------!#
 @app.route('/map')
 def map():
-    return render_template("map.html")
+    return render_template("map2.html")
 
 
-#!---------------------------------Combat------------------------------------!#
+#!----------------------------- ----Combat------------------------------------!#
 @app.route('/combat/start')
 def combat_start():
     #Load image of enemy
