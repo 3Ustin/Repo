@@ -91,8 +91,8 @@ def welcome_page():
 
 
 #!---------------------------------Tavern------------------------------------!#
-@app.route('/tavern')
-def tavern():
+@app.route('/tavern/start')
+def tavern_start():
     query = "INSERT INTO paladin (name, attack, defense, hp, sword, shield, armor, created_at, updated_at, user_id) VALUES (%(name)s, %(attack)s, %(defense)s, %(hp)s, %(sword)s, %(shield)s, %(armor)s, NOW(), NOW(), %(user_id)s);"
     print(query)
     data = {
@@ -106,8 +106,10 @@ def tavern():
         "user_id": session['user_id']
     }
     result = connectToMySQL('game').query_db(query,data)
-    print(result)
-    
+    return redirect('/tavern')
+
+@app.route('/tavern')
+def tavern():
     # TEST FOR COMBAT ENEMY INSERTION
     # if session['enemy_id'] == 0:
     #     query = "DELETE from enemies WHERE id = %(id)s"
@@ -212,6 +214,11 @@ def combat_attack2():
     return redirect("/combat")
 
 
+#!--------------------------------Logout--------------------------------!#
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 if __name__=="__main__":
     app.run(debug=True)
