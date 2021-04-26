@@ -127,7 +127,7 @@ def game_equipment_upgrade():
 #!----------------------------------Map--------------------------------------!#
 @app.route('/map')
 def map():
-    return render_template("map2.html")
+    return render_template("map.html")
 
 
 #!----------------------------- ----Combat------------------------------------!#

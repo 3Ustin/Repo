@@ -57,6 +57,7 @@
         position: relative;
         left: 490px;
         bottom: 230px;
+        z-index: 1000;
     }
 
     .locationIcons{
@@ -64,16 +65,36 @@
         height: 50px;
         position: relative;
         left: 830px;
-        bottom: 380px;
+        bottom: 420px;
+        z-index: 500;
+    }
+
+    .locationSelection{
+        height: 25px;
+        width: 25px;
+        background-color: black;
+        border-radius: 50%;
+        position: relative;
+        bottom: 230px;
+        left: 850px;
+        z-index: 500;
+        opacity: 65%;
+    }
+
+    .locationIcons.fadeScreen {
+        height: 0px;
+        transition: 1000ms linear;
     }
 
     .home{
-        height: 40px;
-        width: 40px;
-        background-color: transparent;
+        height: 25px;
+        width: 25px;
+        background-color: black;
+        border-radius: 50%;
         position: relative;
-        bottom: 255px;
-        left: 505px;
+        bottom: 200px;
+        left: 517px;
+        opacity: 65%;
     }
 
     /* Firefox old*/
