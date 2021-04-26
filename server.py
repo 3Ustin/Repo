@@ -285,5 +285,33 @@ def logout():
     session.clear()
     return redirect('/')
 
+
+#!---------------------------------Shop---------------------------------!#
+@app.route('/render/shop')
+def render_shop():
+    query_red = "INSERT INTO items (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
+    data_red = {
+        "name": "red potion",
+        "description": "juicy red blood from the depths of the dragon's lair, rumored to have healing properties",
+        "effect": "Gain 20 HP"
+    }
+    result = connectToMySQL('game').query_db(query_red, data_red)
+    query_yellow = "INSERT INTO items (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
+    data_yellow = {
+        "name": "yellow potion",
+        "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
+        "effect": "Gain 20 Attack"
+    }
+    result = connectToMySQL('game').query_db(query_yellow, data_yellow)
+    query_green = "INSERT INTO items (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
+    data_green = {
+        "name": "green potion",
+        "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
+        "effect": "Gain 20 Defense"
+    }
+    result = connectToMySQL('game').query_db(query_green, data_green)
+
+    return redirect('/tavern')
+
 if __name__=="__main__":
     app.run(debug=True)
