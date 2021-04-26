@@ -76,7 +76,6 @@ def login_process():
         if bcrypt.check_password_hash(results[0]['password'], request.form['password']):
             flash("Invalid username/password")
             session['user_id'] = results[0]['id']
-            session['enemy_id'] = 0
             return redirect('/welcome_page')
         return redirect('/login')
 
@@ -92,16 +91,24 @@ def welcome_page():
 
 
 #!---------------------------------Tavern------------------------------------!#
+
+@app.route('/tavern/start')
+def tavern_start():
+    query = "SELECT * FROM game.enemies;"
+    enemies = connectToMySQL('game').query_db(query)
+    for enemy in enemies:
+        if enemy['user_id'] == session['user_id']:
+            query = "DELETE from enemies WHERE id = %(id)s"
+            data = {
+                "id" : enemy['id']
+            }
+            results = connectToMySQL('game').query_db(query,data)
+    return redirect('/tavern')
+
 @app.route('/tavern')
 def tavern():
     # TEST FOR COMBAT ENEMY INSERTION
-    if session['enemy_id'] != 0:
-        query = "DELETE from enemies WHERE id = %(id)s"
-        data = {
-            "id" : session['enemy_id'],
-        }
-        results = connectToMySQL('game').query_db(query,data)
-        session['enemy_id'] = 0
+
     return render_template("tavern.html")
 
 @app.route('/tavern/rest')
@@ -125,19 +132,18 @@ def tavern_rest():
 #!----------------------------------Map--------------------------------------!#
 @app.route('/map')
 def map():
-    return render_template("map2.html")
+    return render_template("map.html")
 
 
 #!----------------------------- ----Combat------------------------------------!#
 @app.route('/combat/start')
 def combat_start():
     #Load image of enemy
-    query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at) VALUE ('zombie', 10,10,5,40,NOW(),NOW());"
+    query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at,user_id) VALUE ('zombie', 10,10,5,NOW(),NOW(),%(id)s);"
     data = {
-        "enemy_id" : session['enemy_id']
+        "id" : session['user_id']
     }
     enemy = connectToMySQL('game').query_db(query,data)
-    session['enemy_id'] = 1
     return redirect('/combat')
 
 @app.route('/combat')
