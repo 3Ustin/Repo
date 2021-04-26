@@ -46,7 +46,7 @@ def register_process():
         print(results)
         session['user_id'] = results
         return redirect('/login')
-    return redirect("/game")
+    return redirect("/")
 
 #!--------------------------------Login----------------------------------------------!#
 @app.route('/login')
@@ -98,6 +98,20 @@ def welcome_page():
 #!---------------------------------Tavern------------------------------------!#
 @app.route('/tavern')
 def tavern():
+    query = "INSERT INTO paladin (name, attack, defense, hp, sword, shield, armor, created_at, updated_at, user_id) VALUES (%(name)s, %(attack)s, %(defense)s, %(hp)s, %(sword)s, %(shield)s, %(armor)s, NOW(), NOW(), %(user_id)s);"
+    print(query)
+    data = {
+        "name": "Paladin",
+        "attack": 10,
+        "defense": 10,
+        "hp": 40,
+        "sword": 0,
+        "shield": 0,
+        "armor": 0,
+        "user_id": session['user_id']
+    }
+    result = connectToMySQL('game').query_db(query,data)
+    print(result)
     return render_template("tavern.html")
 
 @app.route('/tavern/rest')
