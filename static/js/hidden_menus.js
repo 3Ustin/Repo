@@ -20,9 +20,6 @@ function open_shop() {
 
     tav_shop.style.removeProperty("display");
     tav_shop.style.display = "flex";
-
-    tav_parent.style.justifyContent = "center";
-    tav_parent.style.alignItems = "center";
 }
 
 function close_shop() {
@@ -36,7 +33,4 @@ function close_shop() {
     tav_feed.style.removeProperty("display");
     tav_feed.style.display = "flex";
 
-    tav_parent.style.removeProperty("justifyContent");
-    tav_parent.style.removeProperty("alignItems");
-    tav_parent.style.justifyContent = "flex-start";
 }
