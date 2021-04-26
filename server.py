@@ -76,6 +76,7 @@ def login_process():
         if bcrypt.check_password_hash(results[0]['password'], request.form['password']):
             flash("Invalid username/password")
             session['user_id'] = results[0]['id']
+            session['enemy_id'] = 0
             return redirect('/welcome_page')
         return redirect('/login')
 
@@ -94,13 +95,13 @@ def welcome_page():
 @app.route('/tavern')
 def tavern():
     # TEST FOR COMBAT ENEMY INSERTION
-    # if session['enemy_id'] == 0:
-    #     query = "DELETE from enemies WHERE id = %(id)s"
-    #     data = {
-    #         "id" : session['enemy_id'],
-    #     }
-    #     session['enemy_id']
-    # results = connectToMySQL('game').query_db(query,data)
+    if session['enemy_id'] != 0:
+        query = "DELETE from enemies WHERE id = %(id)s"
+        data = {
+            "id" : session['enemy_id'],
+        }
+        results = connectToMySQL('game').query_db(query,data)
+        session['enemy_id'] = 0
     return render_template("tavern.html")
 
 @app.route('/tavern/rest')
@@ -120,9 +121,6 @@ def tavern_rest():
     results = connectToMySQL('game').query_db(query,data)
     return redirect("/tavern")
 
-@app.route('/tavern/equipment_upgrade', methods=['POST'])
-def game_equipment_upgrade():
-    return redirect('game')
 
 #!----------------------------------Map--------------------------------------!#
 @app.route('/map')
@@ -134,12 +132,12 @@ def map():
 @app.route('/combat/start')
 def combat_start():
     #Load image of enemy
-    session['enemy_id'] = 1
-    query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at) VALUE ('zombie', 10,10,5,40,NOW(),NOW()) id = %(enemy_id)s;"
+    query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at) VALUE ('zombie', 10,10,5,40,NOW(),NOW());"
     data = {
-        "enemy_id" : session['enemy_id'],
+        "enemy_id" : session['enemy_id']
     }
     enemy = connectToMySQL('game').query_db(query,data)
+    session['enemy_id'] = 1
     return redirect('/combat')
 
 @app.route('/combat')
