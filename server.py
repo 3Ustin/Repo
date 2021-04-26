@@ -139,7 +139,7 @@ def map():
 @app.route('/combat/start')
 def combat_start():
     #Load image of enemy
-    query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at,user_id) VALUE ('zombie', 10,10,5,NOW(),NOW(),%(id)s);"
+    query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at,user_id) VALUE ('zombie', 10,5,5,NOW(),NOW(),%(id)s);"
     data = {
         "id" : session['user_id']
     }
@@ -150,46 +150,38 @@ def combat_start():
 def combat():
     return render_template("combat.html")
 
-@app.route('/combat/attack0')
+@app.route('/combat/attack0', methods = ["POST"])
 def combat_attack0():
     #does player hit?
         #The Player Always Hits.
     #Query to grab enemy object
-    query = "SELECT * from enemies WHERE id = %(enemy_id)s;"
+    query = "SELECT * from enemies WHERE user_id = %(user_id)s;"
     data = {
-        "enemy_id" : session['enemy_id'],
+        "user_id" : session['user_id']
     }
     enemies = connectToMySQL('game').query_db(query,data)
 
     #Query to grab paladin object
     query = "SELECT * from Paladin WHERE user_id = %(user_id)s;"
     data = {
-        "user_id" : session['user_id'],
+        "user_id" : session['user_id']
     }
     paladin = connectToMySQL('game').query_db(query,data)
 
     #Math for paladin basic attack
         #All Calculations of hitting and damage.
     new_enemyHP = int(enemies[0]['hp']) - int(paladin[0]['attack']) + int(enemies[0]['defense'])
+    print(new_enemyHP)
     if new_enemyHP <= 0:
-        return redirect(f"/combat/on_enemy_death/{session['enemy_id']}")
+        return redirect(f"/combat/on_enemy_death")
     #query for updating the enemy hp
-    query = "UPDATE enemies SET hp = '%(new_enemyHP)s';"
+    query = "UPDATE enemies SET hp = '%(new_enemyHP)s' WHERE user_id = %(user_id)s;"
     data = {
-        'new_enemyHP' : int(new_enemyHP)
+        "new_enemyHP" : int(new_enemyHP),
+        "user_id" : session['user_id']
     }
     paladin = connectToMySQL('game').query_db(query,data)
     return redirect("/combat")
-
-@app.route('/combat/on_enemy_death/<id>')
-def combat_On_Enemy_Death(id):
-    #query for killing an enemy  at too low of hp
-    query = "DELETE from enemies WHERE id = %(id)s;"
-    data = {
-        'id' : id
-    }
-    connectToMySQL('game').query_db(query,data)
-    return redirect('/combat')
 
 @app.route('/combat/attack1')
 def combat_attack1():
@@ -199,7 +191,15 @@ def combat_attack1():
 def combat_attack2():
     return redirect("/combat")
 
-
+@app.route('/combat/on_enemy_death')
+def combat_On_Enemy_Death():
+    #query for killing an enemy at too low of hp
+    query = "DELETE from enemies WHERE user_id = %(user_id)s;"
+    data = {
+        'user_id' : session['user_id']
+    }
+    connectToMySQL('game').query_db(query,data)
+    return redirect('/combat')
 
 if __name__=="__main__":
     app.run(debug=True)
