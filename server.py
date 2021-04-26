@@ -95,6 +95,7 @@ def welcome_page():
 
 @app.route('/tavern/start')
 def tavern_start():
+    #DELETE any enemies from database
     query = "SELECT * FROM game.enemies;"
     enemies = connectToMySQL('game').query_db(query)
     for enemy in enemies:
