@@ -46,7 +46,7 @@ def register_process():
         print(results)
         session['user_id'] = results
         return redirect('/login')
-    return redirect("/")
+    return redirect("/register")
 
 #!--------------------------------Login----------------------------------------------!#
 @app.route('/login')
@@ -77,7 +77,7 @@ def login_process():
             flash("Invalid username/password")
             session['user_id'] = results[0]['id']
             return redirect('/welcome_page')
-        return redirect('/login')
+    return redirect('/login')
 
 #!--------------------------------CREDITS----------------------------------------------!#
 @app.route('/credits')
