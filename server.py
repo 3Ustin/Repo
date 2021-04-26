@@ -308,6 +308,7 @@ def logout():
     data = {
         'user_id' : session['user_id']
     }
+    #THIS IS THE COMMENT FOR TEST
     connectToMySQL('game').query_db(query,data)
     session.clear()
     return redirect('/')
