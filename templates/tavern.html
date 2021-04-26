@@ -32,52 +32,108 @@
         </header>
         <main>
             <div class="row_wrap" id="tavern_top">
+            <!--TAVERN SCREEN-->
                 <div id="tavern">
                     <div id="barmaid">
                         <img src="{{ url_for('static', filename='img/bar_maid.png') }}">
                     </div>
-                    <div id="shopkeep" visibility: hidden>
+                    <div id="shopkeep" style='display: none'>
                         <!--hidden shopkeep who replaced barmaid-->
                     </div>
                 </div>
+
+            <!--TAVERN SIDE MENU-->
                 <div class="column_wrap" id="tavern_menu">
-                    <button>Inventory</button>
-                    <a><button>Shop</button></a>
+                    <button onclick="open_inventory()">Inventory</button>
+                    <a><button onclick="open_shop()">Shop</button></a>
                     <a href = "/tavern/rest"><button>Rest</button></a>
                         <div class="hr_break"></div>
                     <a href = "/map"><button id="world_map_button">World Map</button></a>
                 </div>
-                <div id="inventory_menu" visibility: hidden>
-                    <!--this is the hidden inventory div-->
+
+            <!--INVENTORY POP OUT-->
+                <div id="inventory_menu" style='display: none'>
+                    <button class='close' onclick="close_inventory()">X</button>
+                    <div id="inventory_main">
+                        <div id="combat_stats" class="inventory_row">
+                            <div id="attack_stat" class="display_box">
+                                <p>{{ session['player_attack'] }}</p>
+                            </div>
+                            <div id="defense_stat" class="display_box">
+                                <p>{{ session['player_defense'] }}</p>
+                            </div>
+                        </div>
+                        <div id="equipment_menu" class="inventory_row">
+                            <div id="armor_slot" class="display_box"></div>
+                            <div id="right_hand_slot" class="display_box"></div>
+                            <div id="left_hand_slot" class="display_box"></div>
+                        </div>
+                        <div id="backpack_menu" class="inventory_row">
+                            <div id="backpack_slot_1" class="display_box"></div>
+                            <div id="backpack_slot_2" class="display_box"></div>
+                            <div id="backpack_slot_3" class="display_box"></div>
+                            <div id="backpack_slot_4" class="display_box"></div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
             <div id="tavern_lower_box">
                 <div id="tavern_activity_feed">
-                        <ul>
-                            {% for activities in session['activities'] %}
-                                <li> {{activities}} </li>
-                            {% endfor %}
-                                <li>This is to test the activity feed font and styling</li>
-                                <li>Still messing w this</li>
-                                <li>testeteststststststs</li>
-                                <li>testeteststststststs</li>
-                                <li>testeteststststststs</li>
-                                <li>testeteststststststs</li>
-                                <li>testeteststststststs</li>
-                                <li>testeteststststststs</li>
-                                <li>should be off the box</li>
-                        </ul>
+                    <ul>
+                        {% for activities in session['activities'] %}
+                            <li> {{activities}} </li>
+                        {% endfor %}
+                            <li>This is to test the activity feed font and styling</li>
+                            <li>Still messing w this</li>
+                            <li>testeteststststststs</li>
+                            <li>testeteststststststs</li>
+                            <li>testeteststststststs</li>
+                            <li>testeteststststststs</li>
+                            <li>testeteststststststs</li>
+                            <li>testeteststststststs</li>
+                            <li>should be off the box</li>
+                    </ul>
                 </div>
-                <div id="tavern_shop" visibility: hidden>
-                    <p>test</p>
-                    <!--this is the hidden shop div-->
-                    <!--hides the list feed and replaces it-->
+                <div id="tavern_shop" style='display: none'>
+                    <div id="tav_shop_header">
+                        <button onclick="close_shop()" class="close_button">Exit Shop</button>
+                        <p id="player_gold">{{ session['gold'] }}</p>
+                    </div>
+                    <div id="items_in_shop">
+                        <div class="item_box">
+                            <div class="display_box"></div>
+                            <p>Cost: 50 GP</p>
+                            <form action="/purchase_item" id="potion_1" method="post">
+                                <input type="hidden" name="option" value="potion_1">
+                                <input id="potion_1_button" name="potion_1" type="submit" value="Buy" class="button_box">
+                            </form>
+                        </div>
+                        <div class="item_box">
+                            <div class="display_box"></div>
+                            <p>Cost: 70 GP</p>
+                            <form action="/purchase_item" id="potion_2" method="post">
+                                <input type="hidden" name="option" value="potion_2">
+                                <input id="potion_2_button" name="potion_2" type="submit" value="Buy" class="button_box">
+                            </form>
+                        </div>
+                        <div class="item_box">
+                            <div class="display_box"></div>
+                            <p>Cost: 100 GP</p>
+                            <form action="/purchase_item" id="potion_3" method="post">
+                                <input type="hidden" name="option" value="potion_3">
+                                <input id="potion_3_button" name="potion_3" type="submit" value="Buy" class="button_box">
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <footer>
-                <a href="/logout"><button id="exit">Exit Game</button></a>
-            </footer>
         </main>
+        <footer style='display: none'>
+            <a href="/logout"><button id="exit" class="close_button">Exit Game</button></a>
+        </footer>
     </div>
+<!--javascript-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/hidden_menus.js') }}"></script>
 </body>
 </html>

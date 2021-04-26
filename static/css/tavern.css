@@ -9,7 +9,6 @@
     font-family: 'Kaushan Script', cursive;
     if you import a font add it here^^^
     */
-
     :root {
         /*color variables*/
         --main_text: whitesmoke;
@@ -19,19 +18,26 @@
         --border_color: rgb(48, 35, 20);
         --header_bg: var(--border_color);
         --highlight: rgba(255, 145, 0, 0.527);
+
         --input_color: rgb(209, 206, 190);
         --input_border: rgb(102, 98, 75);
         --input_bg: rgb(58, 55, 40);
+
         --wood_panel_color: rgb(136, 103, 60);
         --worldmap_color: rgb(122, 0, 0);
+
+        --display_color: rgba(209, 206, 190, 0.33);
+        --display_border: rgb(145, 128, 32);
 
         /*sizing variables*/
         --global_margin: 1rem;
         --global_padding: 1rem;
         --round_edge: 10px;
         --rounder_edge: 25px;
+        --edge_inner: 22px;
         --border_size: 3px;
         --button-width: 255px;
+        --box-width: 76px;
     }
 
     * {
@@ -40,10 +46,13 @@
         color: var(--main_text);
         font-family: 'Roboto', sans-serif;
     }
-
     body {
         height: 100%;
         background-color: var(--main_bg_color);
+    }
+
+    p {
+        color: black;
     }
 
     .wrapper {
@@ -63,20 +72,18 @@
 
     /*BUTTON STYLES*/
     button {
-        min-width: 255px;
-        min-height: 68px;
+        width: 255px;
+        height: 68px;
         font-size: 1.5rem;
 
         font-family: 'Marcellus SC', serif;
         font-weight: bold;
-
         background-color: var(--tertiary_bg_color);
         background-image: url(../img/wood_panel_trans_50.png);
         border-color: var(--border_color);
         border-radius: var(--round_edge);
         background-position: right bottom;
     }
-
     button:hover {
         background-position: left center;
         -moz-box-shadow: inset 0 0 10px var(--highlight);
@@ -84,25 +91,21 @@
         box-shadow: inset 0 0 10px var(--highlight);
         transition: 250ms;
     }
-
 /*HEADER DECLARATIONS*/
     header {
         background-color: var(--header_bg);
         border-top-left-radius: var(--rounder_edge);
         border-top-right-radius: var(--rounder_edge);
-
         border-style: solid;
         border-color: rgb(82, 62, 36);
         border-bottom-color: black;
     }
-
     header h1 {
         text-align: center;
         font-size: 300%;
         font-family: 'Marcellus SC', serif;
         text-shadow: 3px 3px var(--secondary_bg_color);
     }
-
 /*MAIN DECLARATIONS*/
 /*FLEX PARENT: WRAPPER*/
     main {
@@ -117,7 +120,6 @@
         flex-direction: row;
         justify-content: center;
     }
-
     /*DIV ROW*/
     .column_wrap {
         margin: 0px auto;
@@ -125,7 +127,6 @@
         flex-direction: column;
         justify-content: center;
     }
-
     /*FANCY LINE BREAK*/
     .hr_break {
         background-image: url(../img/orante_line.png);
@@ -134,50 +135,42 @@
         background-position: center;
         height: 15px;
     }
-
     #tavern_top {
         justify-content: space-between;
     }
-
 /*TAVERN SCREEN*/
     #tavern {
         width: 640px;
         height: 348px;
         background-size: cover;
         background-image: url(../img/bar_image_1.jpg);
-
         border-color: black;
         border-width: 2px;
         border-style: solid;
         border-radius: var(--rounder_edge);
-
         box-shadow:
         0px 0px 0px 3px rgba(48, 35, 20, 0.666),
         0px 0px 0px 6px rgba(48, 35, 20, 0.333),
         inset 0 0 10px var(--highlight);
-
         overflow: hidden;
     }
-
     #tavern_menu {
         display: flex;
         justify-content: space-evenly;
     }
-
     /*BARMAID*/
     #barmaid {
         position: relative;
         right: -70%;
         top: 10%;
 
-    /*SLIDES IN - ALL BROWSERS*/
+    /*SLIDES IN BAR MAID - ALL BROWSERS*/
         -webkit-animation: slidein 3s; /* Safari, Chrome and Opera > 12.1 */
         -moz-animation: slidein 3s; /* Firefox < 16 */
         -ms-animation: slidein 3s; /* Internet Explorer */
         -o-animation: slidein 3s; /* Opera < 12.1 */
         animation: slidein 3s;
     }
-
     @keyframes slidein {
         from { right: -100%; }
         to   { right: -70%; }
@@ -201,18 +194,16 @@
         to   { right: -70%; }
     }
     
-
 /*WORLD MAP BUTTON*/
         #world_map_button {
             background-color: var(--worldmap_color);
         }
 
-        #world_map_button:hover {
+        #world_map_button:hover, input:hover {
             -moz-box-shadow: inset 0 0 10px red;
             -webkit-box-shadow: inset 0 0 10px red;
             box-shadow: inset 0 0 10px red;
         }
-
 /*FANCY LINE BREAK*/
         .hr_break {
             background-image: url(../img/orante_line.png);
@@ -227,11 +218,9 @@
         margin: .5rem;
         height: 200px;
         margin-top: 3rem;
-
         background-color: rgba(173, 160, 117, 0.678);
 
         display: flex;
-        align-items: flex-start;
         overflow: hidden;
 
         border-radius: var(--rounder_edge);
@@ -241,20 +230,16 @@
         0px 0px 0 8px black,
         inset 0px 0px 4px 4px rgba(48, 35, 20, 0.75);
     }
-
     /*ACTIVITY FEED*/
-
         ul {
             padding: var(--global_padding);
         }
-
             li {
                 list-style: none;
                 color: black;
                 font-family: 'Aclonica', sans-serif;
                 font-size: 1.25rem;
             }
-
 /*HIDDEN INVENTORY DIV CSS*/
  /*INVENTORY MENU*/
     /*SAME STYLING AS OTHER DISPLAY BOXES*/
@@ -265,20 +250,49 @@
         background-position-y: center;
         background-image: url(../img/inventory_menu.png);
 
-        border-color: black;
-        border-width: 2px;
-        border-style: solid;
         border-radius: var(--rounder_edge);
 
+        border: 2px solid black;
         box-shadow:
-        0px 0px 0px 3px var(--highlight),
-        0px 0px 0px 6px var(--box_33),
-        inset 0 0 10px var(--highlight);
+        0px 0px 0 6px grey,
+        0px 0px 0 8px black,
+        inset 0px 0px 4px 4px rgba(48, 35, 20, 0.75);
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+        position: absolute;
+        right: 5%;
+
+        /*SLIDES IN - ALL BROWSERS*/
+        -webkit-animation: slidein_inv 1s; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: slidein_inv 1s; /* Firefox < 16 */
+        -ms-animation: slidein_inv 1s; /* Internet Explorer */
+        -o-animation: slidein_inv 1s; /* Opera < 12.1 */
+        animation: slidein_inv 1s;
+        }
+
+        /*KEYFRAMES*/
+        @keyframes slidein_inv {
+            from { right: -50%; }
+            to   { right: 5%; }
+        }
+
+        /* Firefox < 16 */
+        @-moz-keyframes slidein_inv {
+            from { right: -50%; }
+            to   { right: 5%; }
+        }
+
+        /* Safari, Chrome and Opera > 12.1 */
+        @-webkit-keyframes slidein_inv {
+            from { right: -50%; }
+            to   { right: 5%; }
+        }
+
+        /* Internet Explorer */
+        @-ms-keyframes sslidein_inv {
+            from { right: -50%; }
+            to   { right: 5%; }
+        }
+    /*END OF INVENTORY ID MENU*/
 
     .inventory_row {
         display: flex;
@@ -286,12 +300,125 @@
         padding: var(--global_padding);
     }
 
+    #inventory_main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        height: 500px;
+    }
+
         #attack_stat {
             background-image: url(../img/sword_icon_bw.png);
             background-size: cover;
         }
-
         #defense_stat {
             background-image: url(../img/sheild_icon_bw.png);
             background-size: cover;
         }
+
+/*HIDDEN SHOP DIV*/
+        #tavern_shop {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #tav_shop_header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 180px;
+
+            margin: .5rem;
+        }
+
+            #player_gold {
+                margin-bottom: var(--global_margin);
+                width: var(--box-width);
+                height: var(--box-width);
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background-image: url(../img/gold_coins.png);
+                background-size: cover;
+
+                font-weight: bold;
+                font-size: 1.25rem;
+                text-shadow: 0px 0px 5px white;
+            }
+
+        .close_button {
+            font-size: 1rem;
+            width: 144px;
+            height: 54px;
+        }
+
+        #items_in_shop {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin: var(--global_margin);
+        }
+
+    /*ITEM BOXES*/
+        .item_box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            margin: var(--global_margin);
+        }
+
+            input {
+                height: 36px;
+                width: 88px;
+
+                background-color: var(--worldmap_color);
+                font-family: 'Marcellus SC', serif;
+                font-size: 1.25rem;
+
+                margin-top: 10px;
+
+                border-radius: var(--round_edge);
+                border: 3px solid rgb(61, 0, 0);
+            }
+
+    /*BUTTON/DISPLAY BOXES*/
+        .display_box {
+            width: var(--box-width);
+            height: var(--box-width);
+            font-size: 0px;
+
+            border-radius: var(--round_edge);
+            border-style: solid;
+            border-color: var(--display_border);
+
+            background-color: var(--display_color);
+        }
+
+        .close {
+            max-width: 30px;
+            max-height: 30px;
+
+            background-image: none;
+            position: relative;
+            right: -88%;
+            top: .5%;
+
+            font-size: 88%;
+
+            background-color: rgb(95, 0, 0);
+            border-color: black;
+            border-radius: 50%;
+        }
+
+/*FOOTER DECLARATIONS*/
+footer {
+    margin: var(--global_margin);
+    margin-left: 2rem;
+}
