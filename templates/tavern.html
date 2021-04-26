@@ -98,10 +98,12 @@
                 <div id="tavern_shop" style='display: none'>
                     <div id="tav_shop_header">
                         <button onclick="close_shop()" class="close_button">Exit Shop</button>
+                        <p id="player_gold">100</p>
                     </div>
                     <div id="items_in_shop">
                         <div class="item_box">
                             <div class="display_box"></div>
+                            <p>Cost: 50 GP</p>
                             <form action="/purchase_item" id="potion_1" method="post">
                                 <input type="hidden" name="option" value="potion_1">
                                 <input id="potion_1_button" name="potion_1" type="submit" value="Buy" class="button_box">
@@ -109,6 +111,7 @@
                         </div>
                         <div class="item_box">
                             <div class="display_box"></div>
+                            <p>Cost: 70 GP</p>
                             <form action="/purchase_item" id="potion_2" method="post">
                                 <input type="hidden" name="option" value="potion_2">
                                 <input id="potion_2_button" name="potion_2" type="submit" value="Buy" class="button_box">
@@ -116,6 +119,7 @@
                         </div>
                         <div class="item_box">
                             <div class="display_box"></div>
+                            <p>Cost: 100 GP</p>
                             <form action="/purchase_item" id="potion_3" method="post">
                                 <input type="hidden" name="option" value="potion_3">
                                 <input id="potion_3_button" name="potion_3" type="submit" value="Buy" class="button_box">
