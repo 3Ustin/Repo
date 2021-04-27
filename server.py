@@ -202,6 +202,7 @@ def combat_start():
         "id" : session['user_id']
     }
     enemy = connectToMySQL('game').query_db(query,data)
+    print(enemy)
     return redirect('/combat')
 
 @app.route('/combat')
@@ -274,7 +275,7 @@ def combat_attack1():
         new_paladin_hp = paladin[0]['hp'] + 5
     query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
     data = {
-        "new_paladin_defense" : int(new_paladin_defense),
+        "new_paladin_defense" : int(new_paladin_hp),
         "user_id" : session['user_id']
     }
     paladin = connectToMySQL('game').query_db(query,data)
@@ -294,7 +295,7 @@ def combat_attack1():
     paladin = connectToMySQL('game').query_db(query,data)
     return redirect("/combat")
 
-@app.route('/combat/attack2')
+@app.route('/combat/attack2', methods = ["POST"])
 def combat_attack2():
     #does player hit?
         #The Player Always Hits.
@@ -326,7 +327,7 @@ def combat_attack2():
     #NewStatus Effects for enemy
 
     #if enemy dies.
-    if new_enemyHP <= 0:
+    if enemies[0]['hp'] <= 0:
         return redirect(f"/combat/on_enemy_death")
 
     #query for updating the enemy hp
