@@ -29,19 +29,21 @@
                 <div id="combat_screen_container">
                     <div id="combat_nav" class="menu_bar">
                         <a href="/tavern/start"><button id="retreat">Retreat</button></a>
-                        <h3> {{ session['location'] }} </h3>
+                        <!--we should store the location in this h3-->
+                        <h3> Mt. Helm </h3>
                         <button id="advance">Advance</button>
                     </div>
                     <div id="combat_screen">
                         <!--hitpoints view relative to your player/enemy view-->
                         <!--player image swapped in on this id-->
                         <!--hardcoded in for demo unless we add classes-->
-                        <div id="player_combat_image">
-                            <div id="player_hitpoints"></div>
+                        <div id="paladin_combat">
+                            <img src="{{ url_for('static', filename='img/paladin_combat.png') }}">
+                            <div id="player_hp"></div>
                         </div>
-                        <div id="enemy_combat_image">
-                            <!--enemy image swapped in on this id-->
-                            <div id="player_hitpoints"></div>
+                        <div id="enemy_combat">
+                            <img src="{{ url_for('static', filename='img/zombie_1.png') }}">
+                            <div id="enemy_hp"></div>
                         </div>
                     </div>
                 </div>
@@ -77,6 +79,22 @@
                         {% for actions in session['actions'] %}
                             <li> {{action}} </li>
                         {% endfor %}
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
+                            <li>test</li>
                     </ul>
                 </div>
             </div>
@@ -107,10 +125,9 @@
                 </div>
             </div>
         </main>
+        <footer>
+            <a href="/logout"><button id="exit">Exit Game</button></a>
+        </footer>
     </div>
-    <footer>
-        <a href="/logout"><button id="exit">Exit Game</button></a>
-    </footer>
-
 </body>
 </html> 

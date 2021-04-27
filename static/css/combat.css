@@ -15,12 +15,15 @@
         --main_bg_color: black;
         --secondary_bg_color: rgb(0, 0, 0);
         --tertiary_bg_color: rgb(55, 67, 82);
+
         --border_color: rgb(44, 54, 82);
         --header_bg: var(--border_color);
         --highlight: rgba(50, 50, 50, 0.666);
+        --button_highlight: rgb(148, 180, 180);
 
         --display_color: rgba(209, 206, 190, 0.33);
         --display_border: rgb(145, 128, 32);
+        --lighter_bg: rgb(178, 185, 206);
         
         --input_bg: rgb(58, 55, 40);
         --box_33: rgba(50, 50, 50, 0.333);
@@ -33,7 +36,11 @@
         --edge_inner: 22px;
         --border_size: 3px;
         --button-width: 255px;
+
         --box-width: 76px;
+        --small_box_height: 108px; /* 1 REM/16*2 pixels of box width*/
+
+        --larger-box-width: 348px;
     }
 
     * {
@@ -76,9 +83,12 @@
     }
 
         button:hover {
-            -moz-box-shadow: inset 0 0 10px var(--highlight);
-            -webkit-box-shadow: inset 0 0 10px var(--highlight);
-            box-shadow: inset 0 0 10px var(--highlight);
+            background-image: url(../img/roughback2.png);
+            background-size: cover;
+
+            -moz-box-shadow: inset 0 0 10px var(--button_highlight);
+            -webkit-box-shadow: inset 0 0 10px var(--button_highlight);
+            box-shadow: inset 0 0 10px var(--button_highlight);
         }
 
 /*MAIN DECLARATIONS*/
@@ -94,6 +104,7 @@
         margin: 0px auto;
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     /*BUTTON/DISPLAY BOXES*/
@@ -108,24 +119,33 @@
         font-size: 0px;
     }
 
+    .button_box:hover {
+        -moz-box-shadow: inset 0 0 24px var(--display_border);
+        -webkit-box-shadow: inset 0 0 24px var(--display_border);
+        box-shadow: inset 0 0 24px var(--display_border);
+
+        transition: 1000ms;
+    }
+
     .display_box {
         background-color: var(--display_color);
     }
 
+    /*UNIFORM BORDERS*/
+    .small_box, #inventory_menu, #combat_screen_container, #interaction_menu {
+        border-color: black;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: var(--rounder_edge);
+
+        box-shadow:
+        0px 0px 0px 3px var(--highlight),
+        0px 0px 0px 6px var(--box_33),
+        inset 0 0 10px var(--highlight);
+        }
 
 /*LEFT COLUMN*/
     /*MAIN COMBAT SCREEN*/
-        #combat_screen_container {
-            border-color: black;
-            border-width: 2px;
-            border-style: solid;
-            border-radius: var(--rounder_edge);
-
-            box-shadow:
-            0px 0px 0px 3px var(--highlight),
-            0px 0px 0px 6px var(--box_33),
-            inset 0 0 10px var(--highlight);
-        }
 
         /*MENU SPACING*/
         .menu_bar {
@@ -136,6 +156,10 @@
             background-color: var(--secondary_bg_color);
             border-top-left-radius: var(--edge_inner);
             border-top-right-radius: var(--edge_inner);
+        }
+
+        h3 {
+            font-family: 'Marcellus SC', serif;
         }
 
         /*COMBAT SCREEN*/
@@ -149,7 +173,95 @@
 
             border-bottom-left-radius: var(--edge_inner);
             border-bottom-right-radius: var(--edge_inner);
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            overflow: hidden;
         }
+
+        /*PLAYER IMAGE AND ANIMATIONS*/
+            #paladin_combat {
+                position: relative;
+                left: 0%;
+                top: 25%;
+                
+                /*SLIDES IN PALADIN - ALL BROWSERS*/
+                -webkit-animation: slidein_player 2s; /* Safari, Chrome and Opera > 12.1 */
+                -moz-animation: slidein_player 2s; /* Firefox < 16 */
+                -ms-animation: slidein_player 2s; /* Internet Explorer */
+                -o-animation: slidein_player 2s; /* Opera < 12.1 */
+                animation: slidein_player 2s;
+                }
+
+                #paladin_combat img {
+                    height: 348px;
+                }
+
+            @keyframes slidein_player {
+                from { left: -100%; }
+                to   { left: 0%; }
+            }
+            
+            /* Firefox < 16 */
+            @-moz-keyframes slidein_player {
+                from { left: -100%; }
+                to   { left: 0%; }
+            }
+            
+            /* Safari, Chrome and Opera > 12.1 */
+            @-webkit-keyframes slidein_player {
+                from { left: -100%; }
+                to   { left: 0%; }
+            }
+            
+            /* Internet Explorer */
+            @-ms-keyframes slidein_player {
+                from { left: -100%; }
+                to   { left: 0%; }
+            }
+
+        /*PLAYER IMAGE AND ANIMATIONS*/
+            #enemy_combat {
+                position: relative;
+                right: 0%;
+                top: 40%;
+
+                /*SLIDES IN ENEMY - ALL BROWSERS*/
+                -webkit-animation: slidein_enemy 2s; /* Safari, Chrome and Opera > 12.1 */
+                -moz-animation: slidein_enemy 2s; /* Firefox < 16 */
+                -ms-animation: slidein_enemy 2s; /* Internet Explorer */
+                -o-animation: slidein_enemy 2s; /* Opera < 12.1 */
+                animation: slidein_enemy 2s;
+            }
+
+                #enemy_combat img {
+                    height: 272px;
+                }
+
+            @keyframes slidein_enemy {
+                from { right: -100%; }
+                to   { right: 0%; }
+            }
+            
+            /* Firefox < 16 */
+            @-moz-keyframes slidein_enemy {
+                from { right: -100%; }
+                to   { right: 0%; }
+            }
+            
+            /* Safari, Chrome and Opera > 12.1 */
+            @-webkit-keyframes slidein_enemy {
+                from { right: -100%; }
+                to   { right: 0%; }
+            }
+            
+            /* Internet Explorer */
+            @-ms-keyframes slidein_enemy {
+                from { right: -100%; }
+                to   { right: 0%; }
+            }
 
         /*INTERACTION MENU*/
         /*these images are currently hardcoded in for alpha
@@ -159,7 +271,10 @@
             border-bottom-left-radius: var(--rounder_edge);
             border-bottom-right-radius: var(--rounder_edge);
 
+            width: 588px;
+
             margin: var(--global_margin) 0px;
+            z-index: 1;
         }
 
         #interaction_menu form {
@@ -192,25 +307,47 @@
             background-size: cover;
         }
 
+    /*ACTION FEED*/
+        #action_feed {
+            width: 588px;
+            height: 272px;
+            
+            background-color: var(--lighter_bg);
+            background-image: url(../img/cracked_concrete.png);
+            background-size: cover;
+        
+            border-bottom-left-radius: var(--rounder_edge);
+            border-bottom-right-radius: var(--rounder_edge);
+            margin-top: -1rem;
+        
+            border: 2px solid black;
+            box-shadow:
+            0px 0px 0 6px var(--border_color),
+            0px 0px 0 8px black,
+            inset 0px 0px 4px 4px rgba(48, 35, 20, 0.75);
+
+            overflow: hidden;
+        }
+
+        ul {
+            padding: var(--global_padding);
+        }
+        
+            li {
+                list-style: none;
+                color: black;
+                font-size: 1.25rem;
+            }
+
 /*RIGHT COLUMN*/
     /*INVENTORY MENU*/
     /*SAME STYLING AS OTHER DISPLAY BOXES*/
     #inventory_menu {
-        width: 348px;
+        width: var(--larger-box-width);
         height: 540px;
         background-size: cover;
         background-position-y: center;
         background-image: url(../img/inventory_menu.png);
-
-        border-color: black;
-        border-width: 2px;
-        border-style: solid;
-        border-radius: var(--rounder_edge);
-
-        box-shadow:
-        0px 0px 0px 3px var(--highlight),
-        0px 0px 0px 6px var(--box_33),
-        inset 0 0 10px var(--highlight);
 
         display: flex;
         flex-direction: column;
@@ -231,4 +368,21 @@
         #defense_stat {
             background-image: url(../img/sheild_icon_bw.png);
             background-size: cover;
+        }
+
+/*PROGRESS TRACKER*/
+        .small_box {
+            width: var(--larger-box-width);
+            height: 108px;
+
+            margin-top: var(--global_margin);
+
+            background-color: var(--secondary_bg_color);
+        }
+
+/*FOOTER*/
+        footer {
+            align-self: flex-end;
+            margin: var(--global_margin);
+            margin-right: 2rem;
         }
