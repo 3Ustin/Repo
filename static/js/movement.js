@@ -15,3 +15,17 @@ function myMove() {
     }
   }
 }
+
+
+function open_combat() {
+  inv_menu = document.getElementById("combat_menu");
+  inv_menu.style.removeProperty("display");
+  inv_menu.style.display = "block";
+}
+
+function close_combat() {
+  inv_menu = document.getElementById("combat_menu");
+  inv_menu.style.removeProperty("display");
+  inv_menu.style.display = "none";
+}
+

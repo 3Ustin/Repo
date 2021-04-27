@@ -1,26 +1,44 @@
-:root {
-    /*color variables*/
-    --main_text: whitesmoke;
-    --main_bg_color: black;
-    --secondary_bg_color: rgb(29, 29, 29);
-    --tertiary_bg_color: rgb(48, 35, 20);
-    --border_color: rgb(48, 35, 20);
-    --header_bg: var(--border_color);
-    --highlight: rgba(255, 145, 0, 0.527);
-    --input_color: rgb(209, 206, 190);
-    --input_border: rgb(102, 98, 75);
-    --input_bg: rgb(58, 55, 40);
-    --wood_panel_color: rgb(136, 103, 60);
-    --worldmap_color: rgb(122, 0, 0);
+/*GLOBAL DECLARATIONS*/
+    /*IMPORTED FONTS
+    font-family: 'Aclonica', sans-serif;
+    font-family: 'Bungee Inline', cursive;
+    font-family: 'Marcellus SC', serif;
+    font-family: 'Reggae One', cursive;
+    font-family: 'Sigmar One', cursive;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Kaushan Script', cursive;
+    if you import a font add it here^^^
+    */
+    :root {
+        /*color variables*/
+        --main_text: whitesmoke;
+        --main_bg_color: black;
+        --secondary_bg_color: rgb(29, 29, 29);
+        --tertiary_bg_color: rgb(48, 35, 20);
+        --border_color: rgb(48, 35, 20);
+        --header_bg: var(--border_color);
+        --highlight: rgba(255, 145, 0, 0.527);
 
-    /*sizing variables*/
-    --global_margin: .5rem;
-    --global_padding: .5rem;
-    --round_edge: 10px;
-    --rounder_edge: 25px;
-    --border_size: 3px;
-    --button-width: 255px;
-}
+        --input_color: rgb(209, 206, 190);
+        --input_border: rgb(102, 98, 75);
+        --input_bg: rgb(58, 55, 40);
+
+        --wood_panel_color: rgb(136, 103, 60);
+        --worldmap_color: rgb(122, 0, 0);
+
+        --display_color: rgba(209, 206, 190, 0.33);
+        --display_border: rgb(145, 128, 32);
+
+        /*sizing variables*/
+        --global_margin: 1rem;
+        --global_padding: 1rem;
+        --round_edge: 10px;
+        --rounder_edge: 25px;
+        --edge_inner: 22px;
+        --border_size: 3px;
+        --button-width: 255px;
+        --box-width: 76px;
+    }
 
 * {
     background-color: black;
@@ -63,7 +81,7 @@
     .locationSelection{
         height: 25px;
         width: 25px;
-        background-color: whitesmoke;
+        background-color: white;
         border-radius: 50%;
         position: relative;
         bottom: 477px;
@@ -172,6 +190,40 @@
         background-color: var(--tertiary_bg_color);
         border-color: var(--border_color);
         border-radius: var(--round_edge);
+    }
+
+
+
+    #combatOptions{
+        background-color: transparent;
+        height: 210px;
+        position: absolute;
+        bottom: 40%;
+        left: 45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        
+    }
+
+    .rtT, .fight{
+        bottom: auto;
+        left: auto;
+        position: relative;
+        padding: 10px;
+        opacity: 1;
+        width: fit-content;
+    }
+
+    .close {
+        position:relative;
+        bottom: auto;
+        left: auto;
+        opacity: 1;
+        font-size: 1rem;
+        min-width: 30px;
+        max-width: 30px;
+        height: 30px;
     }
 
         button:hover {

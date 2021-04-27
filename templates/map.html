@@ -62,21 +62,34 @@
                 </div>
                 
                 <div class="mtHelm">
-                    <a href="/combat">
+                    <!-- <a href="/combat"> -->
                         <div class="locationSelection"></div>
-                    </a>
+                    <!-- </a> -->
                     <img class="dangerAlert" src="static/img/dangerous-icon-3.jpg" alt="">
                 </div>
                 
                 <div class="newport">
-                    <a href="/tavern">
+                    <!-- <a href="/tavern"> -->
                         <div class="home"></div>
-                    </a>
+                    <!-- </a> -->
                 </div>
                 <footer>
                     <a href="/logout"><button id="exit">Exit Game</button></a>
-                    <button onclick="myMove()">Advance</button>
+                    <button onclick="open_combat(); myMove()">Advance</button>
                 </footer>
+            </div>
+
+            <div id="combat_menu" style='display: none'>
+                <div id="combatContainer">
+                    <div id="combatOptions">
+                        <button class='close' onclick="close_combat()">X</button>
+                        <a href="/tavern">
+                        <button class="rtT">Return to Town</button>
+                        </a>                            <a href="/combat">
+                        <button class="fight">Initiate Combat!</button>
+                        </a>
+                    </div>
+                </div>
             </div>
     </main>
     <script type="text/javascript" src="{{ url_for('static', filename='js/movement.js') }}"></script>
