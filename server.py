@@ -188,6 +188,8 @@ def tavern_rest():
 #!----------------------------------Map--------------------------------------!#
 @app.route('/map')
 def map():
+    if 'user_id' not in session:
+        return redirect("/")
     return render_template("map.html")
 
 
