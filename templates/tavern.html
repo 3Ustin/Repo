@@ -81,8 +81,8 @@
             <div id="tavern_lower_box">
                 <div id="tavern_activity_feed">
                     <ul>
-                        {% for activities in session['activities'] %}
-                            <li> {{activities}} </li>
+                        {% for activity in session['activities'] %}
+                            <li> {{activity}} </li>
                         {% endfor %}
                             <li>This is to test the activity feed font and styling</li>
                             <li>Still messing w this</li>
@@ -103,33 +103,33 @@
                     <div id="items_in_shop">
                         <div class="item_box">
                             <div class="display_box"></div>
-                            <p>Cost: 50 GP</p>
-                            <form action="/purchase_item" id="potion_1" method="post">
-                                <input type="hidden" name="option" value="potion_1">
-                                <input id="potion_1_button" name="potion_1" type="submit" value="Buy" class="button_box">
+                            <p>Cost: 20 GP</p>
+                            <form action="/purchase_item" id="red_potion" method="post">
+                                <input type="hidden" name="option" value="red_potion">
+                                <input id="red_potion_button" name="red_potion" type="submit" value="Buy" class="button_box">
                             </form>
                         </div>
                         <div class="item_box">
                             <div class="display_box"></div>
-                            <p>Cost: 70 GP</p>
-                            <form action="/purchase_item" id="potion_2" method="post">
-                                <input type="hidden" name="option" value="potion_2">
-                                <input id="potion_2_button" name="potion_2" type="submit" value="Buy" class="button_box">
+                            <p>Cost: 35 GP</p>
+                            <form action="/purchase_item" id="yellow_potion" method="post">
+                                <input type="hidden" name="option" value="yellow_potion">
+                                <input id="yellow_potion_button" name="yellow_potion" type="submit" value="Buy" class="button_box">
                             </form>
                         </div>
                         <div class="item_box">
                             <div class="display_box"></div>
-                            <p>Cost: 100 GP</p>
-                            <form action="/purchase_item" id="potion_3" method="post">
-                                <input type="hidden" name="option" value="potion_3">
-                                <input id="potion_3_button" name="potion_3" type="submit" value="Buy" class="button_box">
+                            <p>Cost: 35 GP</p>
+                            <form action="/purchase_item" id="green_potion" method="post">
+                                <input type="hidden" name="option" value="green_potion">
+                                <input id="green_potion_button" name="green_potion" type="submit" value="Buy" class="button_box">
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-        <footer style='display: none'>
+        <footer>
             <a href="/logout"><button id="exit" class="close_button">Exit Game</button></a>
         </footer>
     </div>
