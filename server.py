@@ -194,6 +194,9 @@ def map():
 #!----------------------------- ----Combat------------------------------------!#
 @app.route('/combat/start')
 def combat_start():
+    #putting to session action feed.
+    if 'action' not in session:
+            session['action'] = []
     #Load image of enemy
 
     #INSERT Enemy into Database
@@ -245,6 +248,13 @@ def combat_attack0():
         "user_id" : session['user_id']
     }
     paladin = connectToMySQL('game').query_db(query,data)
+
+    #putting to activities
+    session['action'] = []
+    if 'action' not in session:
+            session['action'] = []
+    session['activities'].append("You dealt the Zombie 5 damage")
+
     return redirect("/combat")
 
 @app.route('/combat/attack1', methods = ['POST'])
@@ -293,6 +303,14 @@ def combat_attack1():
         "user_id" : session['user_id']
     }
     paladin = connectToMySQL('game').query_db(query,data)
+
+    #putting to activities
+    session['action'] = []
+    if 'action' not in session:
+            session['action'] = []
+    session['activities'].append("You dealt the Zombie 1 damage.")
+    session['activities'].append("You healed 1 damage.")
+
     return redirect("/combat")
 
 @app.route('/combat/attack2', methods = ["POST"])
@@ -332,6 +350,12 @@ def combat_attack2():
 
     #query for updating the enemy hp
 
+    #putting to activities
+    session['action'] = []
+    if 'action' not in session:
+            session['action'] = []
+    session['activities'].append("You gained 1 defense.")
+
     return redirect("/combat")
 
 @app.route('/combat/on_enemy_death')
@@ -341,6 +365,11 @@ def combat_On_Enemy_Death():
     data = {
         'user_id' : session['user_id']
     }
+    session['action'] = []
+    if 'action' not in session:
+            session['action'] = []
+    session['activities'].append("You killed the zombie!")
+    session['activities'].append("Press advance to move forward!")
     #putting an enemy in after you kill them
     connectToMySQL('game').query_db(query,data)
     query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at,user_id) VALUE ('zombie', 10,5,5,NOW(),NOW(),%(id)s);"
