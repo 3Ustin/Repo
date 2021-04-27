@@ -33,15 +33,39 @@
                 <div id="world_map">
                     <!--the background image is in the css-->
                 </div>
+
+                <div class="locationMarker1">
+
+                </div>
+                <div class="locationMarker2">
+                    
+                </div>
+                <div class="locationMarker3">
+                    
+                </div>
+                <div class="locationMarker4">
+                    
+                </div>
+                <div class="locationMarker5">
+                    
+                </div>
+                <div class="locationMarker6">
+                    
+                </div>
+                <div class="locationMarker7">
+                    
+                </div>
+
                 
-                <div class="icon">
+                <div id="avatar">
                     <img id="charIcon" src="static/img/paladin_pixel.png" alt="">
                 </div>
                 
                 <div class="mtHelm">
-                    <a href="/combat/start">
-                        <img class="locationIcons" src="static/img/dangerous-icon-3.jpg" alt="">
+                    <a href="/combat">
+                        <div class="locationSelection"></div>
                     </a>
+                    <img class="dangerAlert" src="static/img/dangerous-icon-3.jpg" alt="">
                 </div>
                 
                 <div class="newport">
@@ -49,17 +73,12 @@
                         <div class="home"></div>
                     </a>
                 </div>
+                <footer>
+                    <a href="/logout"><button id="exit">Exit Game</button></a>
+                    <button onclick="myMove()">Advance</button>
+                </footer>
             </div>
-            <div class="bottom">
-                <div class="feed">
-                    <img src = "/templates/map.html">
-                </div>
-                <a href = "/combat/start"><button>fight</button></a>
-            </div>
-        </div>
-        <footer>
-            <a href="/logout"><button id="exit">Exit Game</button></a>
-        </footer>
     </main>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/movement.js') }}"></script>
 </body>
 </html>
