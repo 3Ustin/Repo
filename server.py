@@ -126,37 +126,43 @@ def tavern_start():
             "sword": 0,
             "shield": 0,
             "armor": 0,
+            "gold": 100,
             "user_id": session['user_id']
         }
         result = connectToMySQL('game').query_db(query,data)
 
     #POTIONS FOR SHOP
-    query_red = "INSERT INTO items (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
+    query_red = "INSERT INTO items_shop (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
     data_red = {
         "name": "red potion",
         "description": "juicy red blood from the depths of the dragon's lair, rumored to have healing properties",
         "effect": "Gain 20 HP"
     }
     result_1 = connectToMySQL('game').query_db(query_red, data_red)
-    query_yellow = "INSERT INTO items (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
+    print(result_1)
+    query_yellow = "INSERT INTO items_shop (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
     data_yellow = {
         "name": "yellow potion",
         "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
         "effect": "Gain 20 Attack"
     }
     result_2 = connectToMySQL('game').query_db(query_yellow, data_yellow)
-    query_green = "INSERT INTO items (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
+    print(result_2)
+    query_green = "INSERT INTO items_shop (name, description, effect, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW());"
     data_green = {
         "name": "green potion",
         "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
         "effect": "Gain 20 Defense"
     }
     result_3 = connectToMySQL('game').query_db(query_green, data_green)
-    return redirect('/tavern')
+    print(result_3)
+    return render_template('tavern.html')
 
 @app.route('/tavern')
 def tavern():
     return render_template("tavern.html")
+
+
 
 @app.route('/tavern/rest')
 def tavern_rest():
@@ -174,6 +180,7 @@ def tavern_rest():
     }
     results = connectToMySQL('game').query_db(query,data)
     return redirect("/tavern")
+
 
 
 #!----------------------------------Map--------------------------------------!#
