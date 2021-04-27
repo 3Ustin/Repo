@@ -36,7 +36,7 @@
         width: 1000px;
         height: 850px;
         background-size:inherit ;
-        background-image: url(../img/Erenia_Map.png);
+        background-image: url(../img/Erenia_Map_To_Helm.png);
 
         box-shadow:
         0px 0px 0px 3px rgba(48, 35, 20, 0.666),
@@ -51,104 +51,216 @@
         text-shadow: 3px 3px var(--secondary_bg_color);
     }
 
-    #charIcon{
-        background-color: transparent;
-        height: 60px;
-        position: relative;
-        left: 490px;
-        bottom: 230px;
-    }
-
-    .locationIcons{
+    .dangerAlert{
         background-color: transparent;
         height: 50px;
         position: relative;
         left: 830px;
-        bottom: 380px;
+        bottom: 524px;
+        z-index: 500;
+    }
+
+    .locationSelection{
+        height: 25px;
+        width: 25px;
+        background-color: whitesmoke;
+        border-radius: 50%;
+        position: relative;
+        bottom: 477px;
+        left: 790px;
+        z-index: 500;
+        opacity: 65%;
     }
 
     .home{
-        height: 40px;
-        width: 40px;
+        height: 25px;
+        width: 25px;
+        background-color: whitesmoke;
+        border-radius: 50%;
+        position: relative;
+        bottom: 382px;
+        left: 557px;
+        opacity: 65%;
+    }
+
+    .locationMarker1, .locationMarker2, .locationMarker3,
+    .locationMarker4, .locationMarker5, .locationMarker6,
+    .locationMarker7{
+        height: 25px;
+        width: 25px;
+        background-color: whitesmoke;
+        border-radius: 50%;
+        position: relative;
+        opacity: 65%;
+    }
+
+    .locationMarker1{
+        bottom: 480px;
+        left: 340px;
+    }
+
+    .locationMarker2{
+        bottom: 645px;
+        left: 456px;
+    }
+
+    .locationMarker3{
+        bottom: 496px;
+        left: 466px;
+    }
+    .locationMarker4{
+        bottom: 712px;
+        left: 233px;
+    }
+    .locationMarker5{
+        bottom: 587px;
+        left: 94px;
+    }
+    .locationMarker6{
+        bottom: 635px;
+        left: 629px;
+    }
+    .locationMarker7{
+        bottom: 781px;
+        left: 753px;
+    }
+
+    #avatar{
+        height: fit-content;
+        width: 400px;
+        height: 10px;
         background-color: transparent;
         position: relative;
-        bottom: 255px;
-        left: 505px;
+        bottom: 310px;
+        left: 570px;
     }
+
+    #charIcon{
+        background-color: transparent;
+        height: 60px;
+        position: absolute;
+        z-index: 1000;
+    }
+
+    #exit {
+        position: relative;
+        bottom: 350px;
+        left: 20px;
+        min-width: 150px;
+        font-size: 1.5rem;
+        opacity: 75%;
+
+        font-family: 'Marcellus SC', serif;
+        font-weight: bold;
+
+        background-color: var(--tertiary_bg_color);
+        border-color: var(--border_color);
+        border-radius: var(--round_edge);
+    }
+
+    button {
+        position: relative;
+        bottom: 350px;
+        left: 670px;
+        min-width: 150px;
+        font-size: 1.5rem;
+        opacity: 75%;
+
+        font-family: 'Marcellus SC', serif;
+        font-weight: bold;
+
+        background-color: var(--tertiary_bg_color);
+        border-color: var(--border_color);
+        border-radius: var(--round_edge);
+    }
+
+        button:hover {
+            -moz-box-shadow: inset 0 0 10px var(--highlight);
+            -webkit-box-shadow: inset 0 0 10px var(--highlight);
+            box-shadow: inset 0 0 10px var(--highlight);
+        }
 
     /* Firefox old*/
 @-moz-keyframes blink {
-0% {
-    opacity:1;
-}
-25%{
-    opacity: .5;
-}
-50% {
-    opacity:0;
-}
-75%{
-    opacity: .5;
-}
-100% {
-    opacity:1;
-}
-} 
-
+    0% {
+        opacity:1;
+    }
+    25%{
+        opacity: .5;
+    }
+    50% {
+        opacity:.25;
+    }
+    75%{
+        opacity: .5;
+    }
+    100% {
+        opacity:1;
+    }
+    } 
 @-webkit-keyframes blink {
-0% {
-    opacity:1;
-}
-25%{
-    opacity: .5;
-}
-50% {
-    opacity:0;
-}
-75%{
-    opacity: .5;
-}
-100% {
-    opacity:1;
-}
-}
+    0% {
+        opacity:1;
+    }
+    25%{
+        opacity: .5;
+    }
+    50% {
+        opacity:.25;
+    }
+    75%{
+        opacity: .5;
+    }
+    100% {
+        opacity:1;
+    }
+    } 
 /* IE */
 @-ms-keyframes blink {
-0% {
-    opacity:1;
-}
-25%{
-    opacity: .5;
-}
-50% {
-    opacity:0;
-}
-75%{
-    opacity: .5;
-}
-100% {
-    opacity:1;
-}
-} 
+    0% {
+        opacity:1;
+    }
+    25%{
+        opacity: .5;
+    }
+    50% {
+        opacity:.25;
+    }
+    75%{
+        opacity: .5;
+    }
+    100% {
+        opacity:1;
+    }
+    } 
 /* Opera and prob css3 final iteration */
 @keyframes blink {
-0% {
-    opacity:1;
-}
-25%{
-    opacity: .5;
-}
-50% {
-    opacity:0;
-}
-75%{
-    opacity: .5;
-}
-100% {
-    opacity:1;
-}
-} 
-.locationIcons {
+    0% {
+        opacity:1;
+    }
+    25%{
+        opacity: .5;
+    }
+    50% {
+        opacity:.25;
+    }
+    75%{
+        opacity: .5;
+    }
+    100% {
+        opacity:1;
+    }
+    } 
+
+
+.locationSelection{
+    -moz-animation: blink normal 4s infinite ease-in-out; /* Firefox */
+    -webkit-animation: blink normal 4s infinite ease-in-out; /* Webkit */
+    -ms-animation: blink normal 4s infinite ease-in-out; /* IE */
+    animation: blink normal 4s infinite ease-in-out; /* Opera and prob css3 final iteration */
+    }
+
+.dangerAlert {
 -moz-animation: blink normal .5s infinite ease-in-out; /* Firefox */
 -webkit-animation: blink normal .5s infinite ease-in-out; /* Webkit */
 -ms-animation: blink normal .5s infinite ease-in-out; /* IE */
