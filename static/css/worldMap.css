@@ -208,11 +208,12 @@
         height: 30px;
     }
 
-        button:hover {
-            -moz-box-shadow: inset 0 0 10px var(--highlight);
-            -webkit-box-shadow: inset 0 0 10px var(--highlight);
-            box-shadow: inset 0 0 10px var(--highlight);
-        }
+
+    button:hover {
+        -moz-box-shadow: inset 0 0 10px var(--highlight);
+        -webkit-box-shadow: inset 0 0 10px var(--highlight);
+        box-shadow: inset 0 0 10px var(--highlight);
+    }
     /* Firefox old*/
 @-moz-keyframes blink {
     0% {
