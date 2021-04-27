@@ -7,6 +7,8 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.secret_key = "speak friend and enter"
 
+#THIS IS A EXAMPLE TEST FOR MERGING THROUGH TERMINAL
+
 @app.route('/')
 def main():
     return render_template('main_menu.html')
