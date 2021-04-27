@@ -302,6 +302,7 @@ def combat_On_Enemy_Death():
     data = {
         'user_id' : session['user_id']
     }
+    #putting an enemy in after you kill them
     connectToMySQL('game').query_db(query,data)
     query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at,user_id) VALUE ('zombie', 10,5,5,NOW(),NOW(),%(id)s);"
     data = {
