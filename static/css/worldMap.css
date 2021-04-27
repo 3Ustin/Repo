@@ -1,26 +1,44 @@
-:root {
-    /*color variables*/
-    --main_text: whitesmoke;
-    --main_bg_color: black;
-    --secondary_bg_color: rgb(29, 29, 29);
-    --tertiary_bg_color: rgb(48, 35, 20);
-    --border_color: rgb(48, 35, 20);
-    --header_bg: var(--border_color);
-    --highlight: rgba(255, 145, 0, 0.527);
-    --input_color: rgb(209, 206, 190);
-    --input_border: rgb(102, 98, 75);
-    --input_bg: rgb(58, 55, 40);
-    --wood_panel_color: rgb(136, 103, 60);
-    --worldmap_color: rgb(122, 0, 0);
+/*GLOBAL DECLARATIONS*/
+    /*IMPORTED FONTS
+    font-family: 'Aclonica', sans-serif;
+    font-family: 'Bungee Inline', cursive;
+    font-family: 'Marcellus SC', serif;
+    font-family: 'Reggae One', cursive;
+    font-family: 'Sigmar One', cursive;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Kaushan Script', cursive;
+    if you import a font add it here^^^
+    */
+    :root {
+        /*color variables*/
+        --main_text: whitesmoke;
+        --main_bg_color: black;
+        --secondary_bg_color: rgb(29, 29, 29);
+        --tertiary_bg_color: rgb(48, 35, 20);
+        --border_color: rgb(48, 35, 20);
+        --header_bg: var(--border_color);
+        --highlight: rgba(255, 145, 0, 0.527);
 
-    /*sizing variables*/
-    --global_margin: .5rem;
-    --global_padding: .5rem;
-    --round_edge: 10px;
-    --rounder_edge: 25px;
-    --border_size: 3px;
-    --button-width: 255px;
-}
+        --input_color: rgb(209, 206, 190);
+        --input_border: rgb(102, 98, 75);
+        --input_bg: rgb(58, 55, 40);
+
+        --wood_panel_color: rgb(136, 103, 60);
+        --worldmap_color: rgb(122, 0, 0);
+
+        --display_color: rgba(209, 206, 190, 0.33);
+        --display_border: rgb(145, 128, 32);
+
+        /*sizing variables*/
+        --global_margin: 1rem;
+        --global_padding: 1rem;
+        --round_edge: 10px;
+        --rounder_edge: 25px;
+        --edge_inner: 22px;
+        --border_size: 3px;
+        --button-width: 255px;
+        --box-width: 76px;
+    }
 
 * {
     background-color: black;
@@ -29,7 +47,6 @@
     color: var(--main_text);
     font-family: 'Roboto', sans-serif;
 }
-
 /*WORLD MAP BUTTON*/
     #world_map {
         margin: 0 auto;
@@ -37,20 +54,17 @@
         height: 850px;
         background-size:inherit ;
         background-image: url(../img/Erenia_Map_To_Helm.png);
-
         box-shadow:
         0px 0px 0px 3px rgba(48, 35, 20, 0.666),
         0px 0px 0px 6px rgba(48, 35, 20, 0.333),
         inset 0 0 10px var(--highlight);
     }
-
     h1{
         margin: 5px 0 12px;
         text-align: center;
         font-family: 'Marcellus SC', serif;
         text-shadow: 3px 3px var(--secondary_bg_color);
     }
-
     .dangerAlert{
         background-color: transparent;
         height: 50px;
@@ -59,11 +73,10 @@
         bottom: 524px;
         z-index: 500;
     }
-
     .locationSelection{
         height: 25px;
         width: 25px;
-        background-color: whitesmoke;
+        background-color: white;
         border-radius: 50%;
         position: relative;
         bottom: 477px;
@@ -71,7 +84,6 @@
         z-index: 500;
         opacity: 65%;
     }
-
     .home{
         height: 25px;
         width: 25px;
@@ -82,7 +94,6 @@
         left: 557px;
         opacity: 65%;
     }
-
     .locationMarker1, .locationMarker2, .locationMarker3,
     .locationMarker4, .locationMarker5, .locationMarker6,
     .locationMarker7{
@@ -93,17 +104,14 @@
         position: relative;
         opacity: 65%;
     }
-
     .locationMarker1{
         bottom: 480px;
         left: 340px;
     }
-
     .locationMarker2{
         bottom: 645px;
         left: 456px;
     }
-
     .locationMarker3{
         bottom: 496px;
         left: 466px;
@@ -124,7 +132,6 @@
         bottom: 781px;
         left: 753px;
     }
-
     #avatar{
         height: fit-content;
         width: 400px;
@@ -134,14 +141,12 @@
         bottom: 310px;
         left: 570px;
     }
-
     #charIcon{
         background-color: transparent;
         height: 60px;
         position: absolute;
         z-index: 1000;
     }
-
     #exit {
         position: relative;
         bottom: 350px;
@@ -149,15 +154,12 @@
         min-width: 150px;
         font-size: 1.5rem;
         opacity: 75%;
-
         font-family: 'Marcellus SC', serif;
         font-weight: bold;
-
         background-color: var(--tertiary_bg_color);
         border-color: var(--border_color);
         border-radius: var(--round_edge);
     }
-
     button {
         position: relative;
         bottom: 350px;
@@ -165,13 +167,45 @@
         min-width: 150px;
         font-size: 1.5rem;
         opacity: 75%;
-
         font-family: 'Marcellus SC', serif;
         font-weight: bold;
-
         background-color: var(--tertiary_bg_color);
         border-color: var(--border_color);
         border-radius: var(--round_edge);
+    }
+
+
+
+    #combatOptions{
+        background-color: transparent;
+        height: 210px;
+        position: absolute;
+        bottom: 40%;
+        left: 45%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+    }
+
+    .rtT, .fight{
+        bottom: auto;
+        left: auto;
+        position: relative;
+        padding: 10px;
+        opacity: 1;
+        width: fit-content;
+    }
+
+    .close {
+        position:relative;
+        bottom: auto;
+        left: auto;
+        opacity: 1;
+        font-size: 1rem;
+        min-width: 30px;
+        max-width: 30px;
+        height: 30px;
     }
 
         button:hover {
@@ -179,7 +213,6 @@
             -webkit-box-shadow: inset 0 0 10px var(--highlight);
             box-shadow: inset 0 0 10px var(--highlight);
         }
-
     /* Firefox old*/
 @-moz-keyframes blink {
     0% {
@@ -251,15 +284,12 @@
         opacity:1;
     }
     } 
-
-
 .locationSelection{
     -moz-animation: blink normal 4s infinite ease-in-out; /* Firefox */
     -webkit-animation: blink normal 4s infinite ease-in-out; /* Webkit */
     -ms-animation: blink normal 4s infinite ease-in-out; /* IE */
     animation: blink normal 4s infinite ease-in-out; /* Opera and prob css3 final iteration */
     }
-
 .dangerAlert {
 -moz-animation: blink normal .5s infinite ease-in-out; /* Firefox */
 -webkit-animation: blink normal .5s infinite ease-in-out; /* Webkit */
