@@ -149,6 +149,7 @@
     }
     #exit {
         position: relative;
+        padding: 5px;
         bottom: 350px;
         left: 20px;
         min-width: 150px;
@@ -162,8 +163,9 @@
     }
     button {
         position: relative;
+        padding: 5px;
         bottom: 350px;
-        left: 670px;
+        left: 660px;
         min-width: 150px;
         font-size: 1.5rem;
         opacity: 75%;
