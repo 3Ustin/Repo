@@ -212,7 +212,18 @@ def purchase_item():
     
     #set paladin gold
     paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
-
+# CHECK HOW MANY ITEMS IN INVENTORY
+    # set max items at 4
+    query = "SELECT * FROM inventory WHERE paladin_id = %(id)s;"
+    data = {
+        "id": session['paladin_id']
+    }
+    result = connectToMySQL('game').query_db(query, data)
+    print("**************************************************")
+    print (len(result))
+    if len(result) >= 4:
+        session['activities'].append("Your backpack is too heavy to carry more items.")
+        return redirect('/tavern')
 #/RED POTION/
     #check form for potion id
     if request.form['option'] == 'red_potion':
@@ -243,7 +254,7 @@ def purchase_item():
             result_update = connectToMySQL('game').query_db(query_update, data_update)
 
             #append activities//PURCHASED
-            session['activities'].append("You have purhcased the red poition. It is now available in your inventory")
+            session['activities'].append("You have purhcased the red potion. It is now available in your inventory")
 
         else: 
             #append activities//NO PURCHASE
@@ -279,7 +290,7 @@ def purchase_item():
             result_update = connectToMySQL('game').query_db(query_update, data_update)
             
             #append activities//PURCHASED
-            session['activities'].append("You have purhcased the yellow poition. It is now available in your inventory")
+            session['activities'].append("You have purhcased the yellow potion. It is now available in your inventory")
 
         else: 
             #append activities//NO PURCHASE
@@ -314,7 +325,7 @@ def purchase_item():
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
 
-            session['activities'].append("You have purhcased the green poition. It is now available in your inventory")
+            session['activities'].append("You have purhcased the green potion. It is now available in your inventory")
         else: 
             #append activities//NO PURCHASE
             session['activities'].append("You don't have enough gold to purchase that item!")
