@@ -231,6 +231,7 @@ def purchase_item():
             return redirect ('/tavern')
         else: 
             flash("Not enough gold")
+            return redirect ('/tavern')
 
     print("******************************************************************")
 
@@ -245,16 +246,15 @@ def purchase_item():
     if request.form['option'] == 'yellow_potion':
         query_gold = "SELECT gold FROM items_shop WHERE name = %(name)s;"
         data_gold = {
-            "name": 'yellow_potion.png',
-            "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
-            "effect": "Gain 20 Attack",
-            "paladin_id": session['paladin_id']
+            "name": 'yellow_potion.png'
         }
         potion_gold = connectToMySQL('game').query_db(query_gold, data_gold)[0]["gold"]
         if paladin_gold >= potion_gold:
             query = "INSERT INTO inventory (name, description, effect, created_at, updated_at, paladin_id) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW(), %(paladin_id)s);"
             data = {
-
+                "name": "yellow potion.png",
+                "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
+                "effect": "Gain 20 Attack",
                 "paladin_id": session['paladin_id']
             }
             result = connectToMySQL('game').query_db(query, data)
@@ -266,14 +266,14 @@ def purchase_item():
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
             print(result_update)
-            bought_1 = "Yellow potion purchased."
-            session['activities'].append(bought_1)
+            bought = ("Yellow potion purchased.")
+            session['activities'].append(bought)
             print(session['activities'])
             return redirect ('/tavern')
-        else:
+        else: 
             flash("Not enough gold")
+            return redirect ('/tavern')
 
-    print("******************************************************************")
 
     query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
     data = {
@@ -286,16 +286,15 @@ def purchase_item():
     if request.form['option'] == 'green_potion':
         query_gold = "SELECT gold FROM items_shop WHERE name = %(name)s;"
         data_gold = {
-            "name": 'green_potion.png',
-            "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
-            "effect": "Gain 20 Defense",
-            "paladin_id": session['paladin_id']
+            "name": 'green_potion.png'
         }
         potion_gold = connectToMySQL('game').query_db(query_gold, data_gold)[0]["gold"]
         if paladin_gold >= potion_gold:
             query = "INSERT INTO inventory (name, description, effect, created_at, updated_at, paladin_id) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW(), %(paladin_id)s);"
             data = {
-
+                "name": "green potion.png",
+                "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
+                "effect": "Gain 20 Defense",
                 "paladin_id": session['paladin_id']
             }
             result = connectToMySQL('game').query_db(query, data)
@@ -307,13 +306,15 @@ def purchase_item():
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
             print(result_update)
-            bought_2 = "Green potion purchased."
-            session['activities'].append(bought_2)
+            bought = ("Green potion purchased.")
+            session['activities'].append(bought)
             print(session['activities'])
             return redirect ('/tavern')
         else: 
             flash("Not enough gold")
-    return redirect('/tavern')
+            return redirect ('/tavern')
+    return redirect ('/tavern')
+
 
 @app.route('/tavern/rest')
 def tavern_rest():
