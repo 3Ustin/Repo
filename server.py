@@ -396,7 +396,7 @@ def combat_attack0():
             session['action'] = []
     session['activities'].append("You dealt the Zombie 5 damage")
 
-    return redirect("/combat")
+    return redirect("/combat/enemy_attack")
 
 @app.route('/combat/attack1', methods = ['POST'])
 def combat_attack1():
@@ -452,7 +452,7 @@ def combat_attack1():
     session['activities'].append("You dealt the Zombie 1 damage.")
     session['activities'].append("You healed 1 damage.")
 
-    return redirect("/combat")
+    return redirect("/combat/enemy_attack")
 
 @app.route('/combat/attack2', methods = ["POST"])
 def combat_attack2():
@@ -497,7 +497,57 @@ def combat_attack2():
             session['action'] = []
     session['activities'].append("You gained 1 defense.")
 
-    return redirect("/combat")
+    return redirect("/combat/enemy_attack")
+
+@app.route('combat/enemy_attack')
+def combat_enemy_attack():
+    #does player hit?
+        #The Player Always Hits.
+    #Query to grab enemy object
+    query = "SELECT * from enemies WHERE user_id = %(user_id)s;"
+    data = {
+        "user_id" : session['user_id']
+    }
+    enemies = connectToMySQL('game').query_db(query,data)
+
+    #Query to grab paladin object
+    query = "SELECT * from Paladin WHERE user_id = %(user_id)s;"
+    data = {
+        "user_id" : session['user_id']
+    }
+    paladin = connectToMySQL('game').query_db(query,data)
+
+    #All Calculations of hitting and damage.
+    if paladin[0]['hp'] - 12 + paladin[0]['defense'] <= 0:
+        return redirect('/combat/player_death')
+    else:
+        new_paladin_hp = paladin[0]['hp'] - 12 + paladin[0]['defense'] 
+    query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
+    data = {
+        "new_paladin_hp" : int(new_paladin_hp),
+        "user_id" : session['user_id']
+    }
+    paladin = connectToMySQL('game').query_db(query,data)
+    #NewStatus Effects for player
+
+    #NewStatus Effects for enemy
+
+    #if player dies.
+    if paladin[0]['hp'] <= 0:
+        return redirect(f"/combat/player_death")
+
+    #query for updating the enemy hp
+
+    #putting to activities
+    if 'action' not in session:
+        session['action'] = []
+    session['activities'].append("Zombie hits you for 5.")
+
+    return redirect('/combat')
+
+@app.route('/combat/player_death')
+def combat_on_player_death():
+    return redirect('/death')
 
 @app.route('/combat/on_enemy_death')
 def combat_On_Enemy_Death():
@@ -531,6 +581,19 @@ def logout():
     connectToMySQL('game').query_db(query,data)
     session.clear()
     return redirect('/')
+
+#!--------------------------------DEATH--------------------------------!#
+@app.route('/death')
+def logout():
+    query = "DELETE from enemies WHERE user_id = %(user_id)s;"
+    data = {
+        'user_id' : session['user_id']
+    }
+    #THIS IS THE COMMENT FOR TEST
+    connectToMySQL('game').query_db(query,data)
+    session.clear()
+    return render_template('death.html')
+
 
 if __name__=="__main__":
     app.run(debug=True)
