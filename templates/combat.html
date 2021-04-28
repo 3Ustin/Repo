@@ -76,8 +76,8 @@
                     <ul>
                         <!--our stored combat actions need to be different than our tavern activities in session-->
                         <!--we can call tavern activities "activities" and combat actions "actions"-->
-                        {% for actions in session['actions'] %}
-                            <li> {{action}} </li>
+                        {% for action in session['action'] %}
+                            <li> {{ action }} </li>
                         {% endfor %}
                             <li>test</li>
                             <li>test</li>
@@ -115,10 +115,16 @@
                         <div id="left_hand_slot" class="display_box"><img id="chest" src="{{ url_for('static', filename='img/basic_shield.png') }}"></div>
                     </div>
                     <div id="backpack_menu" class="inventory_row">
-                        <div id="backpack_slot_1" class="display_box"></div>
-                        <div id="backpack_slot_2" class="display_box"></div>
-                        <div id="backpack_slot_3" class="display_box"></div>
-                        <div id="backpack_slot_4" class="display_box"></div>
+                        {% for item in inventory %}
+                            <form action="/use_item" method="post" class="backpack_form">
+                                <div class ="display_box">
+                                    <img src="{{ url_for('static', filename = 'img/'+item.name) }}">
+                                </div>    
+                                    <input type="hidden" name="item_option" value="{{ item['name']}}">
+                                    <input type="hidden" name="item_id" value="{{ item['id']}}">
+                                    <input type="submit" value="Use" class="use_button">
+                                </form>
+                        {% endfor %}
                     </div>
                 </div>
                 <div id="progress_tracker" class="small_box">

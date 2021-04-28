@@ -314,6 +314,10 @@
         height: 500px;
     }
 
+    #backpack_menu {
+        justify-content: space-evenly;
+    }
+
         #attack_stat {
             background-image: url(../img/sword_icon_bw.png);
             background-size: cover;
