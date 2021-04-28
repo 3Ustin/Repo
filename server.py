@@ -642,7 +642,7 @@ def use_item():
         deleted_item = connectToMySQL('game').query_db(query,data)
     
     #check for green potion
-    elif request.form.get('item_option') == "green-potion.png":
+    elif request.form.get('item_option') == "green_potion.png":
         #APPLY THE EFFECT FOR GREEN POTION
 
         #delete from paladin's inventory
