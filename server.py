@@ -31,9 +31,9 @@ def register_process():
     if len(request.form['password']) <8:
         is_valid = False
         flash("password must be at least 8 characters")
-    if len(request.form['password']) >15:
+    if len(request.form['password']) >25:
         is_valid = False
-        flash("Must create a password")
+        flash("Password may not exceed 25 characters")
     if request.form['password'] != request.form['confirm_password']:
         is_valid = False
         flash("passwords must match")
