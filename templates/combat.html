@@ -39,7 +39,9 @@
                         <!--hardcoded in for demo unless we add classes-->
                         <div id="paladin_combat">
                             <img src="{{ url_for('static', filename='img/paladin_combat.png') }}">
-                            <div id="player_hp"></div>
+                            <div id="player_hp" class="hp_bar_wrapper">
+                                <div id="player_hp_bar" class="hp_bar"></div>
+                            </div>
                         </div>
                         <div id="enemy_combat">
                             <img src="{{ url_for('static', filename='img/zombie_1.png') }}">
@@ -79,22 +81,6 @@
                         {% for action in session['action'] %}
                             <li> {{ action }} </li>
                         {% endfor %}
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
                     </ul>
                 </div>
             </div>
