@@ -170,6 +170,12 @@
             overflow: hidden;
         }
 
+        /* ARMOR STYLING*/
+        #chest{
+            height: 78px;
+        }
+    
+
         /*PLAYER IMAGE AND ANIMATIONS*/
             #paladin_combat {
                 position: relative;
