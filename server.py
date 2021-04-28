@@ -143,9 +143,6 @@ def tavern_start():
     session['paladin_id'] = result_paladin[0]["id"]
     print(session['paladin_id'])
 
-    if 'activities' not in session:
-        session['activities'] = []
-
     #POTIONS FOR SHOP
     #red_potion
     query_red = "INSERT INTO items_shop (name, description, effect, gold, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, %(gold)s, NOW(), NOW());"
@@ -187,6 +184,9 @@ def tavern():
 
 @app.route('/purchase_item', methods=['POST'])
 def purchase_item():
+    if 'activities' not in session:
+        session['activities'] = []
+
     query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
     data = {
         "id": session['user_id'],
@@ -218,7 +218,8 @@ def purchase_item():
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
             print(result_update)
-            session['activities'].append("Red potion bought.")
+            bought = ("Red potion purchased.")
+            session['activities'].append(bought)
             print(session['activities'])
             return redirect ('/tavern')
         else: 
@@ -258,10 +259,11 @@ def purchase_item():
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
             print(result_update)
-            session['activities'].append("Red potion bought.")
+            bought_1 = "Yellow potion purchased."
+            session['activities'].append(bought_1)
             print(session['activities'])
             return redirect ('/tavern')
-        else: 
+        else:
             flash("Not enough gold")
 
     print("******************************************************************")
@@ -298,7 +300,8 @@ def purchase_item():
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
             print(result_update)
-            session['activities'].append("Red potion bought.")
+            bought_2 = "Green potion purchased."
+            session['activities'].append(bought_2)
             print(session['activities'])
             return redirect ('/tavern')
         else: 
