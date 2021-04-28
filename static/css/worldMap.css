@@ -47,6 +47,13 @@
     color: var(--main_text);
     font-family: 'Roboto', sans-serif;
 }
+
+/*TJK EDIT*/
+.wrapper {
+    margin-top: 2rem;
+}
+
+
 /*WORLD MAP BUTTON*/
     #world_map {
         margin: 0 auto;
@@ -54,11 +61,14 @@
         height: 850px;
         background-size:inherit ;
         background-image: url(../img/Erenia_Map_To_Helm.png);
+
         box-shadow:
         0px 0px 0px 3px rgba(48, 35, 20, 0.666),
         0px 0px 0px 6px rgba(48, 35, 20, 0.333),
         inset 0 0 10px var(--highlight);
+
     }
+
     h1{
         margin: 5px 0 12px;
         text-align: center;
@@ -99,7 +109,7 @@
     .locationMarker7{
         height: 25px;
         width: 25px;
-        background-color: whitesmoke;
+        background-color: black;
         border-radius: 50%;
         position: relative;
         opacity: 65%;
@@ -182,12 +192,17 @@
         background-color: transparent;
         height: 210px;
         position: absolute;
-        bottom: 40%;
+        bottom: 33%;
         left: 45%;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+    }
 
+    /*TJK EDIT*/
+    #combatOptions a {
+    border-radius: var(--round_edge);
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.333);
     }
 
     .rtT, .fight{
