@@ -109,17 +109,22 @@
         font-size: 0px;
     }
 
-    .button_box:hover {
+    .button_box:hover, .use_button:hover {
         -moz-box-shadow: inset 0 0 24px var(--display_border);
         -webkit-box-shadow: inset 0 0 24px var(--display_border);
         box-shadow: inset 0 0 24px var(--display_border);
 
-        transition: 1000ms;
+        transition: 250ms;
     }
 
     .display_box {
         background-color: var(--display_color);
     }
+
+        .display_box img {
+            width: var(--box-width);
+            height: var(--box-width);
+        }
 
     /*UNIFORM BORDERS*/
     .small_box, #inventory_menu, #combat_screen_container, #interaction_menu {
@@ -342,6 +347,7 @@
         flex-direction: column;
         justify-content: space-between;
     }
+
     .inventory_row {
         display: flex;
         justify-content: space-between;
@@ -355,6 +361,23 @@
             background-image: url(../img/sheild_icon_bw.png);
             background-size: cover;
         }
+
+    #backpack_menu {
+        justify-content: center;
+    }
+
+        .backpack_form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+            .use_button {
+                background-color: var(--input_bg);
+
+                border-radius: var(--round_edge);
+
+                border: 3px solid var(--display_border);
+            }
 
 /*PROGRESS TRACKER*/
         .small_box {

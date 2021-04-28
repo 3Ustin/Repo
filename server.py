@@ -45,7 +45,7 @@ def register_process():
             "password": pw_hash
         }
         results = connectToMySQL('game').query_db(query,data)
-        print(results)
+
         session['user_id'] = results
         return redirect('/login')
     return redirect("/register")
@@ -119,7 +119,7 @@ def tavern_start():
     if  paladin_made == False:
         #make a paladin for the user;
         query = "INSERT INTO paladin (name, attack, defense, hp, sword, shield, armor, gold, created_at, updated_at, user_id) VALUES (%(name)s, %(attack)s, %(defense)s, %(hp)s, %(sword)s, %(shield)s, %(armor)s, %(gold)s, NOW(), NOW(), %(user_id)s);"
-        print(query)
+
         data = {
             "name": "Paladin",
             "attack": 10,
@@ -132,7 +132,6 @@ def tavern_start():
             "user_id": session['user_id']
         }
         result = connectToMySQL('game').query_db(query,data)
-        print(result)
 
     #put paladin id in session
     query_paladin = "SELECT * FROM paladin WHERE user_id = %(id)s;"
@@ -141,7 +140,6 @@ def tavern_start():
     }
     result_paladin = connectToMySQL('game').query_db(query_paladin, data_paladin)
     session['paladin_id'] = result_paladin[0]["id"]
-    print(session['paladin_id'])
 
     #POTIONS FOR SHOP
     #red_potion
@@ -153,7 +151,6 @@ def tavern_start():
         "gold": 20 
     }
     result_1 = connectToMySQL('game').query_db(query_red, data_red)
-    print(result_1)
 
     #yellow_potion
     query_yellow = "INSERT INTO items_shop (name, description, effect, gold, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, %(gold)s, NOW(), NOW());"
@@ -164,7 +161,6 @@ def tavern_start():
         "gold": 35
     }
     result_2 = connectToMySQL('game').query_db(query_yellow, data_yellow)
-    print(result_2)
 
     #green_potion
     query_green = "INSERT INTO items_shop (name, description, effect, gold, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, %(gold)s, NOW(), NOW());"
@@ -175,146 +171,156 @@ def tavern_start():
         "gold": 35
     }
     result_3 = connectToMySQL('game').query_db(query_green, data_green)
-    print(result_3)
-    return render_template('tavern.html')
+
+    #init activities
+    if 'activities' not in session:
+        session['activities'] = []
+        session['activities'].append("Welcome to the inn brave adventurer! Feel free to take a rest and restore your strength here. If you wish to stock up on items, visit the shop and browse our wares. Once you are finished, check the world map to continue on to your next destination.")
+
+    return redirect ('/tavern')
 
 @app.route('/tavern')
 def tavern():
-    #TJK code for inventory query
+    #print activities
+    print(session['activities'])
+
+    #QUERY PALADIN'S INVENTORY
     query = "SELECT * FROM inventory WHERE paladin_id = %(paladin_id)s"
     data = {
         "paladin_id" : session['paladin_id']
     }
     result = connectToMySQL('game').query_db(query, data)
 
-    return render_template("tavern.html", inventory = result)
-
-@app.route('/purchase_item', methods=['POST'])
-def purchase_item():
-    if 'activities' not in session:
-        session['activities'] = []
-
+    #DISPLAY PALADINS GOLD
     query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
     data = {
         "id": session['user_id'],
     }
-    print("***********************************")
+    #set paladin gold
     paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
-    print(paladin_gold)
 
+    return render_template("tavern.html", inventory = result, paladin_gold = paladin_gold)
+
+@app.route('/purchase_item', methods=['POST'])
+def purchase_item():
+#CHECK PALADINS GOLD
+    #query the database
+    query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
+    data = {
+        "id": session['user_id'],
+    }
+    
+    #set paladin gold
+    paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
+
+#/RED POTION/
+    #check form for potion id
     if request.form['option'] == 'red_potion':
         query_gold = "SELECT gold FROM items_shop WHERE name = %(name)s;"
         data_gold = {
             "name": 'red_potion.png'
         }
+        #set potion gold
         potion_gold = connectToMySQL('game').query_db(query_gold, data_gold)[0]["gold"]
+        
+        #if they have enough gold -> purchase
         if paladin_gold >= potion_gold:
             query = "INSERT INTO inventory (name, description, effect, created_at, updated_at, paladin_id) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW(), %(paladin_id)s);"
             data = {
-                "name": "red potion.png",
+                "name": "red_potion.png",
                 "description": "juicy red blood from the depths of the dragon's lair, rumored to have healing properties",
                 "effect": "Gain 20 HP",
                 "paladin_id": session['paladin_id']
             }
             result = connectToMySQL('game').query_db(query, data)
-            print(result)
+
+            #update the paladin's gold
             query_update = "UPDATE paladin SET gold = %(new_gold)s WHERE id = %(id)s;"
             data_update = {
                 "new_gold": paladin_gold - potion_gold,
                 "id": session['paladin_id']
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
-            print(result_update)
-            bought = ("Red potion purchased.")
-            session['activities'].append(bought)
-            print(session['activities'])
-            return redirect ('/tavern')
+
+            #append activities//PURCHASED
+            session['activities'].append("You have purhcased the red poition. It is now available in your inventory")
+
         else: 
-            flash("Not enough gold")
-            return redirect ('/tavern')
+            #append activities//NO PURCHASE
+            session['activities'].append("You don't have enough gold to purchase that item!")
 
-    print("******************************************************************")
-
-    query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
-    data = {
-        "id": session['user_id'],
-    }
-    print("***********************************")
-    paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
-    print(paladin_gold)
-
-    if request.form['option'] == 'yellow_potion':
+#/YELLOW POTION/
+    #check the potion id for yellow
+    elif request.form['option'] == 'yellow_potion':
         query_gold = "SELECT gold FROM items_shop WHERE name = %(name)s;"
         data_gold = {
             "name": 'yellow_potion.png'
         }
+        #set potion gold
         potion_gold = connectToMySQL('game').query_db(query_gold, data_gold)[0]["gold"]
+
+        #check to see if paladin has enough gold
         if paladin_gold >= potion_gold:
             query = "INSERT INTO inventory (name, description, effect, created_at, updated_at, paladin_id) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW(), %(paladin_id)s);"
             data = {
-                "name": "yellow potion.png",
+                "name": "yellow_potion.png",
                 "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
                 "effect": "Gain 20 Attack",
                 "paladin_id": session['paladin_id']
             }
             result = connectToMySQL('game').query_db(query, data)
-            print(result)
+
+            #update the paladin's gold
             query_update = "UPDATE paladin SET gold = %(new_gold)s WHERE id = %(id)s;"
             data_update = {
                 "new_gold": paladin_gold - potion_gold,
                 "id": session['paladin_id']
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
-            print(result_update)
-            bought = ("Yellow potion purchased.")
-            session['activities'].append(bought)
-            print(session['activities'])
-            return redirect ('/tavern')
+            
+            #append activities//PURCHASED
+            session['activities'].append("You have purhcased the yellow poition. It is now available in your inventory")
+
         else: 
-            flash("Not enough gold")
-            return redirect ('/tavern')
+            #append activities//NO PURCHASE
+            session['activities'].append("You don't have enough gold to purchase that item!")
 
-
-    query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
-    data = {
-        "id": session['user_id'],
-    }
-    print("***********************************")
-    paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
-    print(paladin_gold)
-
-    if request.form['option'] == 'green_potion':
+#/GREEN POTION/
+    #check for green potion on form
+    elif request.form['option'] == 'green_potion':
         query_gold = "SELECT gold FROM items_shop WHERE name = %(name)s;"
         data_gold = {
             "name": 'green_potion.png'
         }
+        #set potion gold
         potion_gold = connectToMySQL('game').query_db(query_gold, data_gold)[0]["gold"]
+
+        #compare paladin and potion gold
         if paladin_gold >= potion_gold:
             query = "INSERT INTO inventory (name, description, effect, created_at, updated_at, paladin_id) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW(), %(paladin_id)s);"
             data = {
-                "name": "green potion.png",
+                "name": "green_potion.png",
                 "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
                 "effect": "Gain 20 Defense",
                 "paladin_id": session['paladin_id']
             }
             result = connectToMySQL('game').query_db(query, data)
-            print(result)
+
+            #update the paladin's gold
             query_update = "UPDATE paladin SET gold = %(new_gold)s WHERE id = %(id)s;"
             data_update = {
                 "new_gold": paladin_gold - potion_gold,
                 "id": session['paladin_id']
             }
             result_update = connectToMySQL('game').query_db(query_update, data_update)
-            print(result_update)
-            bought = ("Green potion purchased.")
-            session['activities'].append(bought)
-            print(session['activities'])
-            return redirect ('/tavern')
-        else: 
-            flash("Not enough gold")
-            return redirect ('/tavern')
-    return redirect ('/tavern')
 
+            session['activities'].append("You have purhcased the green poition. It is now available in your inventory")
+        else: 
+            #append activities//NO PURCHASE
+            session['activities'].append("You don't have enough gold to purchase that item!")
+
+    #FINISH - REDIRECT        
+    return redirect ('/tavern')
 
 @app.route('/tavern/rest')
 def tavern_rest():
@@ -323,7 +329,7 @@ def tavern_rest():
         "user_id": session['user_id']
     }
     results = connectToMySQL('game').query_db(query,data)
-    print(results)
+
     results[0]['hp'] = 50
     query = "UPDATE paladin SET name = 'Paladin',attack = '10',defense = '10',hp = %(hp)s,sword = '0',shield = '0',armor = '0',created_at = NOW(),updated_at = NOW(),user_id = %(user_id)s;"
     data = {
@@ -331,9 +337,10 @@ def tavern_rest():
         "hp" : 40
     }
     results = connectToMySQL('game').query_db(query,data)
+
+    session['activities'].append("You take a long rest and awake in the morning fully rejuvinated")
+
     return redirect("/tavern")
-
-
 
 #!----------------------------------Map--------------------------------------!#
 @app.route('/map')
@@ -341,7 +348,6 @@ def map():
     if 'user_id' not in session:
         return redirect("/")
     return render_template("map.html")
-
 
 #!----------------------------- ----Combat------------------------------------!#
 @app.route('/combat/start')
@@ -362,7 +368,13 @@ def combat_start():
 
 @app.route('/combat')
 def combat():
-    return render_template("combat.html")
+    #QUERY for INVENTORY
+    query = "SELECT * FROM inventory WHERE paladin_id = %(paladin_id)s"
+    data = {
+        "paladin_id" : session['paladin_id']
+    }
+    result = connectToMySQL('game').query_db(query, data)
+    return render_template("combat.html", inventory = result)
 
 @app.route('/combat/attack0', methods = ["POST"])
 def combat_attack0():
@@ -580,6 +592,68 @@ def combat_On_Enemy_Death():
     }
     enemy = connectToMySQL('game').query_db(query,data)
     return redirect('/combat')
+
+#--------------------------------use item----------------------------------#
+
+@app.route('/use_item', methods = ['POST'])
+def use_item():
+#GRAB PALADIN
+    query_pal = "SELECT * from Paladin WHERE user_id = %(user_id)s;"
+    data_pal = {
+        "user_id" : session['user_id']
+    }
+    paladin = connectToMySQL('game').query_db(query_pal,data_pal)
+
+#QUERY PALADIN'S INVENTORY
+    query_inv = "SELECT * FROM inventory WHERE paladin_id = %(paladin_id)s"
+    data_inv = {
+        "paladin_id" : session['paladin_id']
+    }
+    inventory = connectToMySQL('game').query_db(query_inv, data_inv)
+
+#CHECK to see if they are any of the following items
+    #check for red potion
+    if request.form.get('item_option') == "red_potion.png":
+        #Heal paladin for 20 HP
+        new_paladin_hp = paladin[0]['hp'] + 20
+        query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
+        data = {
+            "new_paladin_hp" : int(new_paladin_hp),
+            "user_id" : session['user_id']
+        }
+        update_hp = connectToMySQL('game').query_db(query,data)
+
+        #delete from paladin's inventory
+        query = "DELETE FROM inventory WHERE id = %(item_id)s"
+        data = {
+            "item_id": request.form.get('item_id')
+        }
+        deleted_item = connectToMySQL('game').query_db(query,data)
+    
+    #check for yellow potion
+    elif request.form.get('item_option') == "yellow_potion.png":
+        #APPLY THE EFFECT FOR YELLOW POTION
+
+        #delete from paladin's inventory
+        query = "DELETE FROM inventory WHERE id = %(item_id)s"
+        data = {
+            "item_id": request.form.get('item_id')
+        }
+        deleted_item = connectToMySQL('game').query_db(query,data)
+    
+    #check for green potion
+    elif request.form.get('item_option') == "green-potion.png":
+        #APPLY THE EFFECT FOR GREEN POTION
+
+        #delete from paladin's inventory
+        query = "DELETE FROM inventory WHERE id = %(item_id)s"
+        data = {
+            "item_id": request.form.get('item_id')
+        }
+        deleted_item = connectToMySQL('game').query_db(query,data)
+
+    return redirect('/combat')
+
 
 #!--------------------------------Logout--------------------------------!#
 @app.route('/logout')
