@@ -123,7 +123,7 @@ def tavern_start():
         data = {
             "name": "Paladin",
             "attack": 10,
-            "defense": 10,
+            "defense": 5,
             "hp": 40,
             "sword": 0,
             "shield": 0,
@@ -337,11 +337,11 @@ def map():
 def combat_start():
     #putting to session action feed.
     if 'action' not in session:
-            session['action'] = []
+        session['action'] = []
     #Load image of enemy
 
     #INSERT Enemy into Database
-    query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at,user_id) VALUE ('zombie', 10,5,5,NOW(),NOW(),%(id)s);"
+    query = "INSERT INTO enemies(name, attack,defense,hp,created_at,updated_at,user_id) VALUE ('zombie', 10,5,40,NOW(),NOW(),%(id)s);"
     data = {
         "id" : session['user_id']
     }
@@ -499,7 +499,7 @@ def combat_attack2():
 
     return redirect("/combat/enemy_attack")
 
-@app.route('combat/enemy_attack')
+@app.route('/combat/enemy_attack')
 def combat_enemy_attack():
     #does player hit?
         #The Player Always Hits.
@@ -518,16 +518,16 @@ def combat_enemy_attack():
     paladin = connectToMySQL('game').query_db(query,data)
 
     #All Calculations of hitting and damage.
-    if paladin[0]['hp'] - 12 + paladin[0]['defense'] <= 0:
+    if paladin[0]['hp'] - enemies[0]['attack'] + paladin[0]['defense'] <= 0:
         return redirect('/combat/player_death')
     else:
-        new_paladin_hp = paladin[0]['hp'] - 12 + paladin[0]['defense'] 
+        new_paladin_hp = paladin[0]['hp'] - enemies[0]['attack'] + paladin[0]['defense'] 
     query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
     data = {
         "new_paladin_hp" : int(new_paladin_hp),
         "user_id" : session['user_id']
     }
-    paladin = connectToMySQL('game').query_db(query,data)
+    connectToMySQL('game').query_db(query,data)
     #NewStatus Effects for player
 
     #NewStatus Effects for enemy
@@ -584,7 +584,7 @@ def logout():
 
 #!--------------------------------DEATH--------------------------------!#
 @app.route('/death')
-def logout():
+def death():
     query = "DELETE from enemies WHERE user_id = %(user_id)s;"
     data = {
         'user_id' : session['user_id']
