@@ -315,7 +315,7 @@
     }
 
     #backpack_menu {
-        justify-content: center;
+        justify-content: space-evenly;
     }
 
         #attack_stat {

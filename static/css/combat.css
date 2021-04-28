@@ -110,9 +110,11 @@
     }
 
     .button_box:hover, .use_button:hover {
-        -moz-box-shadow: inset 0 0 24px var(--display_border);
-        -webkit-box-shadow: inset 0 0 24px var(--display_border);
-        box-shadow: inset 0 0 24px var(--display_border);
+        -moz-box-shadow: inset 0 0 24px white;
+        -webkit-box-shadow: inset 0 0 24px white;
+        box-shadow: inset 0 0 24px white;
+
+        color: black;
 
         transition: 250ms;
     }
@@ -363,7 +365,7 @@
         }
 
     #backpack_menu {
-        justify-content: center;
+        justify-content: space-evenly;
     }
 
         .backpack_form {
@@ -376,7 +378,7 @@
 
                 border-radius: var(--round_edge);
 
-                border: 3px solid var(--display_border);
+                border: 2px outset rgb(97, 95, 86);
             }
 
 /*PROGRESS TRACKER*/
