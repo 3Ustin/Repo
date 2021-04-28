@@ -150,7 +150,7 @@ def tavern_start():
     #red_potion
     query_red = "INSERT INTO items_shop (name, description, effect, gold, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, %(gold)s, NOW(), NOW());"
     data_red = {
-        "name": "red_potion",
+        "name": "red_potion.png",
         "description": "juicy red blood from the depths of the dragon's lair, rumored to have healing properties",
         "effect": "Gain 20 HP",
         "gold": 20 
@@ -161,7 +161,7 @@ def tavern_start():
     #yellow_potion
     query_yellow = "INSERT INTO items_shop (name, description, effect, gold, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, %(gold)s, NOW(), NOW());"
     data_yellow = {
-        "name": "yellow_potion",
+        "name": "yellow_potion.png",
         "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
         "effect": "Gain 20 Attack",
         "gold": 35
@@ -172,7 +172,7 @@ def tavern_start():
     #green_potion
     query_green = "INSERT INTO items_shop (name, description, effect, gold, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, %(gold)s, NOW(), NOW());"
     data_green = {
-        "name": "green_potion",
+        "name": "green_potion.png",
         "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
         "effect": "Gain 20 Defense",
         "gold": 35
@@ -183,7 +183,14 @@ def tavern_start():
 
 @app.route('/tavern')
 def tavern():
-    return render_template("tavern.html")
+    #TJK code for inventory query
+    query = "SELECT * FROM inventory WHERE paladin_id = %(paladin_id)s"
+    data = {
+        "paladin_id" : session['paladin_id']
+    }
+    result = connectToMySQL('game').query_db(query, data)
+
+    return render_template("tavern.html", inventory = result)
 
 @app.route('/purchase_item', methods=['POST'])
 def purchase_item():
@@ -198,13 +205,13 @@ def purchase_item():
     if request.form['option'] == 'red_potion':
         query_gold = "SELECT gold FROM items_shop WHERE name = %(name)s;"
         data_gold = {
-            "name": 'red_potion'
+            "name": 'red_potion.png'
         }
         potion_gold = connectToMySQL('game').query_db(query_gold, data_gold)[0]["gold"]
         if paladin_gold >= potion_gold:
             query = "INSERT INTO inventory (name, description, effect, created_at, updated_at, paladin_id) VALUES (%(name)s, %(description)s, %(effect)s, NOW(), NOW(), %(paladin_id)s);"
             data = {
-                "name": "red potion",
+                "name": "red_potion.png",
                 "description": "juicy red blood from the depths of the dragon's lair, rumored to have healing properties",
                 "effect": "Gain 20 HP",
                 "paladin_id": session['paladin_id']
@@ -237,7 +244,7 @@ def purchase_item():
     if request.form['option'] == 'yellow_potion':
         query_gold = "SELECT gold FROM items_shop WHERE name = %(name)s;"
         data_gold = {
-            "name": 'yellow_potion',
+            "name": 'yellow_potion.png',
             "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
             "effect": "Gain 20 Attack",
             "paladin_id": session['paladin_id']
@@ -277,7 +284,7 @@ def purchase_item():
     if request.form['option'] == 'green_potion':
         query_gold = "SELECT gold FROM items_shop WHERE name = %(name)s;"
         data_gold = {
-            "name": 'green_potion',
+            "name": 'green_potion.png',
             "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
             "effect": "Gain 20 Defense",
             "paladin_id": session['paladin_id']

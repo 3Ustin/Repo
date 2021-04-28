@@ -401,6 +401,11 @@
             background-color: var(--display_color);
         }
 
+            .display_box img {
+                width: var(--box-width);
+                height: var(--box-width);
+            }
+
         .close {
             max-width: 30px;
             max-height: 30px;
