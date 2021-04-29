@@ -515,10 +515,10 @@ def combat_attack1():
     new_enemyHP = int(enemies[0]['hp']) - int(paladin[0]['attack'] - 4) + int(enemies[0]['defense'])
 
     #NewStatus Effects for player
-    if paladin[0]['hp'] + 5 >= 40:
+    if paladin[0]['hp'] + 20 >= 40:
         new_paladin_hp = 40
     else:
-        new_paladin_hp = paladin[0]['hp'] + 5
+        new_paladin_hp = paladin[0]['hp'] + 20
     query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
     data = {
         "new_paladin_defense" : int(new_paladin_hp),
@@ -714,11 +714,11 @@ def use_item():
     if request.form.get('item_option') == "red_potion.png":
         #Heal paladin for 20 HP
         #if their HP is greater than 20, just set it to max hp
-        if paladin[0]['hp'] + 5 >= 40:
+        if paladin[0]['hp'] + 20 >= 40:
             new_paladin_hp = 40
         #else give them 20 health
         else:
-            new_paladin_hp = paladin[0]['hp'] + 5
+            new_paladin_hp = paladin[0]['hp'] + 20
 
         query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE id = %(paladin_id)s;"
         data = {
