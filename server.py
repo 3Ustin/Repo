@@ -164,7 +164,7 @@ def tavern_start():
         "name": "yellow_potion.png",
         "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
         "effect": 1,
-        "gold": 35
+        "gold": 80
     }
     result_2 = connectToMySQL('game').query_db(query_yellow, data_yellow)
 
@@ -174,7 +174,7 @@ def tavern_start():
         "name": "green_potion.png",
         "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
         "effect": 1,
-        "gold": 35
+        "gold": 50
     }
     result_3 = connectToMySQL('game').query_db(query_green, data_green)
 
