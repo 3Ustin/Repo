@@ -40,8 +40,8 @@
                         <div id="paladin_combat" class="combatant_box">
                             <div id="player_hp" class="hp_bar_wrapper">
                                 <div id="player_hp_bar" class="hp_bar">
-                                    {% set health_percent = paladin[0]['hp']*2.5 %}
-                                    <img src="{{ url_for('static', filename='img/health_bar.png') }}" width="{{ health_percent }}px" height=12px>
+                                    {% set health_percent_paladin = paladin[0]['hp']*2.5 %}
+                                    <img src="{{ url_for('static', filename='img/health_bar.png') }}" width="{{ health_percent_paladin }}px" height=12px>
                                 </div>
                             </div>
                             <img src="{{ url_for('static', filename='img/paladin_combat.png') }}" id="paladin_img">
@@ -50,8 +50,8 @@
                         <div id="enemy_combat">
                             <div id="enemy_hp" class="hp_bar_wrapper">
                                 <div id="enemy_hp_bar" class="hp_bar">
-                                    {% set health_percent = paladin[0]['hp']*2.5 %} <!--change this to enemy-->
-                                    <img src="{{ url_for('static', filename='img/health_bar.png') }}" width="{{ health_percent }}px" height=12px>
+                                    {% set health_percent_enemy = enemies[0]['hp']*2.5 %} <!--change this to enemy-->
+                                    <img src="{{ url_for('static', filename='img/health_bar.png') }}" width="{{ health_percent_enemy }}px" height=12px>
                                 </div>
                             </div>
                             <img src="{{ url_for('static', filename='img/zombie_1.png') }}" id="enemy_img">
