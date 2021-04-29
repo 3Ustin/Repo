@@ -108,13 +108,6 @@ def tavern_start():
             }
             results = connectToMySQL('game').query_db(query,data)
 
-    #Reset actions in session.
-    # if session['actions']:
-    #     session['actions'] = []
-    # #Reset activities in session.
-    # if session['activities']:
-    #     session['activities'] = []
-
     #check the database for a paladin of that player
     query = "SELECT * FROM game.paladin;"
     paladins = connectToMySQL('game').query_db(query)
@@ -241,6 +234,7 @@ def purchase_item():
     result = connectToMySQL('game').query_db(query, data)
     if len(result) >= 4:
         session['activities'].append("Your backpack is too heavy to carry more items.")
+        print(session['activities'])
         return redirect('/tavern')
 #/RED POTION/
     #check form for potion id
