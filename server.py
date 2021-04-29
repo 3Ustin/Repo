@@ -187,8 +187,12 @@ def tavern_start():
 
 @app.route('/tavern')
 def tavern():
+    query = "UPDATE paladin SET attack = '10', defense = '5' WHERE user_id = %(user_id)s;"
+    data = {
+        "user_id" : session['user_id']
+    }
+    paladin = connectToMySQL('game').query_db(query,data)
     #print activities
-    print(session['activities'])
 
     #QUERY PALADIN'S INVENTORY
     query = "SELECT * FROM inventory WHERE paladin_id = %(paladin_id)s"
