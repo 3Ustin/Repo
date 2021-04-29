@@ -360,9 +360,9 @@ def tavern_rest():
     }
     results = connectToMySQL('game').query_db(query,data)
 
-    query = "UPDATE paladin SET hp = %(hp)s, created_at = NOW(), updated_at = NOW(),user_id = %(user_id)s;"
+    query = "UPDATE paladin SET hp = %(hp)s WHERE id = %(paladin_id)s;"
     data = {
-        "user_id" : session['user_id'],
+        "paladin_id" : session['paladin_id'],
         "hp" : 40
     }
     results = connectToMySQL('game').query_db(query,data)
