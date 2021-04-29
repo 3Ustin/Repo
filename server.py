@@ -147,6 +147,12 @@ def tavern_start():
     result_paladin = connectToMySQL('game').query_db(query_paladin, data_paladin)
     session['paladin_id'] = result_paladin[0]["id"]
 
+    #DELETING THE potions
+    query_paladin = "DELETE from items_shop;"
+    data_paladin = {
+        "id": session['user_id']
+    }
+    result_paladin = connectToMySQL('game').query_db(query_paladin, data_paladin)
 
     #POTIONS FOR SHOP
     #red_potion
