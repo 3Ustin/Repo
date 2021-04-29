@@ -612,7 +612,10 @@ def combat_enemy_attack():
     if paladin[0]['hp'] - enemies[0]['attack'] + paladin[0]['defense'] <= 0:
         return redirect('/combat/player_death')
     else:
-        new_paladin_hp = paladin[0]['hp'] - enemies[0]['attack'] + paladin[0]['defense'] 
+        if paladin[0]['defense'] >= enemies[0]['attack']:
+            new_paladin_hp = paladin[0]['hp'] - 1
+        else:
+            new_paladin_hp = paladin[0]['hp'] - enemies[0]['attack'] + paladin[0]['defense'] 
     query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
     data = {
         "new_paladin_hp" : int(new_paladin_hp),
