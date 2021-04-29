@@ -184,13 +184,36 @@
     
 /*PLAYER/ENEMY AND HP BARS*/
 
+    .combatant_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hp_bar_wrapper {
+        width: 100px;
+        height: 12px;
+        background-color: black;
+        opacity: 66%;
+        border: 2px solid var(--border_color);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
         /*PLAYER IMAGE AND ANIMATIONS*/
+            #player_hp {
+            margin-right: 100px;
+            }
+
             #paladin_combat {
                 position: relative;
                 left: 0%;
-                top: 25%;
+                top: 20%;
+            }
 
-                #paladin_combat img {
+                #paladin_img  {
                     height: 348px;
                 }
 
@@ -199,8 +222,9 @@
                 position: relative;
                 right: 0%;
                 top: 40%;
+            }
 
-                #enemy_combat img {
+                #enemy_img {
                     height: 272px;
                 }
 
