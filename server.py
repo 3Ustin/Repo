@@ -163,7 +163,7 @@ def tavern_start():
     data_yellow = {
         "name": "yellow_potion.png",
         "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
-        "effect": "Gain 20 Attack",
+        "effect": "Gain 1 Attack",
         "gold": 35
     }
     result_2 = connectToMySQL('game').query_db(query_yellow, data_yellow)
@@ -173,7 +173,7 @@ def tavern_start():
     data_green = {
         "name": "green_potion.png",
         "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
-        "effect": "Gain 20 Defense",
+        "effect": "Gain 1 Defense",
         "gold": 35
     }
     result_3 = connectToMySQL('game').query_db(query_green, data_green)
@@ -294,7 +294,7 @@ def purchase_item():
             data = {
                 "name": "yellow_potion.png",
                 "description": "delicious syrupy nectar from the abyss of the nectar tree, rumored to increase your attack",
-                "effect": "Gain 20 Attack",
+                "effect": "Gain 1 Attack",
                 "paladin_id": session['paladin_id']
             }
             result = connectToMySQL('game').query_db(query, data)
@@ -330,7 +330,7 @@ def purchase_item():
             data = {
                 "name": "green_potion.png",
                 "description": "ooey gooey sticky green lather from the dragon's skin itself, rumored to increase the defense of whoever wears it",
-                "effect": "Gain 20 Defense",
+                "effect": "Gain 1 Defense",
                 "paladin_id": session['paladin_id']
             }
             result = connectToMySQL('game').query_db(query, data)
@@ -359,7 +359,6 @@ def tavern_rest():
     }
     results = connectToMySQL('game').query_db(query,data)
 
-    results[0]['hp'] = 50
     query = "UPDATE paladin SET hp = %(hp)s, created_at = NOW(), updated_at = NOW(),user_id = %(user_id)s;"
     data = {
         "user_id" : session['user_id'],
@@ -693,11 +692,11 @@ def use_item():
     if request.form.get('item_option') == "red_potion.png":
         #Heal paladin for 20 HP
         #if their HP is greater than 20, just set it to max hp
-        if paladin[0]['hp'] > 20:
+        if paladin[0]['hp'] + 5 >= 40:
             new_paladin_hp = 40
         #else give them 20 health
         else:
-            new_paladin_hp = paladin[0]['hp'] + 20
+            new_paladin_hp = paladin[0]['hp'] + 5
 
         query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
         data = {
@@ -717,7 +716,7 @@ def use_item():
     elif request.form.get('item_option') == "yellow_potion.png":
         #APPLY THE EFFECT FOR YELLOW POTION
         #create new paladin attack
-        new_paladin_attack = paladin[0]['attack'] + 5
+        new_paladin_attack = paladin[0]['attack'] + 1
         #set the new paladin attack
         query = "UPDATE paladin SET attack = '%(new_paladin_attack)s' WHERE user_id = %(user_id)s;"
         data = {
@@ -737,7 +736,7 @@ def use_item():
     elif request.form.get('item_option') == "green_potion.png":
         #APPLY THE EFFECT FOR GREEN POTION
         #create new paladin attack
-        new_paladin_defense = paladin[0]['defense'] + 5
+        new_paladin_defense = paladin[0]['defense'] + 1
         #set the new paladin attack
         query = "UPDATE paladin SET defense = '%(new_paladin_defense)s' WHERE user_id = %(user_id)s;"
         data = {
