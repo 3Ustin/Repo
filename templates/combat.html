@@ -29,11 +29,12 @@
                 <div id="combat_screen_container">
                     <div id="combat_nav" class="menu_bar">
                         <a href="/tavern/start"><button id="retreat">Retreat</button></a>
-                        <!--we should store the location in this h3-->
-                        <h3> {{ session['location'] }} </h3>
+                        <h3> Mt. Helm </h3>
                         <a href = "combat/next_enemy"><button id="advance">Advance</button></a>
                     </div>
                     <div id="combat_screen">
+                        <!--this is an invisble html marker to try and get animations to work-->
+                        <div style="display: none"><p id="invisible_marker">1</p></div>
                         <!--hitpoints view relative to your player/enemy view-->
                         <!--player image swapped in on this id-->
                         <!--hardcoded in for demo unless we add classes-->
@@ -68,7 +69,7 @@
                     <!--these are all of our abilties-->
                     <!--routes to one post method "player ability" that runs if checks for the id-->
                     <!--abilities 4 and 5 are not active in demo-->
-                    <form action="/combat/attack0" id="action_1" method="post">
+                    <form action="/combat/attack0" id="action_1" method="post" onload="animate_basic()" onclick="activate_marker()">
                         <input type="hidden" name="option" value="action_1">
                         <input id="action_1_button" name="action_1" type="submit" value="Martial Strike" class="button_box">
                     </form>
@@ -136,5 +137,7 @@
             <a href="/logout"><button id="exit">Exit Game</button></a>
         </footer>
     </div>
+<!--javascript-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/combat_animations.js') }}"></script>
 </body>
-</html> 
+</html>
