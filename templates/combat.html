@@ -47,7 +47,7 @@
                             <img src="{{ url_for('static', filename='img/paladin_combat.png') }}" id="paladin_img">
                         </div>
                         {%if session['is_enemy_alive']%}
-                        <div id="enemy_combat">
+                        <div class="enemy_combat">
                             <div id="enemy_hp" class="hp_bar_wrapper">
                                 <div id="enemy_hp_bar" class="hp_bar">
                                     {% set health_percent_enemy = enemies[0]['hp']*10 %} <!--change this to enemy-->
@@ -58,9 +58,8 @@
                         </div>
                         {% endif %}
                         {% if session['is_enemy_alive'] == false %}                        
-                        <div id="enemy_combat">
-                            <img src="{{ url_for('static', filename='img/death_mound.png') }}">
-                            <div id="enemy_hp"></div>
+                        <div class="enemy_combat">
+                            <img src="{{ url_for('static', filename='img/death_mound.png') }}" id="enemy_death">
                         </div>
                         {% endif %}
                     </div>
