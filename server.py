@@ -360,7 +360,7 @@ def tavern_rest():
     results = connectToMySQL('game').query_db(query,data)
 
     results[0]['hp'] = 50
-    query = "UPDATE paladin SET name = 'Paladin',attack = '10',defense = '10',hp = %(hp)s,sword = '0',shield = '0',armor = '0',created_at = NOW(),updated_at = NOW(),user_id = %(user_id)s;"
+    query = "UPDATE paladin SET hp = %(hp)s, created_at = NOW(), updated_at = NOW(),user_id = %(user_id)s;"
     data = {
         "user_id" : session['user_id'],
         "hp" : 40
@@ -737,7 +737,7 @@ def use_item():
     elif request.form.get('item_option') == "green_potion.png":
         #APPLY THE EFFECT FOR GREEN POTION
         #create new paladin attack
-        new_paladin_defense = paladin[0]['attack'] + 5
+        new_paladin_defense = paladin[0]['defense'] + 5
         #set the new paladin attack
         query = "UPDATE paladin SET defense = '%(new_paladin_defense)s' WHERE user_id = %(user_id)s;"
         data = {
