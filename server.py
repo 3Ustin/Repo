@@ -694,7 +694,8 @@ def use_item():
         #Heal paladin for 20 HP
         #if their HP is greater than 20, just set it to max hp
         if paladin[0]['hp'] > 20:
-            new paladin_hp = 40
+            new_paladin_hp = 40
+        #else give them 20 health
         else:
             new_paladin_hp = paladin[0]['hp'] + 20
 
@@ -704,7 +705,6 @@ def use_item():
                 "user_id" : session['user_id']
             }
         update_hp = connectToMySQL('game').query_db(query,data)
-            #if the health is greater than max, set to max
 
         #delete from paladin's inventory
         query = "DELETE FROM inventory WHERE id = %(item_id)s"
@@ -716,7 +716,16 @@ def use_item():
     #check for yellow potion
     elif request.form.get('item_option') == "yellow_potion.png":
         #APPLY THE EFFECT FOR YELLOW POTION
-
+        #create new paladin attack
+        new_paladin_attack = paladin[0]['attack'] + 5
+        #set the new paladin attack
+        query = "UPDATE paladin SET attack = '%(new_paladin_attack)s' WHERE user_id = %(user_id)s;"
+        data = {
+                "new_paladin_attack" : int(new_paladin_attack),
+                "user_id" : session['user_id']
+            }
+        update_attack = connectToMySQL('game').query_db(query,data)
+        
         #delete from paladin's inventory
         query = "DELETE FROM inventory WHERE id = %(item_id)s"
         data = {
@@ -727,6 +736,15 @@ def use_item():
     #check for green potion
     elif request.form.get('item_option') == "green_potion.png":
         #APPLY THE EFFECT FOR GREEN POTION
+        #create new paladin attack
+        new_paladin_defense = paladin[0]['attack'] + 5
+        #set the new paladin attack
+        query = "UPDATE paladin SET defense = '%(new_paladin_defense)s' WHERE user_id = %(user_id)s;"
+        data = {
+                "new_paladin_defense" : int(new_paladin_defense),
+                "user_id" : session['user_id']
+            }
+        update_defense = connectToMySQL('game').query_db(query,data)
 
         #delete from paladin's inventory
         query = "DELETE FROM inventory WHERE id = %(item_id)s"
