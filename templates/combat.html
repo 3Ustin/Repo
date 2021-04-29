@@ -73,13 +73,13 @@
                         <input type="hidden" name="option" value="action_1">
                         <input id="action_1_button" name="action_1" type="submit" value="Martial Strike" class="button_box">
                     </form>
-                    <form action="/combat/attack1" id="action_2" method="post">
-                        <input type="hidden" name="option" value="action_2">
-                        <input id="action_2_button" name="action_2" type="submit" value="Divine Smite" class="button_box">
-                    </form>
                     <form action="/combat/attack2" id="action_3" method="post">
                         <input type="hidden" name="option" value="action_3">
                         <input id="action_3_button" name="action_3" type="submit" value="Aura of Protection" class="button_box">
+                    </form>
+                    <form action="/perform_ability" id="action_2" method="post">
+                        <input type="hidden" name="option" value="action_2">
+                        <input id="action_2_button" name="action_2" type="submit" value="Divine Smite" class="button_box">
                     </form>
                     <form action="/perform_ability" id="action_4" method="post">
                         <input type="hidden" name="option" value="action_4">
@@ -129,8 +129,24 @@
                         {% endfor %}
                     </div>
                 </div>
-                <!-- <div id="progress_tracker" class="small_box">
-                </div> -->
+                <div id="ability_description" class="small_box">
+                    <dl>
+                        <div class="ability_desc_box">
+                            <img src="{{ url_for('static', filename='img/paladin_ability_1_icon.png') }}">
+                            <div class="descriptions">
+                                <dt>Martial Strike</dt>
+                                <dd>Basic attack that deals damage to the enemy.</dd>
+                            </div>
+                        </div>
+                        <div class="ability_desc_box">
+                            <img src="{{ url_for('static', filename='img/paladin_ability_3_icon.png') }}">
+                            <div class="descriptions">
+                                <dt>Aura of Protection</dt>
+                                <dd>Increases your defense for the duration of the battle.</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
             </div>
         </main>
         <footer>

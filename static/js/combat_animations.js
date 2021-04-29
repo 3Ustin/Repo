@@ -1,12 +1,3 @@
-function activate_marker() {
-    var marker = document.getElementById("invisible_marker");
-    if (marker.innerHTML == 1) {
-        marker.innerHTML = 0;
-    } else {
-        null;
-    }
-}
-
 function animate_basic() {
     //animate enemy//
         var enemy_img = document.getElementById("enemy_img");
