@@ -182,88 +182,50 @@
             height: 78px;
         }
     
+/*PLAYER/ENEMY AND HP BARS*/
+
+    .combatant_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hp_bar_wrapper {
+        width: 100px;
+        height: 12px;
+        background-color: black;
+        opacity: 66%;
+        border: 2px solid var(--border_color);
+
+        display: flex;
+        align-items: center;
+    }
 
         /*PLAYER IMAGE AND ANIMATIONS*/
+            #player_hp {
+            margin-right: 100px;
+            }
+
             #paladin_combat {
                 position: relative;
                 left: 0%;
-                top: 25%;
+                top: 20%;
+            }
 
-                /*SLIDES IN PALADIN - ALL BROWSERS*/
-                -webkit-animation: slidein_player 2s; /* Safari, Chrome and Opera > 12.1 */
-                -moz-animation: slidein_player 2s; /* Firefox < 16 */
-                -ms-animation: slidein_player 2s; /* Internet Explorer */
-                -o-animation: slidein_player 2s; /* Opera < 12.1 */
-                animation: slidein_player 2s;
-                }
-
-                #paladin_combat img {
+                #paladin_img  {
                     height: 348px;
                 }
 
-            @keyframes slidein_player {
-                from { left: -100%; }
-                to   { left: 0%; }
-            }
-
-            /* Firefox < 16 */
-            @-moz-keyframes slidein_player {
-                from { left: -100%; }
-                to   { left: 0%; }
-            }
-
-            /* Safari, Chrome and Opera > 12.1 */
-            @-webkit-keyframes slidein_player {
-                from { left: -100%; }
-                to   { left: 0%; }
-            }
-
-            /* Internet Explorer */
-            @-ms-keyframes slidein_player {
-                from { left: -100%; }
-                to   { left: 0%; }
-            }
-
-        /*PLAYER IMAGE AND ANIMATIONS*/
+        /*ENEMY IMAGE AND ANIMATIONS*/
             #enemy_combat {
                 position: relative;
                 right: 0%;
                 top: 40%;
-
-                /*SLIDES IN ENEMY - ALL BROWSERS*/
-                -webkit-animation: slidein_enemy 2s; /* Safari, Chrome and Opera > 12.1 */
-                -moz-animation: slidein_enemy 2s; /* Firefox < 16 */
-                -ms-animation: slidein_enemy 2s; /* Internet Explorer */
-                -o-animation: slidein_enemy 2s; /* Opera < 12.1 */
-                animation: slidein_enemy 2s;
             }
 
-                #enemy_combat img {
+                #enemy_img {
                     height: 272px;
                 }
-
-            @keyframes slidein_enemy {
-                from { right: -100%; }
-                to   { right: 0%; }
-            }
-
-            /* Firefox < 16 */
-            @-moz-keyframes slidein_enemy {
-                from { right: -100%; }
-                to   { right: 0%; }
-            }
-
-            /* Safari, Chrome and Opera > 12.1 */
-            @-webkit-keyframes slidein_enemy {
-                from { right: -100%; }
-                to   { right: 0%; }
-            }
-
-            /* Internet Explorer */
-            @-ms-keyframes slidein_enemy {
-                from { right: -100%; }
-                to   { right: 0%; }
-            }
 
         /*INTERACTION MENU*/
         /*these images are currently hardcoded in for alpha

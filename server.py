@@ -407,7 +407,22 @@ def combat():
         "paladin_id" : session['paladin_id']
     }
     result = connectToMySQL('game').query_db(query, data)
-    return render_template("combat.html", inventory = result)
+
+    #GRAB PALADIN
+    query_pal = "SELECT * from Paladin WHERE user_id = %(user_id)s;"
+    data_pal = {
+        "user_id" : session['user_id']
+    }
+    paladin = connectToMySQL('game').query_db(query_pal,data_pal)
+
+    #Query to grab enemy object
+    query = "SELECT * from enemies WHERE user_id = %(user_id)s;"
+    data = {
+        "user_id" : session['user_id']
+    }
+    enemies = connectToMySQL('game').query_db(query,data)
+
+    return render_template("combat.html", inventory = result, paladin = paladin, enemies = enemies)
 
 @app.route('/combat/attack0', methods = ["POST"])
 def combat_attack0():
