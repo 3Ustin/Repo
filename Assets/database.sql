@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `game`.`users` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `game`.`enemies` (
     FOREIGN KEY (`user_id`)
     REFERENCES `game`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 146
+AUTO_INCREMENT = 147
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `game`.`paladin` (
     FOREIGN KEY (`user_id`)
     REFERENCES `game`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 22
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8;
 
 
