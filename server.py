@@ -147,6 +147,7 @@ def tavern_start():
     result_paladin = connectToMySQL('game').query_db(query_paladin, data_paladin)
     session['paladin_id'] = result_paladin[0]["id"]
 
+
     #POTIONS FOR SHOP
     #red_potion
     query_red = "INSERT INTO items_shop (name, description, effect, gold, created_at, updated_at) VALUES (%(name)s, %(description)s, %(effect)s, %(gold)s, NOW(), NOW());"
