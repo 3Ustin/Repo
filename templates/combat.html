@@ -31,7 +31,7 @@
                         <a href="/tavern/start"><button id="retreat">Retreat</button></a>
                         <!--we should store the location in this h3-->
                         <h3> {{ session['location'] }} </h3>
-                        <button id="advance">Advance</button>
+                        <a href = "combat/next_enemy"><button id="advance">Advance</button></a>
                     </div>
                     <div id="combat_screen">
                         <!--hitpoints view relative to your player/enemy view-->
@@ -41,10 +41,18 @@
                             <img src="{{ url_for('static', filename='img/paladin_combat.png') }}">
                             <div id="player_hp"></div>
                         </div>
+                        {%if session['is_enemy_alive']%}
                         <div id="enemy_combat">
                             <img src="{{ url_for('static', filename='img/zombie_1.png') }}">
                             <div id="enemy_hp"></div>
                         </div>
+                        {% endif %}
+                        {% if session['is_enemy_alive'] == false %}                        
+                        <div id="enemy_combat">
+                            <img src="{{ url_for('static', filename='img/torch.gif') }}">
+                            <div id="enemy_hp"></div>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="menu_bar"  id="interaction_menu">
@@ -76,25 +84,9 @@
                     <ul>
                         <!--our stored combat actions need to be different than our tavern activities in session-->
                         <!--we can call tavern activities "activities" and combat actions "actions"-->
-                        {% for actions in session['actions'] %}
+                        {% for action in session['actions'] %}
                             <li> {{action}} </li>
                         {% endfor %}
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
                     </ul>
                 </div>
             </div>
