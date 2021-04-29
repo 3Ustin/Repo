@@ -199,7 +199,23 @@ def tavern():
     #set paladin gold
     paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
 
-    return render_template("tavern.html", inventory = result, paladin_gold = paladin_gold)
+    query_attack = "SELECT attack FROM paladin WHERE id = %(id)s;"
+    data_attack = {
+        "id": session['paladin_id']
+    }
+    attack_stats = connectToMySQL('game').query_db(query_attack, data_attack)[0]["attack"]
+    print("*****************************************************")
+    print (attack_stats)
+
+    query_defense = "SELECT defense FROM paladin WHERE id = %(id)s;"
+    data_defense = {
+        "id": session['paladin_id']
+    }
+    defense_stats = connectToMySQL('game').query_db(query_defense, data_defense)[0]["defense"]
+    print("*****************************************************")
+    print (defense_stats)
+
+    return render_template("tavern.html", inventory = result, paladin_gold = paladin_gold, player_attack = attack_stats, player_defense = defense_stats)
 
 @app.route('/purchase_item', methods=['POST'])
 def purchase_item():
@@ -219,8 +235,6 @@ def purchase_item():
         "id": session['paladin_id']
     }
     result = connectToMySQL('game').query_db(query, data)
-    print("**************************************************")
-    print (len(result))
     if len(result) >= 4:
         session['activities'].append("Your backpack is too heavy to carry more items.")
         return redirect('/tavern')

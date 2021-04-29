@@ -55,6 +55,10 @@
         color: black;
     }
 
+    #attack_stat p{
+        color: white;
+    }
+
     .wrapper {
         margin: 0px auto;
         margin-top: 2rem;
