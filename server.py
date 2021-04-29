@@ -627,6 +627,7 @@ def combat_enemy_attack():
 
     #NewStatus Effects for enemy
 
+
     #if player dies.
     if paladin[0]['hp'] <= 0:
         return redirect(f"/combat/player_death")
@@ -647,6 +648,19 @@ def combat_on_player_death():
 
 @app.route('/combat/on_enemy_death')
 def combat_On_Enemy_Death():
+    #give more money
+    query = "SELECT * from Paladin WHERE user_id = %(user_id)s;"
+    data = {
+        "user_id" : session['user_id']
+    }
+    paladin = connectToMySQL('game').query_db(query,data)
+
+    query = "UPDATE paladin SET gold = '%(new_paladin_gold)s' WHERE user_id = %(user_id)s;"
+    data = {
+        "new_paladin_gold" : paladin[0]['gold'] + 5,
+        "user_id" : session['user_id']
+    }
+    paladin = connectToMySQL('game').query_db(query,data)
     #query for killing an enemy at too low of hp
     query = "DELETE from enemies WHERE user_id = %(user_id)s;"
     data = {
