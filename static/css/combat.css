@@ -100,13 +100,13 @@
     }
 
     /*BUTTON/DISPLAY BOXES*/
+
     .button_box, .display_box {
         width: var(--box-width);
         height: var(--box-width);
         border-radius: var(--round_edge);
         border-style: solid;
         border-color: var(--display_border);
-        font-size: 0px;
     }
 
     .button_box:hover, .use_button:hover {
@@ -117,6 +117,10 @@
         color: black;
 
         transition: 250ms;
+    }
+
+    .button_box {
+        font-size: 0px;
     }
 
     .display_box {
@@ -324,6 +328,15 @@
         #defense_stat {
             background-image: url(../img/sheild_icon_bw.png);
             background-size: cover;
+        }
+
+        #attack_stat p, #defense_stat p {
+            color: white;
+            font-size: 233%;
+
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
         }
 
     #backpack_menu {

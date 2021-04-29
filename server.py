@@ -205,21 +205,19 @@ def tavern():
     #set paladin gold
     paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
 
+    #QUERY player attack
     query_attack = "SELECT attack FROM paladin WHERE id = %(id)s;"
     data_attack = {
         "id": session['paladin_id']
     }
     attack_stats = connectToMySQL('game').query_db(query_attack, data_attack)[0]["attack"]
-    print("*****************************************************")
-    print (attack_stats)
 
+    #QUERY player defense
     query_defense = "SELECT defense FROM paladin WHERE id = %(id)s;"
     data_defense = {
         "id": session['paladin_id']
     }
     defense_stats = connectToMySQL('game').query_db(query_defense, data_defense)[0]["defense"]
-    print("*****************************************************")
-    print (defense_stats)
 
     return render_template("tavern.html", inventory = result, paladin_gold = paladin_gold, player_attack = attack_stats, player_defense = defense_stats)
 
@@ -422,7 +420,21 @@ def combat():
     }
     enemies = connectToMySQL('game').query_db(query,data)
 
-    return render_template("combat.html", inventory = result, paladin = paladin, enemies = enemies)
+    #QUERY player attack
+    query_attack = "SELECT attack FROM paladin WHERE id = %(id)s;"
+    data_attack = {
+        "id": session['paladin_id']
+    }
+    attack_stats = connectToMySQL('game').query_db(query_attack, data_attack)[0]["attack"]
+
+    #QUERY player defense
+    query_defense = "SELECT defense FROM paladin WHERE id = %(id)s;"
+    data_defense = {
+        "id": session['paladin_id']
+    }
+    defense_stats = connectToMySQL('game').query_db(query_defense, data_defense)[0]["defense"]
+
+    return render_template("combat.html", inventory = result, paladin = paladin, enemies = enemies, player_attack = attack_stats, player_defense = defense_stats)
 
 @app.route('/combat/attack0', methods = ["POST"])
 def combat_attack0():
@@ -680,13 +692,19 @@ def use_item():
     #check for red potion
     if request.form.get('item_option') == "red_potion.png":
         #Heal paladin for 20 HP
-        new_paladin_hp = paladin[0]['hp'] + 20
+        #if their HP is greater than 20, just set it to max hp
+        if paladin[0]['hp'] > 20:
+            new paladin_hp = 40
+        else:
+            new_paladin_hp = paladin[0]['hp'] + 20
+
         query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
         data = {
-            "new_paladin_hp" : int(new_paladin_hp),
-            "user_id" : session['user_id']
-        }
+                "new_paladin_hp" : int(new_paladin_hp),
+                "user_id" : session['user_id']
+            }
         update_hp = connectToMySQL('game').query_db(query,data)
+            #if the health is greater than max, set to max
 
         #delete from paladin's inventory
         query = "DELETE FROM inventory WHERE id = %(item_id)s"

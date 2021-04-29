@@ -44,7 +44,7 @@
                                     <img src="{{ url_for('static', filename='img/health_bar.png') }}" width="{{ health_percent }}px" height=12px>
                                 </div>
                             </div>
-                            <img src="{{ url_for('static', filename='img/paladin_combat.png') }}" id="paladin_image">
+                            <img src="{{ url_for('static', filename='img/paladin_combat.png') }}" id="paladin_img">
                         </div>
                         {%if session['is_enemy_alive']%}
                         <div id="enemy_combat">
@@ -105,10 +105,10 @@
                 <div id="inventory_menu">
                     <div id="combat_stats" class="inventory_row">
                         <div id="attack_stat" class="display_box">
-                            <p>{{ session['player_attack'] }}</p>
+                            <p>{{ player_attack }}</p>
                         </div>
                         <div id="defense_stat" class="display_box">
-                            <p>{{ session['player_defense'] }}</p>
+                            <p>{{ player_defense }}</p>
                         </div>
                     </div>
                     <div id="equipment_menu" class="inventory_row">
@@ -129,8 +129,8 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div id="progress_tracker" class="small_box">
-                </div>
+                <!-- <div id="progress_tracker" class="small_box">
+                </div> -->
             </div>
         </main>
         <footer>
