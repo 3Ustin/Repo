@@ -714,11 +714,11 @@ def use_item():
     if request.form.get('item_option') == "red_potion.png":
         #Heal paladin for 20 HP
         #if their HP is greater than 20, just set it to max hp
-        if paladin[0]['hp'] + 20 >= 40:
+        if paladin[0]['hp'] + 10 >= 40:
             new_paladin_hp = 40
         #else give them 20 health
         else:
-            new_paladin_hp = paladin[0]['hp'] + 20
+            new_paladin_hp = paladin[0]['hp'] + 10
 
         query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE id = %(paladin_id)s;"
         data = {
