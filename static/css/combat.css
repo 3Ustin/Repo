@@ -225,13 +225,13 @@
                 }
 
         /*ENEMY IMAGE AND ANIMATIONS*/
-            #enemy_combat {
+            .enemy_combat {
                 position: relative;
                 right: 0%;
                 top: 40%;
             }
 
-                #enemy_img {
+                #enemy_img, #enemy_death {
                     height: 272px;
                 }
 

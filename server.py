@@ -202,12 +202,13 @@ def tavern():
     result = connectToMySQL('game').query_db(query, data)
 
     #DISPLAY PALADINS GOLD
-    query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
+    query = "SELECT gold FROM paladin WHERE id = %(paladin_id)s;"
     data = {
-        "id": session['user_id'],
+        "paladin_id": session['paladin_id']
     }
     #set paladin gold
     paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
+    print("paladin_gold in tavern: ",paladin_gold)
 
     #QUERY player attack
     query_attack = "SELECT attack FROM paladin WHERE id = %(id)s;"
@@ -229,13 +230,13 @@ def tavern():
 def purchase_item():
 #CHECK PALADINS GOLD
     #query the database
-    query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
+    query = "SELECT gold FROM paladin WHERE id = %(id)s;"
     data = {
-        "id": session['user_id'],
+        "id": session['paladin_id']
     }
-    
     #set paladin gold
     paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
+    print("paladin_gold in purchase item: ",paladin_gold)
 # CHECK HOW MANY ITEMS IN INVENTORY
     # set max items at 4
     query = "SELECT * FROM inventory WHERE paladin_id = %(id)s;"
@@ -363,9 +364,9 @@ def tavern_rest():
     }
     results = connectToMySQL('game').query_db(query,data)
 
-    query = "UPDATE paladin SET hp = %(hp)s, created_at = NOW(), updated_at = NOW(),user_id = %(user_id)s;"
+    query = "UPDATE paladin SET hp = %(hp)s WHERE id = %(paladin_id)s;"
     data = {
-        "user_id" : session['user_id'],
+        "paladin_id" : session['paladin_id'],
         "hp" : 40
     }
     results = connectToMySQL('game').query_db(query,data)
@@ -681,9 +682,9 @@ def combat_next_enemy():
 @app.route('/use_item', methods = ['POST'])
 def use_item():
 #GRAB PALADIN
-    query_pal = "SELECT * from Paladin WHERE user_id = %(user_id)s;"
+    query_pal = "SELECT * from Paladin WHERE id = %(paladin_id)s;"
     data_pal = {
-        "user_id" : session['user_id']
+        "paladin_id" : session['paladin_id']
     }
     paladin = connectToMySQL('game').query_db(query_pal,data_pal)
 
@@ -705,10 +706,10 @@ def use_item():
         else:
             new_paladin_hp = paladin[0]['hp'] + 5
 
-        query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE user_id = %(user_id)s;"
+        query = "UPDATE paladin SET hp = '%(new_paladin_hp)s' WHERE id = %(paladin_id)s;"
         data = {
                 "new_paladin_hp" : int(new_paladin_hp),
-                "user_id" : session['user_id']
+                "paladin_id" : session['paladin_id']
             }
         update_hp = connectToMySQL('game').query_db(query,data)
 
@@ -725,10 +726,10 @@ def use_item():
         #create new paladin attack
         new_paladin_attack = paladin[0]['attack'] + 1
         #set the new paladin attack
-        query = "UPDATE paladin SET attack = '%(new_paladin_attack)s' WHERE user_id = %(user_id)s;"
+        query = "UPDATE paladin SET attack = '%(new_paladin_attack)s' WHERE id = %(paladin_id)s;"
         data = {
                 "new_paladin_attack" : int(new_paladin_attack),
-                "user_id" : session['user_id']
+                "paladin_id" : session['paladin_id']
             }
         update_attack = connectToMySQL('game').query_db(query,data)
         
@@ -745,10 +746,10 @@ def use_item():
         #create new paladin attack
         new_paladin_defense = paladin[0]['defense'] + 1
         #set the new paladin attack
-        query = "UPDATE paladin SET defense = '%(new_paladin_defense)s' WHERE user_id = %(user_id)s;"
+        query = "UPDATE paladin SET defense = '%(new_paladin_defense)s' WHERE id = %(paladin_id)s;"
         data = {
                 "new_paladin_defense" : int(new_paladin_defense),
-                "user_id" : session['user_id']
+                "paladin_id" : session['paladin_id']
             }
         update_defense = connectToMySQL('game').query_db(query,data)
 
