@@ -55,10 +55,6 @@
         color: black;
     }
 
-    #attack_stat p{
-        color: white;
-    }
-
     .wrapper {
         margin: 0px auto;
         margin-top: 2rem;
@@ -326,10 +322,22 @@
             background-image: url(../img/sword_icon_bw.png);
             background-size: cover;
         }
+        
         #defense_stat {
             background-image: url(../img/sheild_icon_bw.png);
             background-size: cover;
         }
+
+        #attack_stat p, #defense_stat p {
+            color: white;
+            font-size: 233%;
+
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        
 
 /*HIDDEN SHOP DIV*/
         #tavern_shop {
@@ -406,7 +414,6 @@
         .display_box {
             width: var(--box-width);
             height: var(--box-width);
-            font-size: 0px;
 
             border-radius: var(--round_edge);
             border-style: solid;
