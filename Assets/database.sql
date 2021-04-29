@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `game`.`users` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `game`.`enemies` (
     FOREIGN KEY (`user_id`)
     REFERENCES `game`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 146
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `game`.`paladin` (
   `sword` INT NULL DEFAULT NULL,
   `shield` INT NULL DEFAULT NULL,
   `armor` INT NULL DEFAULT NULL,
+  `gold` INT NULL DEFAULT NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` INT NOT NULL,
@@ -76,7 +77,28 @@ CREATE TABLE IF NOT EXISTS `game`.`paladin` (
     FOREIGN KEY (`user_id`)
     REFERENCES `game`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 22
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `game`.`inventory`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `game`.`inventory` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `inventorycol` VARCHAR(45) NULL DEFAULT NULL,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `description` VARCHAR(255) NULL DEFAULT NULL,
+  `effect` VARCHAR(255) NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT NULL,
+  `updated_at` DATETIME NULL DEFAULT NULL,
+  `paladin_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_inventory_paladin1_idx` (`paladin_id` ASC) VISIBLE,
+  CONSTRAINT `fk_inventory_paladin1`
+    FOREIGN KEY (`paladin_id`)
+    REFERENCES `game`.`paladin` (`id`))
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -96,6 +118,22 @@ CREATE TABLE IF NOT EXISTS `game`.`items` (
   CONSTRAINT `fk_items_paladin1`
     FOREIGN KEY (`paladin_id`)
     REFERENCES `game`.`paladin` (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `game`.`items_shop`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `game`.`items_shop` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL DEFAULT NULL,
+  `description` TEXT NULL DEFAULT NULL,
+  `effect` INT NULL DEFAULT NULL,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
