@@ -192,3 +192,9 @@
             display: flex;
             justify-content: center;
         }
+
+    /* RIP Headstone */
+        .RIP{
+            height: 240px;
+            width: 200px;
+        }
