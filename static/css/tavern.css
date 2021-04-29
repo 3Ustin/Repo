@@ -92,12 +92,16 @@
         transition: 250ms;
     }
 /*HEADER DECLARATIONS*/
+    /*UNIFORM BORDER FOR HEADER AND ITEM DESCRIPTIONS*/
+    header, #item_descriptions {
+        border-style: solid;
+        border-color: rgb(82, 62, 36);
+    }     
+
     header {
         background-color: var(--header_bg);
         border-top-left-radius: var(--rounder_edge);
         border-top-right-radius: var(--rounder_edge);
-        border-style: solid;
-        border-color: rgb(82, 62, 36);
         border-bottom-color: black;
     }
     header h1 {
@@ -340,6 +344,7 @@
         
 
 /*HIDDEN SHOP DIV*/
+/*THE SHOPPE*/
         #tavern_shop {
             display: flex;
             flex-direction: row;
@@ -409,8 +414,53 @@
                 border-radius: var(--round_edge);
                 border: 3px solid rgb(61, 0, 0);
             }
+    
+    /*ITEM DESCRIPTIONS*/
+            #item_descriptions {
+                border-radius: var(--round_edge);
+                margin: var(--global_margin);
 
-    /*BUTTON/DISPLAY BOXES*/
+                display: flex;
+                justify-content: center;
+
+                background-color:rgba(48, 35, 20, 0.25)
+            }
+
+                dl {
+                    margin: var(--global_margin);
+                    font-size: .90rem;
+                }
+
+                .potion_desc_box {
+                    margin: .5rem;
+
+                    display: flex;
+                    flex-direction: row;
+                }
+                
+                /*image for box*/
+                .potion_desc_box img {
+                    width: 30px;
+                    height: 30px;
+                }
+
+                /*the descriptions*/
+                .descriptions {
+                    display: flex;
+                    flex-direction: column;
+                }
+                    dt, .item_box p {
+                        color: black;
+                        text-shadow: 0px 0px 1px white;
+                        font-weight: bold;
+                    }
+
+                    dd {
+                        font-size: .75rem;
+                    }
+
+
+/*BUTTON/DISPLAY BOXES*/
         .display_box {
             width: var(--box-width);
             height: var(--box-width);

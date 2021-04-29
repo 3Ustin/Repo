@@ -100,13 +100,13 @@
     }
 
     /*BUTTON/DISPLAY BOXES*/
+
     .button_box, .display_box {
         width: var(--box-width);
         height: var(--box-width);
         border-radius: var(--round_edge);
         border-style: solid;
         border-color: var(--display_border);
-        font-size: 0px;
     }
 
     .button_box:hover, .use_button:hover {
@@ -117,6 +117,14 @@
         color: black;
 
         transition: 250ms;
+    }
+
+    .locked:hover {
+        border-color: grey;
+    }
+
+    .button_box {
+        font-size: 0px;
     }
 
     .display_box {
@@ -257,11 +265,11 @@
             background-size: cover;
         }
         #action_4_button {
-            background-image: url(../img/paladin_ability_4_icon.png);
+            background-image: url(../img/paladin_ability_4_icon_locked.png);
             background-size: cover;
         }
         #action_5_button {
-            background-image: url(../img/paladin_ability_5_icon.png);
+            background-image: url(../img/paladin_ability_5_icon_locked.png);
             background-size: cover;
         }
 
@@ -324,6 +332,15 @@
         #defense_stat {
             background-image: url(../img/sheild_icon_bw.png);
             background-size: cover;
+        }
+
+        #attack_stat p, #defense_stat p {
+            color: white;
+            font-size: 233%;
+
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
         }
 
     #backpack_menu {
