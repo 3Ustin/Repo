@@ -451,7 +451,8 @@
                 }
                     dt, .item_box p {
                         color: black;
-                        text-shadow: 0px 0px 2px white;
+                        text-shadow: 0px 0px 1px white;
+                        font-weight: bold;
                     }
 
                     dd {
