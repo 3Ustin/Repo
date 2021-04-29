@@ -50,7 +50,7 @@
                         <div id="enemy_combat">
                             <div id="enemy_hp" class="hp_bar_wrapper">
                                 <div id="enemy_hp_bar" class="hp_bar">
-                                    {% set health_percent_enemy = enemies[0]['hp']*2.5 %} <!--change this to enemy-->
+                                    {% set health_percent_enemy = enemies[0]['hp']*10 %} <!--change this to enemy-->
                                     <img src="{{ url_for('static', filename='img/health_bar.png') }}" width="{{ health_percent_enemy }}px" height=12px>
                                 </div>
                             </div>
