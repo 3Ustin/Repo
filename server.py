@@ -226,9 +226,9 @@ def tavern():
 def purchase_item():
 #CHECK PALADINS GOLD
     #query the database
-    query = "SELECT gold FROM paladin WHERE user_id = %(id)s;"
+    query = "SELECT gold FROM paladin WHERE paladin_id = %(id)s;"
     data = {
-        "id": session['user_id'],
+        "id": session['paladin_id']
     }
     #set paladin gold
     paladin_gold = connectToMySQL('game').query_db(query, data)[0]["gold"]
