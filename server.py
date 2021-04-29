@@ -738,7 +738,7 @@ def use_item():
     elif request.form.get('item_option') == "yellow_potion.png":
         #APPLY THE EFFECT FOR YELLOW POTION
         #create new paladin attack
-        new_paladin_attack = paladin[0]['attack'] + 1
+        new_paladin_attack = paladin[0]['attack'] + 5
         #set the new paladin attack
         query = "UPDATE paladin SET attack = '%(new_paladin_attack)s' WHERE id = %(paladin_id)s;"
         data = {
@@ -758,7 +758,7 @@ def use_item():
     elif request.form.get('item_option') == "green_potion.png":
         #APPLY THE EFFECT FOR GREEN POTION
         #create new paladin attack
-        new_paladin_defense = paladin[0]['defense'] + 1
+        new_paladin_defense = paladin[0]['defense'] + 3
         #set the new paladin attack
         query = "UPDATE paladin SET defense = '%(new_paladin_defense)s' WHERE id = %(paladin_id)s;"
         data = {

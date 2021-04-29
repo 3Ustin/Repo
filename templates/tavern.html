@@ -103,7 +103,7 @@
                         </div>
                         <div class="item_box">
                             <div class="display_box"><img src="{{ url_for('static', filename='img/yellow_potion.png') }}"></div>
-                            <p>Cost: 35 GP</p>
+                            <p>Cost: 80 GP</p>
                             <form action="/purchase_item" id="yellow_potion" method="post">
                                 <input type="hidden" name="option" value="yellow_potion">
                                 <input id="yellow_potion_button" name="yellow_potion" type="submit" value="Buy" class="button_box">
@@ -111,7 +111,7 @@
                         </div>
                         <div class="item_box">
                             <div class="display_box"><img src="{{ url_for('static', filename='img/green_potion.png') }}"></div>
-                            <p>Cost: 35 GP</p>
+                            <p>Cost: 50 GP</p>
                             <form action="/purchase_item" id="green_potion" method="post">
                                 <input type="hidden" name="option" value="green_potion">
                                 <input id="green_potion_button" name="green_potion" type="submit" value="Buy" class="button_box">
@@ -131,14 +131,14 @@
                                 <img src="{{ url_for('static', filename='img/yellow_potion.png') }}">
                                 <div class="descriptions">
                                     <dt>Potion of Wrath</dt>
-                                    <dd>Grants you a +1 attack bonus for the duration of the battle.</dd>
+                                    <dd>Grants you a +5 attack bonus for the duration of the battle.</dd>
                                 </div>
                             </div>
                             <div class="potion_desc_box">
                                 <img src="{{ url_for('static', filename='img/green_potion.png') }}">
                                 <div class="descriptions">
                                     <dt>Potion of Fortitude</dt>
-                                    <dd>Grants you a +1 defense bonus for the duration of the battle.</dd>
+                                    <dd>Grants you a +3 defense bonus for the duration of the battle.</dd>
                                 </div>
                             </div>
                         </dl>
