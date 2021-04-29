@@ -226,7 +226,7 @@ def tavern():
 def purchase_item():
 #CHECK PALADINS GOLD
     #query the database
-    query = "SELECT gold FROM paladin WHERE paladin_id = %(id)s;"
+    query = "SELECT gold FROM paladin WHERE id = %(id)s;"
     data = {
         "id": session['paladin_id']
     }
