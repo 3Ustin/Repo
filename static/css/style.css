@@ -6,6 +6,7 @@
     font-family: 'Reggae One', cursive;
     font-family: 'Sigmar One', cursive;
     font-family: 'Roboto', sans-serif;
+    font-family: 'Creepster', cursive;
     if you import a font add it here^^^
     */
 
@@ -147,8 +148,10 @@
     }
         main h1 {
             font-size: 400%;
-            font-family: 'Marcellus SC', serif;
-            text-shadow: 4px 4px var(--secondary_bg_color);
+            font-family: 'Creepster', cursive;
+            text-shadow: 4px 4px rgb(68, 0, 0);
+            color: rgb(202, 0, 0);
+            letter-spacing: 6px;
         }
 
         main h2 {
