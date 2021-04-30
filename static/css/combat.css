@@ -257,7 +257,7 @@
             background-size: cover;
         }
         #action_2_button {
-            background-image: url(../img/paladin_ability_2_icon.png);
+            background-image: url(../img/paladin_ability_2_icon_locked.png);
             background-size: cover;
         }
         #action_3_button {
@@ -273,14 +273,17 @@
             background-size: cover;
         }
 
+    /*ACTIONFEED/DESCRIPTION BOX*/
+        #action_feed, .small_box {
+            background-color: var(--lighter_bg);
+            background-image: url(../img/cracked_concrete.png);
+            background-size: cover;
+        }
+
     /*ACTION FEED*/
         #action_feed {
             width: 588px;
             height: 272px;
-
-            background-color: var(--lighter_bg);
-            background-image: url(../img/cracked_concrete.png);
-            background-size: cover;
 
             border-bottom-left-radius: var(--rounder_edge);
             border-bottom-right-radius: var(--rounder_edge);
@@ -360,15 +363,53 @@
                 border: 2px outset rgb(97, 95, 86);
             }
 
-/*PROGRESS TRACKER*/
+/*ABILITY DESCRIPTIONS*/
         .small_box {
             width: var(--larger-box-width);
-            height: 108px;
+            height: auto;
 
             margin-top: var(--global_margin);
 
-            background-color: var(--secondary_bg_color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
+        
+        dl {
+            margin: var(--global_margin);
+            font-size: .90rem;
+        }
+
+        .ability_desc_box {
+            margin: .5rem;
+
+            display: flex;
+            flex-direction: row;
+        }
+        
+        /*image for box*/
+        .ability_desc_box img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /*the descriptions*/
+        .descriptions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 10px;
+        }
+            dt, .item_box p {
+                color: black;
+                text-shadow: 0px 0px 1px white;
+                font-weight: bold;
+            }
+
+            dd {
+                font-size: .75rem;
+                color: black;
+            }
 
 /*FOOTER*/
         footer {
