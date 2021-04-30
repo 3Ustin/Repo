@@ -146,7 +146,7 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
-        main h1 {
+        h1 {
             font-size: 400%;
             font-family: 'Creepster', cursive;
             text-shadow: 4px 4px rgb(68, 0, 0);
