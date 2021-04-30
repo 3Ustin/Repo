@@ -59,7 +59,7 @@
                             <img src="{{ url_for('static', filename='img/zombie_1.png') }}" id="enemy_img">
                         </div>
                         {% endif %}
-                        {% if session['is_enemy_alive'] == false %}                        
+                        {% if session['is_enemy_alive'] == false %}
                         <div class="enemy_combat">
                             <img src="{{ url_for('static', filename='img/death_mound.png') }}" id="enemy_death">
                         </div>
@@ -122,7 +122,7 @@
                             <form action="/use_item" method="post" class="backpack_form">
                                 <div class ="display_box">
                                     <img src="{{ url_for('static', filename = 'img/'+item.name) }}">
-                                </div>    
+                                </div>
                                     <input type="hidden" name="item_option" value="{{ item['name']}}">
                                     <input type="hidden" name="item_id" value="{{ item['id']}}">
                                     <input type="submit" value="Use" class="use_button">
